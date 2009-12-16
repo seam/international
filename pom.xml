@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
@@ -45,26 +44,18 @@
       </dependency>
 
       <dependency>
-         <groupId>${seam.groupId}</groupId>
-         <artifactId>seam-bridge-api</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>${seam.groupId}</groupId>
-         <artifactId>seam-el</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>${seam.groupId}</groupId>
-         <artifactId>seam-resources</artifactId>
-      </dependency>
-
-      <dependency>
          <groupId>javax.enterprise</groupId>
          <artifactId>cdi-api</artifactId>
          <scope>provided</scope>
       </dependency>
 
    </dependencies>
+
+
+   <scm>
+      <connection>scm:svn:http://anonsvn.jboss.org/repos/seam/modules/international/trunk</connection>
+      <developerConnection>scm:svn:https://svn.jboss.org/repos/seam/modules/international/trunk</developerConnection>
+      <url>http://fisheye.jboss.org/browse/Seam/modules/international/trunk</url>
+   </scm>
 
 </project>
