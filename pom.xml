@@ -9,14 +9,20 @@
       <version>3.0.0-SNAPSHOT</version>
    </parent>
 
-   <groupId>org.jboss.seam.international</groupId>
    <artifactId>seam-international-parent</artifactId>
-   <packaging>pom</packaging>
+   <groupId>org.jboss.seam.international</groupId>
    <version>3.0.0-SNAPSHOT</version>
-   <name>Seam International Parent</name>
+
+   <packaging>pom</packaging>
+   <name>Seam International Module Parent POM</name>
+
+   <description>The Parent for Seam International Module</description>
+
+   <url>http://www.seamframework.org</url>
 
    <modules>
-      <module>core</module>
+      <module>api</module>
+      <module>impl</module>
       <!--module>docs</module-->
       <!--module>examples/??</module-->
    </modules>
@@ -25,65 +31,67 @@
       <arquillian.version>1.0.0.Alpha1</arquillian.version>
    </properties>
 
-   <dependencyManagement> 
-      <dependencies>
+   <dependencies>
 
-         <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <version>2.2</version>
-            <scope>provided</scope>
-         </dependency>
+      <!-- Environment Dependencies -->
+      <dependency>
+         <groupId>javax.el</groupId>
+         <artifactId>el-api</artifactId>
+         <version>2.2</version>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>javax.enterprise</groupId>
+         <artifactId>cdi-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.weld</groupId>
+         <artifactId>weld-extensions</artifactId>
+         <version>1.0.0.Alpha1</version>
+      </dependency>
   
-         <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
-         </dependency>
-  
-         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.0.0.GA</version>
-         </dependency>
-  
-         <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>1.0-SP1</version>
-         </dependency>
+      <!-- Test Dependencies -->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.8.1</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.arquillian</groupId>
+         <artifactId>arquillian-junit</artifactId>
+         <version>${arquillian.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.arquillian.container</groupId>
+         <artifactId>arquillian-weld-embedded</artifactId>
+         <version>${arquillian.version}</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
 
-         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.5.10</version>
-            <scope>provided</scope>
-         </dependency>
-
-         <dependency>
-            <groupId>org.jboss.arquillian</groupId>
-            <artifactId>arquillian-junit</artifactId>
-            <version>${arquillian.version}</version>
-            <scope>test</scope>
-         </dependency>
-
-         <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-weld-embedded</artifactId>
-            <version>${arquillian.version}</version>
-            <scope>test</scope>
-         </dependency>
-
-         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
-         </dependency>
-
-      </dependencies>
-   </dependencyManagement>
+   <developers>
+      <developer>
+          <name>Lincoln Baxter, III</name>
+          <email>lincolnbaxter@gmail.com</email>
+          <url>http://ocpsoft.com</url>
+          <organization>JBoss, by Red Hat</organization>
+          <organizationUrl>http://jboss.org</organizationUrl>
+          <timezone>EST</timezone>
+          <roles>
+             <role>Project Lead</role>
+          </roles>
+       </developer>
+       <developer>
+          <name>Ken Finnigan</name>
+          <timezone>GMT</timezone>
+          <roles>
+             <role>Project Lead</role>
+          </roles>
+       </developer>
+   </developers>
    
    <scm>
       <connection>scm:svn:http://anonsvn.jboss.org/repos/seam/modules/international/trunk</connection>
@@ -91,4 +99,17 @@
       <url>http://fisheye.jboss.org/browse/Seam/modules/international/trunk</url>
    </scm>
 
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.0.2</version>
+            <configuration>
+               <source>1.6</source>
+               <target>1.6</target>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
 </project>
