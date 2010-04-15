@@ -19,42 +19,26 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.timezone;
+package org.jboss.seam.international.timezone.test;
 
-import java.io.Serializable;
+import java.util.List;
 import java.util.TimeZone;
 
-import javax.enterprise.context.SessionScoped;
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Produces;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
-/**
- * TimeZone for a User Session. Defaults to the TimeZone within DefaultTimeZone
- * and is altered when it receives the TimeZoneSelectedEvent.
- * 
- * @author Ken Finnigan
- */
-
-@SessionScoped
-public class UserTimeZoneProducer implements Serializable
+@ApplicationScoped
+public class AvailableTimeZoneBean
 {
-   private static final long serialVersionUID = -9008203923830420841L;
-
-   @Produces
-   @UserTimeZone
-   @Named
-   private TimeZone userTimeZone;
-
    @Inject
-   public void init(TimeZone defaultTimeZone)
+   private List<TimeZone> timeZones;
+
+   public AvailableTimeZoneBean()
    {
-      this.userTimeZone = defaultTimeZone;
    }
 
-   public void changeTimeZone(@Observes @Changed TimeZone tz)
+   public List<TimeZone> getAvailTimeZones()
    {
-      this.userTimeZone = tz;
+      return timeZones;
    }
 }
