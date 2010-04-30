@@ -22,13 +22,15 @@
 package org.jboss.seam.international.timezone;
 
 import java.io.Serializable;
-import java.util.TimeZone;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.jboss.seam.international.Changed;
+import org.joda.time.DateTimeZone;
 
 /**
  * TimeZone for a User Session. Defaults to the TimeZone within DefaultTimeZone
@@ -45,15 +47,15 @@ public class UserTimeZoneProducer implements Serializable
    @Produces
    @UserTimeZone
    @Named
-   private TimeZone userTimeZone;
+   private DateTimeZone userTimeZone;
 
    @Inject
-   public void init(TimeZone defaultTimeZone)
+   public void init(DateTimeZone defaultTimeZone)
    {
       this.userTimeZone = defaultTimeZone;
    }
 
-   public void changeTimeZone(@Observes @Changed TimeZone tz)
+   public void changeTimeZone(@Observes @Changed DateTimeZone tz)
    {
       this.userTimeZone = tz;
    }

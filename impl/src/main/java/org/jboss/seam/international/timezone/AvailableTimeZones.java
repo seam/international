@@ -25,11 +25,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.TimeZone;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
+
+import org.joda.time.DateTimeZone;
 
 /**
  * <p>
@@ -57,39 +59,38 @@ public class AvailableTimeZones
 {
    private static final String TIMEZONE_ID_PREFIXES = "^(Africa|America|Asia|Atlantic|Australia|Europe|Indian|Pacific)/.*";
 
-   private boolean wrap = true;
-
    @Produces
-   private List<TimeZone> timeZones = null;
+   private List<ForwardingTimeZone> timeZones = null;
 
+   @SuppressWarnings("unchecked")
    @PostConstruct
    public void init()
    {
-      timeZones = new ArrayList<TimeZone>();
-      final String[] timeZoneIds = TimeZone.getAvailableIDs();
-      for (final String id : timeZoneIds)
+      timeZones = new ArrayList<ForwardingTimeZone>();
+      final Set timeZoneIds = DateTimeZone.getAvailableIDs();
+      for (Object object : timeZoneIds)
       {
+         String id = (String) object;
          if (id.matches(TIMEZONE_ID_PREFIXES))
          {
-            timeZones.add(wrap ? new TimeZoneWrapper(TimeZone.getTimeZone(id)) : TimeZone.getTimeZone(id));
+            final DateTimeZone dtz = DateTimeZone.forID(id);
+            timeZones.add(new ForwardingTimeZone(id)
+            {
+               @Override
+               protected DateTimeZone delegate()
+               {
+                  return dtz;
+               }
+            });
          }
       }
-      Collections.sort(timeZones, new Comparator<TimeZone>()
+      Collections.sort(timeZones, new Comparator<ForwardingTimeZone>()
       {
-         public int compare(final TimeZone a, final TimeZone b)
+         public int compare(final ForwardingTimeZone a, final ForwardingTimeZone b)
          {
             return a.getID().compareTo(b.getID());
          }
       });
-   }
-
-   public boolean isWrap()
-   {
-      return wrap;
-   }
-
-   public void setWrap(boolean wrap)
-   {
-      this.wrap = wrap;
+      timeZones = Collections.unmodifiableList(timeZones);
    }
 }

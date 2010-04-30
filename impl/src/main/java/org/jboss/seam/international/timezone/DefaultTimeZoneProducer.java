@@ -22,12 +22,15 @@
 package org.jboss.seam.international.timezone;
 
 import java.io.Serializable;
-import java.util.TimeZone;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.joda.time.DateTimeZone;
+import org.slf4j.Logger;
 
 /**
  * Default TimeZone of the application. If configuration of the default TimeZone
@@ -41,13 +44,46 @@ public class DefaultTimeZoneProducer implements Serializable
 {
    private static final long serialVersionUID = 6181892144731122500L;
 
+   String defaultTimeZoneId;
+
+   @Inject
+   Logger log;
+
    @Produces
    @Named
-   private TimeZone defaultTimeZone;
+   private DateTimeZone defaultTimeZone = null;
 
    @PostConstruct
    public void init()
    {
-      defaultTimeZone = TimeZone.getDefault();
+      if (null != defaultTimeZoneId)
+      {
+         try
+         {
+            DateTimeZone dtz = DateTimeZone.forID(defaultTimeZoneId);
+            defaultTimeZone = constructTimeZone(dtz);
+         }
+         catch (IllegalArgumentException e)
+         {
+            log.warn("Default TimeZone Id of " + defaultTimeZoneId + " was not found");
+         }
+      }
+      if (null == defaultTimeZone)
+      {
+         DateTimeZone dtz = DateTimeZone.getDefault();
+         defaultTimeZone = constructTimeZone(dtz);
+      }
+   }
+
+   private ForwardingTimeZone constructTimeZone(final DateTimeZone dtz)
+   {
+      return new ForwardingTimeZone(dtz.getID())
+      {
+         @Override
+         protected DateTimeZone delegate()
+         {
+            return dtz;
+         }
+      };
    }
 }

@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.timezone;
+package org.jboss.seam.international;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.PARAMETER;
@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 import javax.inject.Qualifier;
 
 /**
- * Change TimeZone of the User.
+ * Qualifier used with Events to signify either a TimeZone or Locale has changed.
  * 
  * @author Ken Finnigan
  */
