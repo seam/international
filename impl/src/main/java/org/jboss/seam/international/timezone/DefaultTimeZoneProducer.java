@@ -35,7 +35,7 @@ import org.slf4j.Logger;
 /**
  * Default TimeZone of the application. If configuration of the default TimeZone
  * is found that will be used, otherwise the JVM default TimeZone otherwise.
- * 
+ *
  * @author Ken Finnigan
  */
 
@@ -44,7 +44,7 @@ public class DefaultTimeZoneProducer implements Serializable
 {
    private static final long serialVersionUID = 6181892144731122500L;
 
-   String defaultTimeZoneId;
+   private String defaultTimeZoneId;
 
    @Inject
    Logger log;
