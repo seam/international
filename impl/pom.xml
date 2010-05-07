@@ -1,59 +1,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-   <parent>
-      <groupId>org.jboss.seam.international</groupId>
-      <artifactId>seam-international-parent</artifactId>
-      <version>3.0.0-SNAPSHOT</version>
-   </parent>
+	<parent>
+		<groupId>org.jboss.seam.international</groupId>
+		<artifactId>seam-international-parent</artifactId>
+		<version>3.0.0-SNAPSHOT</version>
+	</parent>
 
-   <artifactId>seam-international</artifactId>
-   <version>3.0.0-SNAPSHOT</version>
+	<artifactId>seam-international</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
 
-   <packaging>jar</packaging>
-   <name>Seam International Module Core Implementation</name>
+	<packaging>jar</packaging>
+	<name>Seam International Module Core Implementation</name>
 
-  <!-- Snapshots repo to get parent -->
-  <repositories>
-      <repository>
-         <id>oss.sonatype.org/jboss-snapshots</id>
-         <name>JBoss (Nexus) Snapshots Repository</name>
-         <url>http://oss.sonatype.org/content/repositories/jboss-snapshots
+	<!-- Snapshots repo to get parent -->
+	<repositories>
+		<repository>
+			<id>oss.sonatype.org/jboss-snapshots</id>
+			<name>JBoss (Nexus) Snapshots Repository</name>
+			<url>http://oss.sonatype.org/content/repositories/jboss-snapshots
          </url>
-         <releases>
-            <enabled>false</enabled>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-         </snapshots>
-      </repository>
-   </repositories>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
 
-   <dependencies>
-      <dependency>
-         <artifactId>seam-international-api</artifactId>
-         <groupId>org.jboss.seam.international</groupId>
-         <version>${project.version}</version>
-         <scope>compile</scope>
-      </dependency>
-   </dependencies>
-   
-   <profiles>
+	<dependencies>
+		<dependency>
+			<artifactId>seam-international-api</artifactId>
+			<groupId>org.jboss.seam.international</groupId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<profiles>
 		<profile>
 			<id>code-coverage</id>
 			<build>
-			  <plugins>     
-					<plugin>      
-					  <groupId>org.codehaus.mojo</groupId>
-					  <artifactId>emma-maven-plugin</artifactId>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>emma-maven-plugin</artifactId>
 					</plugin>
 					<plugin>
-					  <groupId>org.apache.maven.plugins</groupId>
-					  <artifactId>maven-surefire-plugin</artifactId>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
 					</plugin>
-				 </plugins>
+					<plugin>
+						<groupId>org.sonatype.maven.plugin</groupId>
+						<artifactId>emma4it-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 	</profiles>
