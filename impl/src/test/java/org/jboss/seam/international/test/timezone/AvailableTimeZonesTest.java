@@ -31,7 +31,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.timezone.AvailableTimeZones;
 import org.jboss.seam.international.timezone.ForwardingTimeZone;
 import org.jboss.shrinkwrap.api.ArchivePaths;
-import org.jboss.shrinkwrap.api.Archives;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.joda.time.DateTimeZone;
@@ -45,7 +45,7 @@ public class AvailableTimeZonesTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return Archives.create("availabletimezonetest.jar", JavaArchive.class).addClasses(AvailableTimeZones.class, AvailableTimeZoneBean.class, ForwardingTimeZone.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("availabletimezonetest.jar", JavaArchive.class).addClasses(AvailableTimeZones.class, AvailableTimeZoneBean.class, ForwardingTimeZone.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
    }
 
    @Inject

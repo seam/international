@@ -28,7 +28,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.test.MockLogger;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
-import org.jboss.shrinkwrap.api.Archives;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.joda.time.DateTimeZone;
@@ -42,7 +42,7 @@ public class DefaultTimeZoneOverrideTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      JavaArchive arc = Archives.create("test.jar", JavaArchive.class).addClasses(MockLogger.class, DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml")).addManifestResource("org/jboss/seam/international/test/timezone/seam-beans.xml", ArchivePaths.create("seam-beans.xml"));
+      JavaArchive arc = ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(MockLogger.class, DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml")).addManifestResource("org/jboss/seam/international/test/timezone/seam-beans.xml", ArchivePaths.create("seam-beans.xml"));
       System.out.println(arc.toString(true));
       return arc;
    }
@@ -54,6 +54,6 @@ public class DefaultTimeZoneOverrideTest
    public void testDefaultTimeZoneProducerDirect()
    {
       Assert.assertNotNull(timeZone);
-//      Assert.assertEquals("America/Tijuana", timeZone.getID());
+      Assert.assertEquals("America/Tijuana", timeZone.getID());
    }
 }

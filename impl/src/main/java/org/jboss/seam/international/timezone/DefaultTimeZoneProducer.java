@@ -65,7 +65,7 @@ public class DefaultTimeZoneProducer implements Serializable
          }
          catch (IllegalArgumentException e)
          {
-            log.warn("Default TimeZone Id of " + defaultTimeZoneId + " was not found");
+            log.warn("DefaultTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
          }
       }
       if (null == defaultTimeZone)

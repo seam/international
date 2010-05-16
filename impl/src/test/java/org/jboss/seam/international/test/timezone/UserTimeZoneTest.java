@@ -33,7 +33,7 @@ import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.seam.international.timezone.UserTimeZone;
 import org.jboss.seam.international.timezone.UserTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
-import org.jboss.shrinkwrap.api.Archives;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.joda.time.DateTimeZone;
@@ -47,7 +47,7 @@ public class UserTimeZoneTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return Archives.create("usertimezonetest.jar", JavaArchive.class).addClasses(MockLogger.class, UserTimeZoneProducer.class, UserTimeZone.class, DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("usertimezonetest.jar", JavaArchive.class).addClasses(MockLogger.class, UserTimeZoneProducer.class, UserTimeZone.class, DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
    }
 
    @Inject
