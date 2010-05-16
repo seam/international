@@ -19,7 +19,6 @@ License along with this software; if not, write to the Free
 Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://java.sun.com/xml/ns/javaee"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xmlns:s="urn:java:seam:core" 
@@ -30,6 +29,6 @@ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 
     <tz:DefaultTimeZoneProducer>
     	<s:specializes/>
-        <tz:defaultTimeZoneId>America/Tijuana</tz:defaultTimeZoneId>
+        <tz:defaultTimeZoneId>America/Tijuanas</tz:defaultTimeZoneId>
     </tz:DefaultTimeZoneProducer>
 </beans>
