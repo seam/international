@@ -31,7 +31,6 @@
     <weld.extensions.version>1.0.0.Alpha1</weld.extensions.version>
     <weld.api.version>1.0-SP1</weld.api.version>
     <junit.version>4.8.1</junit.version>
-    <slf4j.version>1.5.9.RC1</slf4j.version>
     <joda-time.version>1.6</joda-time.version>
     <pretty-time.version>1.0.6</pretty-time.version>
     <emma.maven.plugin.version>1.0-alpha-2</emma.maven.plugin.version>
@@ -51,24 +50,6 @@
   </dependencyManagement>
 
   <dependencies>
-    <!--
-      The reason slf4j-jdk14 is included at runtime scope is because
-      slf4j-api is compile scope and, without the JDK 1.4 bridge, JBoss AS
-      will barf. This should be included by weld-extensions to make it easy
-      to exclude if necessary.
-    -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>${slf4j.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
 
     <!-- Environment Dependencies -->
     <dependency>
