@@ -28,7 +28,7 @@
   <properties>
     <arquillian.version>1.0.0-SNAPSHOT</arquillian.version>
     <seam.xml.version>3.0.0-SNAPSHOT</seam.xml.version>
-    <weld.extensions.version>1.0.0.Alpha1</weld.extensions.version>
+    <weld.extensions.version>1.0.0.Alpha2</weld.extensions.version>
     <weld.api.version>1.0-SP1</weld.api.version>
     <junit.version>4.8.1</junit.version>
     <slf4j.version>1.5.10</slf4j.version>
