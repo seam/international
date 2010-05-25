@@ -67,6 +67,11 @@ public class Bundles implements Map<String, ResourceBundle>, Serializable
 
    public ResourceBundle get(final Object key)
    {
+      if (!containsKey(key))
+      {
+         ResourceBundle bundle = ResourceBundle.getBundle(key.toString());
+         bundles.put(key.toString(), bundle);
+      }
       return bundles.get(key);
    }
 

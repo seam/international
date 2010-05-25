@@ -61,7 +61,7 @@ import org.jboss.seam.international.status.MessageBuilder;
  */
 public class BundleMessage implements MessageBuilder
 {
-   private TemplateMessage template;
+   private final TemplateMessage template;
    private String textDefault;
    private BundleKey textKey;
 
@@ -70,7 +70,7 @@ public class BundleMessage implements MessageBuilder
    public BundleMessage(final Bundles bundles, final Level level)
    {
       this.bundles = bundles;
-      this.template.level(level);
+      this.template = new TemplateMessage(level);
    }
 
    /**
