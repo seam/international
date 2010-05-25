@@ -45,10 +45,11 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
 public class Messages implements Serializable
 {
    private static final long serialVersionUID = -2908193057765795662L;
+
    private final Set<Message> messages = Collections.synchronizedSet(new HashSet<Message>());
 
    @Inject
-   MessageFactory factory;
+   private MessageFactory factory;
 
    /**
     * Clear all pending messages.

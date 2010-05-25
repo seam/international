@@ -21,6 +21,8 @@
  */
 package org.jboss.seam.international.status;
 
+import java.io.Serializable;
+
 import javax.inject.Inject;
 
 import org.jboss.seam.international.status.builder.BundleKey;
@@ -28,13 +30,18 @@ import org.jboss.seam.international.status.builder.BundleMessage;
 import org.jboss.seam.international.status.builder.TemplateMessage;
 
 /**
+ * A utility for building {@link Message} objects via message templates, or
+ * message bundles. See {@link TemplateMessage} or {@link BundleMessage}.
+ * 
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public class MessageFactory
+public class MessageFactory implements Serializable
 {
+   private static final long serialVersionUID = -7899463141244189001L;
+
    @Inject
-   Bundles bundles;
+   private Bundles bundles;
 
    /*
     * Bundle Factory Methods

@@ -21,6 +21,7 @@
  */
 package org.jboss.seam.international.status;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -38,8 +39,10 @@ import javax.inject.Named;
  */
 @Named
 @ApplicationScoped
-public class Bundles implements Map<String, ResourceBundle>
+public class Bundles implements Map<String, ResourceBundle>, Serializable
 {
+   private static final long serialVersionUID = 1207758648760266247L;
+
    private final Map<String, ResourceBundle> bundles = new ConcurrentHashMap<String, ResourceBundle>();
 
    public void clear()
