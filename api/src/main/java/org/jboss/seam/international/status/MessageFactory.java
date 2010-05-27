@@ -26,12 +26,12 @@ import java.io.Serializable;
 import javax.inject.Inject;
 
 import org.jboss.seam.international.status.builder.BundleKey;
-import org.jboss.seam.international.status.builder.BundleMessage;
+import org.jboss.seam.international.status.builder.BundleTemplateMessage;
 import org.jboss.seam.international.status.builder.TemplateMessage;
 
 /**
  * A utility for building {@link Message} objects via message templates, or
- * message bundles. See {@link TemplateMessage} or {@link BundleMessage}.
+ * message bundles. See {@link TemplateMessage} or {@link BundleTemplateMessage}.
  * 
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
@@ -46,44 +46,44 @@ public class MessageFactory implements Serializable
    /*
     * Bundle Factory Methods
     */
-   public BundleMessage info(final BundleKey message)
+   public BundleTemplateMessage info(final BundleKey message)
    {
-      return new BundleMessage(bundles, Level.INFO).text(message);
+      return new BundleTemplateMessage(bundles, Level.INFO).text(message);
    }
 
-   public BundleMessage info(final BundleKey message, final Object... params)
+   public BundleTemplateMessage info(final BundleKey message, final Object... params)
    {
-      return new BundleMessage(bundles, Level.INFO).text(message).textParams(params);
+      return new BundleTemplateMessage(bundles, Level.INFO).text(message).textParams(params);
    }
 
-   public BundleMessage warn(final BundleKey message)
+   public BundleTemplateMessage warn(final BundleKey message)
    {
-      return new BundleMessage(bundles, Level.WARN).text(message);
+      return new BundleTemplateMessage(bundles, Level.WARN).text(message);
    }
 
-   public BundleMessage warn(final BundleKey message, final Object... params)
+   public BundleTemplateMessage warn(final BundleKey message, final Object... params)
    {
-      return new BundleMessage(bundles, Level.WARN).text(message).textParams(params);
+      return new BundleTemplateMessage(bundles, Level.WARN).text(message).textParams(params);
    }
 
-   public BundleMessage error(final BundleKey message)
+   public BundleTemplateMessage error(final BundleKey message)
    {
-      return new BundleMessage(bundles, Level.ERROR).text(message);
+      return new BundleTemplateMessage(bundles, Level.ERROR).text(message);
    }
 
-   public BundleMessage error(final BundleKey message, final Object... params)
+   public BundleTemplateMessage error(final BundleKey message, final Object... params)
    {
-      return new BundleMessage(bundles, Level.ERROR).text(message).textParams(params);
+      return new BundleTemplateMessage(bundles, Level.ERROR).text(message).textParams(params);
    }
 
-   public BundleMessage fatal(final BundleKey message)
+   public BundleTemplateMessage fatal(final BundleKey message)
    {
-      return new BundleMessage(bundles, Level.FATAL).text(message);
+      return new BundleTemplateMessage(bundles, Level.FATAL).text(message);
    }
 
-   public BundleMessage fatal(final BundleKey message, final Object... params)
+   public BundleTemplateMessage fatal(final BundleKey message, final Object... params)
    {
-      return new BundleMessage(bundles, Level.FATAL).text(message).textParams(params);
+      return new BundleTemplateMessage(bundles, Level.FATAL).text(message).textParams(params);
    }
 
    /*

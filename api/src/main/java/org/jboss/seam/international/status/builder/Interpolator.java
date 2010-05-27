@@ -48,7 +48,7 @@ class Interpolator
    public String populate(final String template, final Object... params)
    {
       StringBuffer result = new StringBuffer();
-      if (template != null)
+      if ((template != null) && (params != null))
       {
          Matcher matcher = templatePattern.matcher(template);
          while (matcher.find())
@@ -66,6 +66,10 @@ class Interpolator
             matcher.appendReplacement(result, value.toString());
          }
          matcher.appendTail(result);
+      }
+      else if (template != null)
+      {
+         result = new StringBuffer(template);
       }
       return result.toString();
    }

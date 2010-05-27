@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.status.builder;
+package org.jboss.seam.international.test.status.builder;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,6 +29,7 @@ import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.status.Bundles;
 import org.jboss.seam.international.status.MessageFactory;
+import org.jboss.seam.international.status.builder.TemplateMessage;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;

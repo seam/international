@@ -59,7 +59,7 @@ import org.jboss.seam.international.status.MessageBuilder;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public class BundleMessage implements MessageBuilder
+public class BundleTemplateMessage implements MessageBuilder
 {
    private final TemplateMessage template;
    private String textDefault;
@@ -67,7 +67,7 @@ public class BundleMessage implements MessageBuilder
 
    private final Bundles bundles;
 
-   public BundleMessage(final Bundles bundles, final Level level)
+   public BundleTemplateMessage(final Bundles bundles, final Level level)
    {
       this.bundles = bundles;
       this.template = new TemplateMessage(level);
@@ -102,33 +102,78 @@ public class BundleMessage implements MessageBuilder
     * Setters
     */
 
-   public BundleMessage text(final BundleKey text)
+   public BundleTemplateMessage text(final BundleKey text)
    {
       this.textKey = text;
       return this;
    }
 
-   public BundleMessage textDefault(final String text)
+   public BundleTemplateMessage textDefault(final String text)
    {
       this.textDefault = text;
       return this;
    }
 
-   public BundleMessage textParams(final Object... textParams)
+   public BundleTemplateMessage textParams(final Object... textParams)
    {
       this.template.textParams(textParams);
       return this;
    }
 
-   public BundleMessage targets(final String targets)
+   public BundleTemplateMessage targets(final String targets)
    {
       this.template.targets(targets);
       return this;
    }
 
-   public BundleMessage setLevel(final Level level)
+   public BundleTemplateMessage setLevel(final Level level)
    {
       this.template.level(level);
       return this;
+   }
+
+   @Override
+   public int hashCode()
+   {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((template == null) ? 0 : template.hashCode());
+      result = prime * result + ((textDefault == null) ? 0 : textDefault.hashCode());
+      result = prime * result + ((textKey == null) ? 0 : textKey.hashCode());
+      return result;
+   }
+
+   @Override
+   public boolean equals(Object obj)
+   {
+      if (this == obj)
+         return true;
+      if (obj == null)
+         return false;
+      if (getClass() != obj.getClass())
+         return false;
+      BundleTemplateMessage other = (BundleTemplateMessage) obj;
+      if (template == null)
+      {
+         if (other.template != null)
+            return false;
+      }
+      else if (!template.equals(other.template))
+         return false;
+      if (textDefault == null)
+      {
+         if (other.textDefault != null)
+            return false;
+      }
+      else if (!textDefault.equals(other.textDefault))
+         return false;
+      if (textKey == null)
+      {
+         if (other.textKey != null)
+            return false;
+      }
+      else if (!textKey.equals(other.textKey))
+         return false;
+      return true;
    }
 }

@@ -32,7 +32,6 @@ public class MessageImpl implements Message, MutableMessage
    private static final long serialVersionUID = -1812292372048679525L;
 
    private String summary;
-   private String details;
    private String targets;
    private Level level;
 
@@ -41,10 +40,9 @@ public class MessageImpl implements Message, MutableMessage
    {
       final int prime = 31;
       int result = 1;
-      result = prime * result + ((details == null) ? 0 : details.hashCode());
-      result = prime * result + ((targets == null) ? 0 : targets.hashCode());
       result = prime * result + ((level == null) ? 0 : level.hashCode());
       result = prime * result + ((summary == null) ? 0 : summary.hashCode());
+      result = prime * result + ((targets == null) ? 0 : targets.hashCode());
       return result;
    }
 
@@ -64,28 +62,6 @@ public class MessageImpl implements Message, MutableMessage
          return false;
       }
       MessageImpl other = (MessageImpl) obj;
-      if (details == null)
-      {
-         if (other.details != null)
-         {
-            return false;
-         }
-      }
-      else if (!details.equals(other.details))
-      {
-         return false;
-      }
-      if (targets == null)
-      {
-         if (other.targets != null)
-         {
-            return false;
-         }
-      }
-      else if (!targets.equals(other.targets))
-      {
-         return false;
-      }
       if (level == null)
       {
          if (other.level != null)
@@ -108,6 +84,17 @@ public class MessageImpl implements Message, MutableMessage
       {
          return false;
       }
+      if (targets == null)
+      {
+         if (other.targets != null)
+         {
+            return false;
+         }
+      }
+      else if (!targets.equals(other.targets))
+      {
+         return false;
+      }
       return true;
    }
 
@@ -117,11 +104,6 @@ public class MessageImpl implements Message, MutableMessage
    public String getText()
    {
       return summary;
-   }
-
-   public String getDetails()
-   {
-      return details;
    }
 
    public String getTargets()
@@ -137,11 +119,6 @@ public class MessageImpl implements Message, MutableMessage
    public void setText(final String summary)
    {
       this.summary = summary;
-   }
-
-   public void setDetails(final String details)
-   {
-      this.details = details;
    }
 
    public void setTargets(final String targets)

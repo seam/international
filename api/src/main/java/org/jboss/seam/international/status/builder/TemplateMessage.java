@@ -21,6 +21,8 @@
  */
 package org.jboss.seam.international.status.builder;
 
+import java.util.Arrays;
+
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
 import org.jboss.seam.international.status.MessageBuilder;
@@ -47,7 +49,7 @@ public class TemplateMessage implements MessageBuilder
 {
    private static final String MESSAGE_IMPL_CLASS = "org.jboss.seam.international.status.MessageImpl";
 
-   private final Interpolator templater = new Interpolator();
+   private final Interpolator interpolator = new Interpolator();
 
    private String summary;
    private Object[] summaryParams;
@@ -73,7 +75,7 @@ public class TemplateMessage implements MessageBuilder
          MutableMessage message = (MutableMessage) type.newInstance();
 
          message.setLevel(level);
-         message.setText(templater.populate(summary, summaryParams));
+         message.setText(interpolator.populate(summary, summaryParams));
          message.setTargets(targets);
 
          return message;
@@ -109,5 +111,73 @@ public class TemplateMessage implements MessageBuilder
    {
       this.level = level;
       return this;
+   }
+
+   @Override
+   public int hashCode()
+   {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((level == null) ? 0 : level.hashCode());
+      result = prime * result + ((summary == null) ? 0 : summary.hashCode());
+      result = prime * result + Arrays.hashCode(summaryParams);
+      result = prime * result + ((targets == null) ? 0 : targets.hashCode());
+      return result;
+   }
+
+   @Override
+   public boolean equals(final Object obj)
+   {
+      if (this == obj)
+      {
+         return true;
+      }
+      if (obj == null)
+      {
+         return false;
+      }
+      if (getClass() != obj.getClass())
+      {
+         return false;
+      }
+      TemplateMessage other = (TemplateMessage) obj;
+      if (level == null)
+      {
+         if (other.level != null)
+         {
+            return false;
+         }
+      }
+      else if (!level.equals(other.level))
+      {
+         return false;
+      }
+      if (summary == null)
+      {
+         if (other.summary != null)
+         {
+            return false;
+         }
+      }
+      else if (!summary.equals(other.summary))
+      {
+         return false;
+      }
+      if (!Arrays.equals(summaryParams, other.summaryParams))
+      {
+         return false;
+      }
+      if (targets == null)
+      {
+         if (other.targets != null)
+         {
+            return false;
+         }
+      }
+      else if (!targets.equals(other.targets))
+      {
+         return false;
+      }
+      return true;
    }
 }

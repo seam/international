@@ -31,7 +31,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import org.jboss.seam.international.status.builder.BundleKey;
-import org.jboss.seam.international.status.builder.BundleMessage;
+import org.jboss.seam.international.status.builder.BundleTemplateMessage;
 import org.jboss.seam.international.status.builder.TemplateMessage;
 
 /**
@@ -47,6 +47,7 @@ public class Messages implements Serializable
    private static final long serialVersionUID = -2908193057765795662L;
 
    private final Set<Message> messages = Collections.synchronizedSet(new HashSet<Message>());
+   private final Set<MessageBuilder> builders = Collections.synchronizedSet(new HashSet<MessageBuilder>());
 
    @Inject
    private MessageFactory factory;
@@ -61,11 +62,24 @@ public class Messages implements Serializable
 
    /**
     * Retrieve all pending {@link Messages} in their final state - as they will
-    * be displayed to the user.
+    * be displayed to the user. Calling this method will call
+    * {@link MessageBuilder#build()} on any queued {@link MessageBuilder}
+    * instances, adding the resulting {@link Message} objects to the message
+    * cache, and clearing the builders from the builder cache.
     */
    public Set<Message> getAll()
    {
       Set<Message> result = new HashSet<Message>();
+
+      synchronized (builders)
+      {
+         for (MessageBuilder builder : builders)
+         {
+            messages.add(builder.build());
+         }
+         builders.clear();
+      }
+
       synchronized (messages)
       {
          result.addAll(messages);
@@ -86,55 +100,66 @@ public class Messages implements Serializable
    }
 
    /**
-    * Add a {@link Message} object, produced by the provided
-    * {@link MessageBuilder}, to the pending message cache.
+    * Add a {@link MessageBuilder} object to the pending builder cache. A
+    * subsequent call to {@link Messages#getAll()} will trigger,
+    * {@link MessageBuilder#build()} to be called called on each builder added
+    * in this way.
     */
    public void add(final MessageBuilder builder)
    {
-      messages.add(builder.build());
+      builders.add(builder);
+   }
+
+   /**
+    * Convenience add & pass-through for factory methods.
+    */
+   private <T extends MessageBuilder> T enqueueBuilder(final T builder)
+   {
+      add(builder);
+      return builder;
    }
 
    /*
     * Bundle Factory Methods
     */
-   public BundleMessage info(final BundleKey message)
+   public BundleTemplateMessage info(final BundleKey message)
    {
-      return factory.info(message);
+      return enqueueBuilder(factory.info(message));
    }
 
-   public BundleMessage info(final BundleKey message, final Object... params)
+   public BundleTemplateMessage info(final BundleKey message, final Object... params)
    {
-      return factory.info(message, params);
+      return enqueueBuilder(factory.info(message, params));
    }
 
-   public BundleMessage warn(final BundleKey message)
+   public BundleTemplateMessage warn(final BundleKey message)
    {
-      return factory.warn(message);
+      return enqueueBuilder(factory.warn(message));
    }
 
-   public BundleMessage warn(final BundleKey message, final Object... params)
+   public BundleTemplateMessage warn(final BundleKey message, final Object... params)
    {
-      return factory.warn(message, params);
+      return enqueueBuilder(factory.warn(message, params));
    }
 
-   public BundleMessage error(final BundleKey message)
+   public BundleTemplateMessage error(final BundleKey message)
    {
-      return factory.error(message);
+      return enqueueBuilder(factory.error(message));
    }
 
-   public BundleMessage error(final BundleKey message, final Object... params)
+   public BundleTemplateMessage error(final BundleKey message, final Object... params)
    {
-      return factory.error(message, params);
+      return enqueueBuilder(factory.error(message, params));
    }
 
-   public BundleMessage fatal(final BundleKey message)
+   public BundleTemplateMessage fatal(final BundleKey message)
    {
-      return factory.fatal(message);
+      return enqueueBuilder(factory.fatal(message));
    }
 
-   public BundleMessage fatal(final BundleKey message, final Object... params)
+   public BundleTemplateMessage fatal(final BundleKey message, final Object... params)
    {
-      return factory.fatal(message, params);
+      return enqueueBuilder(factory.fatal(message, params));
    }
 
    /*
@@ -142,42 +167,42 @@ public class Messages implements Serializable
     */
    public TemplateMessage info(final String message)
    {
-      return factory.info(message);
+      return enqueueBuilder(factory.info(message));
    }
 
    public TemplateMessage info(final String message, final Object... params)
    {
-      return factory.info(message, params);
+      return enqueueBuilder(factory.info(message, params));
    }
 
    public TemplateMessage warn(final String message)
    {
-      return factory.warn(message);
+      return enqueueBuilder(factory.warn(message));
    }
 
    public TemplateMessage warn(final String message, final Object... params)
    {
-      return factory.warn(message, params);
+      return enqueueBuilder(factory.warn(message, params));
    }
 
    public TemplateMessage error(final String message)
    {
-      return factory.error(message);
+      return enqueueBuilder(factory.error(message));
    }
 
    public TemplateMessage error(final String message, final Object... params)
    {
-      return factory.error(message, params);
+      return enqueueBuilder(factory.error(message, params));
    }
 
    public TemplateMessage fatal(final String message)
    {
-      return factory.fatal(message);
+      return enqueueBuilder(factory.fatal(message));
    }
 
    public TemplateMessage fatal(final String message, final Object... params)
    {
-      return factory.fatal(message, params);
+      return enqueueBuilder(factory.fatal(message, params));
    }
 
 }
