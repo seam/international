@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import org.jboss.seam.international.status.builder.BundleKey;
@@ -41,7 +41,7 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
  * @author <a href="mailto:lincolnbaxter@gmail.com>Lincoln Baxter, III</a>
  * 
  */
-@SessionScoped
+@RequestScoped
 public class Messages implements Serializable
 {
    private static final long serialVersionUID = -2908193057765795662L;
