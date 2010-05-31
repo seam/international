@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" []>
+<preface>
+   <title>Introduction</title>
+   <para>
+   The goal of Seam International is to provide a unified approach to configuring locale, timezone and language.
+   With features such as Status messages propogation to UI, multiple property storage implementations and more. 
+   </para>
+
+<!--
+vim:et:ts=3:sw=3:tw=120
+-->
+</preface>

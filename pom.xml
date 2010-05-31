@@ -126,6 +126,20 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<id>distribution</id>
+			<activation>
+				<property>
+					<name>dist</name>
+				</property>
+			</activation>
+			<modules>
+				<module>dist</module>
+				<module>docs/reference</module>
+			</modules>
+		</profile>
+	</profiles>
 
 	<developers>
 		<developer>
