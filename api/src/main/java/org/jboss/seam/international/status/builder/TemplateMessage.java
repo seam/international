@@ -21,16 +21,13 @@
  */
 package org.jboss.seam.international.status.builder;
 
-import java.util.Arrays;
-
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
 import org.jboss.seam.international.status.MessageBuilder;
-import org.jboss.seam.international.status.MutableMessage;
 
 /**
- * This {@link MessageBuilder} implementation creates {@link Message} objects by
- * interpolating templates with values supplied as parameters.
+ * This {@link MessageBuilder} creates {@link Message} objects by interpolating
+ * templates with values supplied as parameters.
  * <p>
  * <b>For example:</b> Given the following {@link Message} m
  * 
@@ -45,139 +42,35 @@ import org.jboss.seam.international.status.MutableMessage;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public class TemplateMessage implements MessageBuilder
+public interface TemplateMessage extends MessageBuilder
 {
-   private static final String MESSAGE_IMPL_CLASS = "org.jboss.seam.international.status.MessageImpl";
-
-   private final Interpolator interpolator = new Interpolator();
-
-   private String summary;
-   private Object[] summaryParams;
-
-   private String targets;
-   private Level level;
-
-   public TemplateMessage(final Level level)
-   {
-      this.level = level;
-   }
+   /**
+    * Set the template for this message.
+    * <p>
+    * Any expressions of the form "{0}, {1} ... {N}" found in the template will
+    * be interpolated; numbers reference the index of any given parameters, and
+    * can be used more than once per template.
+    */
+   public TemplateMessage text(final String summary);
 
    /**
-    * Produce a {@link Message} object as represented by the current state of
-    * <code>this</code> builder.
+    * Set the parameters for this builder's template.
+    * <p>
+    * Parameters may be referenced by index in the template, using expressions
+    * of the form "{0}, {1} ... {N}"
     */
-   public Message build()
-   {
-      Class<?> type;
-      try
-      {
-         type = Class.forName(MESSAGE_IMPL_CLASS);
-         MutableMessage message = (MutableMessage) type.newInstance();
+   public TemplateMessage textParams(final Object... summaryParams);
 
-         message.setLevel(level);
-         message.setText(interpolator.populate(summary, summaryParams));
-         message.setTargets(targets);
-
-         return message;
-      }
-      catch (Exception e)
-      {
-         throw new RuntimeException("Unable to create message: " + MESSAGE_IMPL_CLASS, e);
-      }
-   }
-
-   /*
-    * Setters
+   /**
+    * Set the targets for this message. If supported by the consuming
+    * view-layer, these targets may control where/how the message is displayed
+    * to the user.
     */
-   public TemplateMessage text(final String summary)
-   {
-      this.summary = summary;
-      return this;
-   }
+   public TemplateMessage targets(final String targets);
 
-   public TemplateMessage textParams(final Object... summaryParams)
-   {
-      this.summaryParams = summaryParams;
-      return this;
-   }
+   /**
+    * Set the severity, level of importance of this message.
+    */
+   public TemplateMessage level(final Level level);
 
-   public TemplateMessage targets(final String targets)
-   {
-      this.targets = targets;
-      return this;
-   }
-
-   public TemplateMessage level(final Level level)
-   {
-      this.level = level;
-      return this;
-   }
-
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((level == null) ? 0 : level.hashCode());
-      result = prime * result + ((summary == null) ? 0 : summary.hashCode());
-      result = prime * result + Arrays.hashCode(summaryParams);
-      result = prime * result + ((targets == null) ? 0 : targets.hashCode());
-      return result;
-   }
-
-   @Override
-   public boolean equals(final Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (obj == null)
-      {
-         return false;
-      }
-      if (getClass() != obj.getClass())
-      {
-         return false;
-      }
-      TemplateMessage other = (TemplateMessage) obj;
-      if (level == null)
-      {
-         if (other.level != null)
-         {
-            return false;
-         }
-      }
-      else if (!level.equals(other.level))
-      {
-         return false;
-      }
-      if (summary == null)
-      {
-         if (other.summary != null)
-         {
-            return false;
-         }
-      }
-      else if (!summary.equals(other.summary))
-      {
-         return false;
-      }
-      if (!Arrays.equals(summaryParams, other.summaryParams))
-      {
-         return false;
-      }
-      if (targets == null)
-      {
-         if (other.targets != null)
-         {
-            return false;
-         }
-      }
-      else if (!targets.equals(other.targets))
-      {
-         return false;
-      }
-      return true;
-   }
 }

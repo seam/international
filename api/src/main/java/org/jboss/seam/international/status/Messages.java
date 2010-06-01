@@ -36,7 +36,10 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
 
 /**
  * A convenient way to add messages to be displayed to the user as Feedback,
- * Toast, Alerts, etc...
+ * Toast, Alerts, etc.
+ * <p>
+ * It is the responsibility of the view-layer technology to consume and perform
+ * operations required to display any messages added in this way.
  * 
  * @author <a href="mailto:lincolnbaxter@gmail.com>Lincoln Baxter, III</a>
  * 

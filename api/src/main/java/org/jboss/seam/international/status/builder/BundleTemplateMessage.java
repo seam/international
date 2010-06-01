@@ -21,7 +21,6 @@
  */
 package org.jboss.seam.international.status.builder;
 
-import org.jboss.seam.international.status.Bundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
 import org.jboss.seam.international.status.MessageBuilder;
@@ -59,121 +58,51 @@ import org.jboss.seam.international.status.MessageBuilder;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public class BundleTemplateMessage implements MessageBuilder
+public interface BundleTemplateMessage extends MessageBuilder
 {
-   private final TemplateMessage template;
-   private String textDefault;
-   private BundleKey textKey;
-
-   private final Bundles bundles;
-
-   public BundleTemplateMessage(final Bundles bundles, final Level level)
-   {
-      this.bundles = bundles;
-      this.template = new TemplateMessage(level);
-   }
+   /**
+    * Set the template for this message, using the given {@link BundleKey} to
+    * perform a resource lookup.
+    * <p>
+    * Any expressions of the form "{0}, {1} ... {N}" found in the template will
+    * be interpolated; numbers reference the index of any given parameters, and
+    * can be used more than once per template.
+    */
+   public BundleTemplateMessage text(final BundleKey text);
 
    /**
-    * Produce a {@link Message} object as represented by the current state of
-    * <code>this</code> builder.
+    * Set the default template text.
+    * <p>
+    * If the bundle cannot be loaded for any reason, the builder will fall back
+    * to using provided default template text; if there is no default template,
+    * a string representation of the {@link BundleKey} will be used instead.
+    * <p>
+    * Any expressions of the form "{0}, {1} ... {N}" found in the template will
+    * be interpolated; numbers reference the index of any given parameters, and
+    * can be used more than once per template.
     */
-   public Message build()
-   {
-      String text;
-      try
-      {
-         text = bundles.get(textKey.getBundle()).getString(textKey.getKey());
-      }
-      catch (Exception e)
-      {
-         text = textDefault;
-      }
+   public BundleTemplateMessage textDefault(final String text);
 
-      if ((text == null) || "".equals(text))
-      {
-         text = textKey.toString();
-      }
-
-      template.text(text);
-      return template.build();
-   }
-
-   /*
-    * Setters
+   /**
+    * Set the parameters for this builder's template.
+    * <p>
+    * Parameters may be referenced by index in the template or
+    * {@link #textDefault(String)}, using expressions of the form " {0}, {1} ...
+    * {N}". The same parameters will be used when interpolating default text, in
+    * the case when a {@link BundleKey} cannot be resolved.
     */
+   public BundleTemplateMessage textParams(final Object... textParams);
 
-   public BundleTemplateMessage text(final BundleKey text)
-   {
-      this.textKey = text;
-      return this;
-   }
+   /**
+    * Set the targets for this message. If supported by the consuming
+    * view-layer, these targets may control where/how the message is displayed
+    * to the user.
+    */
+   public BundleTemplateMessage targets(final String targets);
 
-   public BundleTemplateMessage textDefault(final String text)
-   {
-      this.textDefault = text;
-      return this;
-   }
+   /**
+    * Set the severity, level of importance of this message.
+    */
+   public BundleTemplateMessage level(final Level level);
 
-   public BundleTemplateMessage textParams(final Object... textParams)
-   {
-      this.template.textParams(textParams);
-      return this;
-   }
-
-   public BundleTemplateMessage targets(final String targets)
-   {
-      this.template.targets(targets);
-      return this;
-   }
-
-   public BundleTemplateMessage setLevel(final Level level)
-   {
-      this.template.level(level);
-      return this;
-   }
-
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((template == null) ? 0 : template.hashCode());
-      result = prime * result + ((textDefault == null) ? 0 : textDefault.hashCode());
-      result = prime * result + ((textKey == null) ? 0 : textKey.hashCode());
-      return result;
-   }
-
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-         return true;
-      if (obj == null)
-         return false;
-      if (getClass() != obj.getClass())
-         return false;
-      BundleTemplateMessage other = (BundleTemplateMessage) obj;
-      if (template == null)
-      {
-         if (other.template != null)
-            return false;
-      }
-      else if (!template.equals(other.template))
-         return false;
-      if (textDefault == null)
-      {
-         if (other.textDefault != null)
-            return false;
-      }
-      else if (!textDefault.equals(other.textDefault))
-         return false;
-      if (textKey == null)
-      {
-         if (other.textKey != null)
-            return false;
-      }
-      else if (!textKey.equals(other.textKey))
-         return false;
-      return true;
-   }
 }
