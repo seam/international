@@ -6,6 +6,7 @@
 		<groupId>org.jboss.seam.international</groupId>
 		<artifactId>seam-international-parent</artifactId>
 		<version>3.0.0-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>seam-international</artifactId>
@@ -13,23 +14,6 @@
 
 	<packaging>jar</packaging>
 	<name>Seam International Module Core Implementation</name>
-
-	<!-- Snapshots repo to get parent -->
-	<repositories>
-		<repository>
-			<id>oss.sonatype.org/jboss-snapshots</id>
-			<name>JBoss (Nexus) Snapshots Repository</name>
-			<url>http://oss.sonatype.org/content/repositories/jboss-snapshots
-         </url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>

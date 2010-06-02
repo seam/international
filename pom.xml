@@ -1,170 +1,155 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.jboss.weld</groupId>
-		<artifactId>weld-parent</artifactId>
-		<version>10</version>
-	</parent>
+   <parent>
+      <groupId>org.jboss.seam</groupId>
+      <artifactId>seam-parent</artifactId>
+      <version>1</version>
+   </parent>
 
-	<artifactId>seam-international-parent</artifactId>
-	<groupId>org.jboss.seam.international</groupId>
-	<version>3.0.0-SNAPSHOT</version>
+   <artifactId>seam-international-parent</artifactId>
+   <groupId>org.jboss.seam.international</groupId>
+   <version>3.0.0-SNAPSHOT</version>
+   
+   <prerequisites>
+      <maven>3.0</maven>
+   </prerequisites>
 
-	<packaging>pom</packaging>
-	<name>Seam International Module Parent POM</name>
+   <packaging>pom</packaging>
+   <name>Seam International Module Parent POM</name>
 
-	<description>The Parent for Seam International Module</description>
-	<url>http://www.seamframework.org</url>
+   <description>The Parent for Seam International Module</description>
+   <url>http://www.seamframework.org</url>
 
-	<modules>
-		<module>api</module>
-		<module>impl</module>
-		<!--module>docs</module-->
-		<!--module>examples/??</module-->
-	</modules>
+   <modules>
+      <module>api</module>
+      <module>impl</module>
+   </modules>
 
-	<properties>
-		<seam.xml.version>3.0.0.Alpha2</seam.xml.version>
-		<weldx.version>1.0.0.Alpha2</weldx.version>
+   <properties>
+      <seam.version>3.0.0.b01</seam.version>
+   </properties>
 
-		<arquillian.version>1.0.0.Alpha2</arquillian.version>
-		<weld.api.version>1.0-SP1</weld.api.version>
-		<weld.core.version>1.0.1-Final</weld.core.version>
-		<junit.version>4.8.1</junit.version>
-		<slf4j.version>1.5.10</slf4j.version>
-		<joda-time.version>1.6</joda-time.version>
-		<pretty-time.version>1.0.6</pretty-time.version>
-		<emma.maven.plugin.version>1.0-alpha-2</emma.maven.plugin.version>
-		<emma4it.maven.plugin.version>1.3</emma4it.maven.plugin.version>
-	</properties>
+   <dependencyManagement>
+      <dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.weld</groupId>
-				<artifactId>weld-api-bom</artifactId>
-				<version>${weld.api.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+         <dependency>
+            <groupId>org.jboss.seam</groupId>
+            <artifactId>seam</artifactId>
+            <version>${seam.version}</version>
+            <scope>import</scope>
+            <type>pom</type>
+         </dependency>
 
-	<dependencies>
+      </dependencies>
+   </dependencyManagement>
 
-		<!-- Environment Dependencies -->
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.weld</groupId>
-			<artifactId>weld-extensions</artifactId>
-			<version>${weldx.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>${joda-time.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ocpsoft</groupId>
-			<artifactId>ocpsoft-pretty-time</artifactId>
-			<version>${pretty-time.version}</version>
-		</dependency>
+   <dependencies>
 
-		<!-- Test Dependencies -->
-		<dependency>
-			<groupId>org.jboss.seam.xml</groupId>
-			<artifactId>seam-xml-config</artifactId>
-			<version>${seam.xml.version}</version>
-			<scope>test</scope>
-		</dependency>
+      <!-- Environment Dependencies -->
+      <!-- TODO Move to the correct sub-module -->
+      <dependency>
+         <groupId>javax.el</groupId>
+         <artifactId>el-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>javax.enterprise</groupId>
+         <artifactId>cdi-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.weld</groupId>
+         <artifactId>weld-extensions</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>joda-time</groupId>
+         <artifactId>joda-time</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.ocpsoft</groupId>
+         <artifactId>ocpsoft-pretty-time</artifactId>
+      </dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian</groupId>
-			<artifactId>arquillian-junit</artifactId>
-			<version>${arquillian.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
-			<artifactId>arquillian-weld-embedded</artifactId>
-			<version>${arquillian.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.weld</groupId>
-			<artifactId>weld-core</artifactId>
-			<version>${weld.core.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<profiles>
-		<profile>
-			<id>distribution</id>
-			<activation>
-				<property>
-					<name>dist</name>
-				</property>
-			</activation>
-			<modules>
-				<module>dist</module>
-				<module>docs/reference</module>
-			</modules>
-		</profile>
-	</profiles>
+      <!-- Test Dependencies -->
+      <dependency>
+         <groupId>org.jboss.seam.xml</groupId>
+         <artifactId>seam-xml-config</artifactId>
+         <scope>test</scope>
+      </dependency>
 
-	<developers>
-		<developer>
-			<name>Lincoln Baxter, III</name>
-			<email>lincolnbaxter@gmail.com</email>
-			<url>http://ocpsoft.com</url>
-			<organization>JBoss, by Red Hat</organization>
-			<organizationUrl>http://jboss.org</organizationUrl>
-			<timezone>EST</timezone>
-			<roles>
-				<role>Project Lead</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Ken Finnigan</name>
-			<timezone>GMT</timezone>
-			<roles>
-				<role>Project Lead</role>
-			</roles>
-		</developer>
-	</developers>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.arquillian</groupId>
+         <artifactId>arquillian-junit</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.arquillian.container</groupId>
+         <artifactId>arquillian-weld-embedded</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.weld</groupId>
+         <artifactId>weld-core</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-simple</artifactId>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
 
-	<scm>
-		<connection>scm:svn:http://anonsvn.jboss.org/repos/seam/modules/international/trunk</connection>
-		<developerConnection>scm:svn:https://svn.jboss.org/repos/seam/modules/international/trunk</developerConnection>
-		<url>http://fisheye.jboss.org/browse/Seam/modules/international/trunk</url>
-	</scm>
+   <profiles>
+      <profile>
+         <id>distribution</id>
+         <activation>
+            <property>
+               <name>dist</name>
+            </property>
+         </activation>
+         <modules>
+            <module>dist</module>
+            <module>docs/reference</module>
+         </modules>
+      </profile>
+   </profiles>
+
+   <developers>
+      <developer>
+         <name>Lincoln Baxter, III</name>
+         <email>lincolnbaxter@gmail.com</email>
+         <url>http://ocpsoft.com</url>
+         <organization>JBoss, by Red Hat</organization>
+         <organizationUrl>http://jboss.org</organizationUrl>
+         <timezone>EST</timezone>
+         <roles>
+            <role>Project Lead</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>Ken Finnigan</name>
+         <timezone>GMT</timezone>
+         <roles>
+            <role>Project Lead</role>
+         </roles>
+      </developer>
+   </developers>
+
+   <scm>
+      <connection>scm:svn:http://anonsvn.jboss.org/repos/seam/modules/international/trunk</connection>
+      <developerConnection>scm:svn:https://svn.jboss.org/repos/seam/modules/international/trunk</developerConnection>
+      <url>http://fisheye.jboss.org/browse/Seam/modules/international/trunk</url>
+   </scm>
 </project>
