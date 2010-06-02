@@ -19,24 +19,6 @@
       <maven.deploy.skip>true</maven.deploy.skip>
    </properties>
 
-   <!-- Need to use dependencyManagement to force us onto a snapshot -->
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.jboss.seam.international</groupId>
-            <artifactId>seam-international-api</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-
-
-         <dependency>
-            <groupId>org.jboss.seam.international</groupId>
-            <artifactId>seam-international</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
-
    <dependencies>
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
