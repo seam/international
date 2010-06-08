@@ -1,6 +1,6 @@
 
                               Seam International Module
-                               3.0.0 SNAPSHOT
+                                    3.0.0.Alpha1
 
  What is it?
  ===========
