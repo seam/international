@@ -45,6 +45,12 @@ public class BundleKey implements Serializable
    }
 
    @Override
+   public String toString()
+   {
+      return "BundleKey [bundle=" + bundle + ", key=" + key + "]";
+   }
+
+   @Override
    public int hashCode()
    {
       final int prime = 31;

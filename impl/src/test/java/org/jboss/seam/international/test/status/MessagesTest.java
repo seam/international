@@ -31,7 +31,7 @@ import org.jboss.seam.international.status.Bundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.MessageFactory;
 import org.jboss.seam.international.status.MessageImpl;
-import org.jboss.seam.international.status.Messages;
+import org.jboss.seam.international.status.MessagesImpl;
 import org.jboss.seam.international.status.MutableMessage;
 import org.jboss.seam.international.status.builder.BundleKey;
 import org.jboss.seam.international.status.builder.BundleTemplateMessageImpl;
@@ -56,11 +56,11 @@ public class MessagesTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(Messages.class, MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, Bundles.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(MessagesImpl.class, MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, Bundles.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
    }
 
    @Inject
-   Messages messages;
+   MessagesImpl messages;
 
    @Before
    public void before()

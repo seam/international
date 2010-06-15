@@ -26,6 +26,7 @@ import javax.inject.Inject;
 import org.jboss.seam.international.status.Bundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
+import org.slf4j.Logger;
 
 /**
  * 
@@ -43,6 +44,9 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage
    @Inject
    Bundles bundles;
 
+   @Inject
+   Logger log;
+
    public Message build()
    {
       String text;
@@ -52,6 +56,7 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage
       }
       catch (Exception e)
       {
+         log.warn("Could not load bundle: " + textKey);
          text = textDefault;
       }
 

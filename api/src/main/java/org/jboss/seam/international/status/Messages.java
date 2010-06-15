@@ -23,12 +23,9 @@
 package org.jboss.seam.international.status;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 
 import org.jboss.seam.international.status.builder.BundleKey;
 import org.jboss.seam.international.status.builder.BundleTemplateMessage;
@@ -45,23 +42,12 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
  * 
  */
 @RequestScoped
-public class Messages implements Serializable
+public interface Messages extends Serializable
 {
-   private static final long serialVersionUID = -2908193057765795662L;
-
-   private final Set<Message> messages = Collections.synchronizedSet(new HashSet<Message>());
-   private final Set<MessageBuilder> builders = Collections.synchronizedSet(new HashSet<MessageBuilder>());
-
-   @Inject
-   private MessageFactory factory;
-
    /**
     * Clear all pending messages.
     */
-   public void clear()
-   {
-      messages.clear();
-   }
+   public void clear();
 
    /**
     * Retrieve all pending {@link Messages} in their final state - as they will
@@ -70,25 +56,7 @@ public class Messages implements Serializable
     * instances, adding the resulting {@link Message} objects to the message
     * cache, and clearing the builders from the builder cache.
     */
-   public Set<Message> getAll()
-   {
-      Set<Message> result = new HashSet<Message>();
-
-      synchronized (builders)
-      {
-         for (MessageBuilder builder : builders)
-         {
-            messages.add(builder.build());
-         }
-         builders.clear();
-      }
-
-      synchronized (messages)
-      {
-         result.addAll(messages);
-      }
-      return result;
-   }
+   public Set<Message> getAll();
 
    /**
     * Add a {@link Message} object to the pending message cache. Messages remain
@@ -97,10 +65,7 @@ public class Messages implements Serializable
     * <p>
     * <b>Note:</b> Duplicate messages are ignored.
     */
-   public void add(final Message message)
-   {
-      messages.add(message);
-   }
+   public void add(final Message message);
 
    /**
     * Add a {@link MessageBuilder} object to the pending builder cache. A
@@ -108,170 +73,102 @@ public class Messages implements Serializable
     * {@link MessageBuilder#build()} to be called called on each builder added
     * in this way.
     */
-   public void add(final MessageBuilder builder)
-   {
-      builders.add(builder);
-   }
-
-   /**
-    * Convenience add & pass-through for factory methods.
-    */
-   private <T extends MessageBuilder> T enqueueBuilder(final T builder)
-   {
-      add(builder);
-      return builder;
-   }
-
-   /*
-    * Bundle Factory Methods
-    */
+   public void add(final MessageBuilder builder);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage info(final BundleKey message)
-   {
-      return enqueueBuilder(factory.info(message));
-   }
+   public BundleTemplateMessage info(final BundleKey message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage info(final BundleKey message, final Object... params)
-   {
-      return enqueueBuilder(factory.info(message, params));
-   }
+   public BundleTemplateMessage info(final BundleKey message, final Object... params);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage warn(final BundleKey message)
-   {
-      return enqueueBuilder(factory.warn(message));
-   }
+   public BundleTemplateMessage warn(final BundleKey message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage warn(final BundleKey message, final Object... params)
-   {
-      return enqueueBuilder(factory.warn(message, params));
-   }
+   public BundleTemplateMessage warn(final BundleKey message, final Object... params);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage error(final BundleKey message)
-   {
-      return enqueueBuilder(factory.error(message));
-   }
+   public BundleTemplateMessage error(final BundleKey message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage error(final BundleKey message, final Object... params)
-   {
-      return enqueueBuilder(factory.error(message, params));
-   }
+   public BundleTemplateMessage error(final BundleKey message, final Object... params);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage fatal(final BundleKey message)
-   {
-      return enqueueBuilder(factory.fatal(message));
-   }
+   public BundleTemplateMessage fatal(final BundleKey message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public BundleTemplateMessage fatal(final BundleKey message, final Object... params)
-   {
-      return enqueueBuilder(factory.fatal(message, params));
-   }
-
-   /*
-    * Template Factory Methods
-    */
+   public BundleTemplateMessage fatal(final BundleKey message, final Object... params);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage info(final String message)
-   {
-      return enqueueBuilder(factory.info(message));
-   }
+   public TemplateMessage info(final String message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage info(final String message, final Object... params)
-   {
-      return enqueueBuilder(factory.info(message, params));
-   }
+   public TemplateMessage info(final String message, final Object... params);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage warn(final String message)
-   {
-      return enqueueBuilder(factory.warn(message));
-   }
+   public TemplateMessage warn(final String message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage warn(final String message, final Object... params)
-   {
-      return enqueueBuilder(factory.warn(message, params));
-   }
+   public TemplateMessage warn(final String message, final Object... params);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage error(final String message)
-   {
-      return enqueueBuilder(factory.error(message));
-   }
+   public TemplateMessage error(final String message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage error(final String message, final Object... params)
-   {
-      return enqueueBuilder(factory.error(message, params));
-   }
+   public TemplateMessage error(final String message, final Object... params);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage fatal(final String message)
-   {
-      return enqueueBuilder(factory.fatal(message));
-   }
+   public TemplateMessage fatal(final String message);
 
    /**
     * Create a {@link MessageBuilder} with the specified {@link Level}, add it
     * to the internal queue, and return it.
     */
-   public TemplateMessage fatal(final String message, final Object... params)
-   {
-      return enqueueBuilder(factory.fatal(message, params));
-   }
+   public TemplateMessage fatal(final String message, final Object... params);
 
 }
