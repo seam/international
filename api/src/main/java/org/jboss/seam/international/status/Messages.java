@@ -50,6 +50,12 @@ public interface Messages extends Serializable
    public void clear();
 
    /**
+    * Return true if there are no pending {@link Message} or
+    * {@link MessageBuilder} objects in the queue.
+    */
+   public boolean isEmpty();
+
+   /**
     * Retrieve all pending {@link Messages} in their final state - as they will
     * be displayed to the user. Calling this method will call
     * {@link MessageBuilder#build()} on any queued {@link MessageBuilder}
