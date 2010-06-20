@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
 <chapter id="international.messages">
 	<title>Messages</title>
+	<para>
+		There are currently two ways to create a message within the module.
+	</para>
+	<para>
+		The first would mostly be used when you don't want to add the generated message directly to the UI, but want to log it out, or store it somewhere else
+	</para>
+<programlisting role="JAVA"><![CDATA[@Inject
+MessageFactory factory;
+ 
+public String getMessage()
+{
+     MessageBuilder builder = factory.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");#
+     return builder.build().getText();
+}]]></programlisting>
+	<para>
+		The second is to add the message to a list that will be returned to the UI for display.
+	</para>
+<programlisting role="JAVA"><![CDATA[@Inject
+Messages messages;
+ 
+public void setMessage()
+{
+     messages.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");
+}]]></programlisting>
+	<para>
+		Either of these methods supports the four message levels which are info, warning, error and fatal.
+	</para>
+	<para>
+		Both the MessageFactory and Messages classes support four ways in which to create a Message:</para>
+	<itemizedlist>
+		<listitem>Directly adding the message</listitem>
+		<listitem>Directly adding the message and replacing parameters</listitem>
+		<listitem>Retrieving the message from a bundle</listitem>
+		<listitem>Retrieving the message from a bundle and replacing parameters</listitem>
+	</itemizedlist>
+	<para>
+		Examples for each of these are:</para>
+	<itemizedlist>
+		<listitem><programlisting role="JAVA"><![CDATA[messages.info("Simple Text");]]></programlisting></listitem>
+		<listitem><programlisting role="JAVA"><![CDATA[messages.info("Simple Text with {0} parameter", 1);]]></programlisting></listitem>
+		<listitem><programlisting role="JAVA"><![CDATA[messages.info(new BundleKey("org.jboss.international.seam.test.TestBundle", "key1"));]]></programlisting></listitem>
+		<listitem><programlisting role="JAVA"><![CDATA[messages.info(new BundleKey("org.jboss.international.seam.test.TestBundle", "key2"), 1);]]></programlisting></listitem>
+	</itemizedlist>
+	<para>
+		The above examples assume that there is a properties file existing at <literal>org.jboss.international.seam.test.TestBundle.properties</literal> with <literal>key1</literal> being a simple text string
+		and <literal>key2</literal> including a single parameter.
+	</para>
 </chapter>

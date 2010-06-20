@@ -11,9 +11,10 @@
 		<title>Default TimeZone</title>
 		<para>
 			Starting at the application level the module provides a <literal>DateTimeZone</literal> that can be retrieved with
-<programlisting>
-@Inject
-DateTimeZone applicationTimeZone;</programlisting>
+		</para>
+<programlisting role="JAVA"><![CDATA[@Inject
+DateTimeZone applicationTimeZone;]]></programlisting>
+		<para>
 			It can also be accessed through EL by the name "defaultTimeZone"!
 		</para>
 		<para>
@@ -38,34 +39,33 @@ DateTimeZone applicationTimeZone;</programlisting>
 		<title>User TimeZone</title>
 		<para>
 			We also have a <literal>DateTimeZone</literal> that is scoped to the User Session which can be retrieved with
-<programlisting>
-@Inject
+		</para>
+<programlisting role="JAVA"><![CDATA[@Inject
 @UserTimeZone
-DateTimeZone userTimeZone;</programlisting>
+DateTimeZone userTimeZone;]]></programlisting>
+		<para>
 			It can also be accessed through EL using "userTimeZone".
 		</para>
 		<para>
 			By default the <literal>TimeZone</literal> will be the same as the application when the User Session is initialised.  However, changing
 			the User's <literal>TimeZone</literal> is a simple matter of firing an event to update it.  An example would be
-<programlisting>
-@Inject
+		</para>
+<programlisting role="JAVA"><![CDATA[@Inject
 @Changed
-Event&lt;DateTimeZone&gt; tzEvent;
+Event<DateTimeZone> tzEvent;
  
 public void setUserTimeZone()
 {
      DateTimeZone tijuana = DateTimeZone.forID("America/Tijuana");
      tzEvent.fire(tijuana);
-}</programlisting>
-		</para>
+}]]></programlisting>
 	</section>
 	<section id="availtz">
 		<title>Available TimeZones</title>
 		<para>
 			We've also provided a list of available TimeZones that can be accessed via
-<programlisting>
-@Inject
-List&lt;DateTimeZone&gt; timeZones;</programlisting>
 		</para>
+<programlisting role="JAVA"><![CDATA[@Inject
+List<DateTimeZone> timeZones;]]></programlisting>
 	</section>
 </chapter>
