@@ -87,7 +87,7 @@ public class Bundles implements Map<String, ResourceBundle>, Serializable
 
    public ResourceBundle put(final String key, final ResourceBundle value)
    {
-      return put(key, value);
+      return bundles.put(key, value);
    }
 
    public void putAll(final Map<? extends String, ? extends ResourceBundle> m)
