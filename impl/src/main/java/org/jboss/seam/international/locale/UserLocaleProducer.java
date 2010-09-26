@@ -31,6 +31,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jboss.seam.international.Changed;
+import org.jboss.weld.extensions.core.Client;
 
 /**
  * Locale for a User Session. Defaults to the Locale within DefaultLocale
@@ -45,7 +46,7 @@ public class UserLocaleProducer implements Serializable
    private static final long serialVersionUID = -7602504535585397561L;
 
    @Produces
-   @UserLocale
+   @Client
    @Named
    private Locale userLocale;
 

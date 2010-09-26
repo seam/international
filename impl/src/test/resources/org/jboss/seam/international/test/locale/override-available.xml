@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 JBoss, Home of Professional Open Source
 Copyright 2010, Red Hat, Inc., and individual contributors
@@ -19,19 +20,14 @@ License along with this software; if not, write to the Free
 Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
-<beans xmlns="http://java.sun.com/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:s="urn:java:seam:core" 
-   xmlns:lc="urn:java:org.jboss.seam.international.locale"
-   xsi:schemaLocation="
-      http://java.sun.com/xml/ns/javaee 
-      http://docs.jboss.org/cdi/beans_1_0.xsd">
+<beans xmlns="urn:java:ee"
+          xmlns:lc="urn:java:org.jboss.seam.international.locale">
 
     <lc:AvailableLocales>
-    	<s:specializes/>
+    	<specializes/>
         <lc:supportedLocaleKeys>
-            <s:value>en</s:value>
-            <s:value>fr</s:value>
+            <value>en</value>
+            <value>fr</value>
         </lc:supportedLocaleKeys>
     </lc:AvailableLocales>
 </beans>

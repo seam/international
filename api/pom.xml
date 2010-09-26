@@ -14,4 +14,10 @@
   <packaging>jar</packaging>
   <name>Seam International Module API</name>
 
+  <dependencies>
+      <dependency>
+         <groupId>joda-time</groupId>
+         <artifactId>joda-time</artifactId>
+      </dependency>
+  </dependencies>
 </project>

@@ -30,6 +30,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jboss.seam.international.Changed;
+import org.jboss.weld.extensions.core.Client;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -45,7 +46,7 @@ public class UserTimeZoneProducer implements Serializable
    private static final long serialVersionUID = -9008203923830420841L;
 
    @Produces
-   @UserTimeZone
+   @Client
    @Named
    private DateTimeZone userTimeZone;
 

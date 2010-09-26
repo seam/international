@@ -30,12 +30,12 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.Changed;
 import org.jboss.seam.international.test.MockLogger;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
-import org.jboss.seam.international.timezone.UserTimeZone;
 import org.jboss.seam.international.timezone.UserTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
+import org.jboss.weld.extensions.core.Client;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,11 +47,11 @@ public class UserTimeZoneTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("usertimezonetest.jar", JavaArchive.class).addClasses(MockLogger.class, UserTimeZoneProducer.class, UserTimeZone.class, DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("usertimezonetest.jar", JavaArchive.class).addClasses(MockLogger.class, UserTimeZoneProducer.class, DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
    }
 
    @Inject
-   @UserTimeZone
+   @Client
    DateTimeZone timeZone;
 
    @Inject
@@ -59,7 +59,7 @@ public class UserTimeZoneTest
    Event<DateTimeZone> timeZoneEvent;
 
    @Inject
-   @UserTimeZone
+   @Client
    Instance<DateTimeZone> timeZoneSource;
 
    @Test

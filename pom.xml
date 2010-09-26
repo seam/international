@@ -28,6 +28,8 @@
 
    <properties>
       <seam.version>3.0.0.b01</seam.version>
+      <!-- Use snapshot WeldX -->
+      <weld.extensions.version>1.0.0-SNAPSHOT</weld.extensions.version>
    </properties>
 
    <dependencyManagement>
@@ -54,72 +56,21 @@
             <version>${project.version}</version>
          </dependency>
 
+         <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-extensions</artifactId>
+            <version>${weld.extensions.version}</version>
+         </dependency>
       </dependencies>
    </dependencyManagement>
 
    <dependencies>
 
       <!-- Environment Dependencies -->
-      <!-- TODO Move to the correct sub-module -->
-      <dependency>
-         <groupId>javax.el</groupId>
-         <artifactId>el-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
       <dependency>
          <groupId>javax.enterprise</groupId>
          <artifactId>cdi-api</artifactId>
          <scope>provided</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.jboss.weld</groupId>
-         <artifactId>weld-extensions</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-      <dependency>
-         <groupId>joda-time</groupId>
-         <artifactId>joda-time</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>com.ocpsoft</groupId>
-         <artifactId>ocpsoft-pretty-time</artifactId>
-      </dependency>
-
-      <!-- Test Dependencies -->
-      <dependency>
-         <groupId>org.jboss.seam.xml</groupId>
-         <artifactId>seam-xml-config</artifactId>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.jboss.arquillian</groupId>
-         <artifactId>arquillian-junit</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.jboss.arquillian.container</groupId>
-         <artifactId>arquillian-weld-embedded</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.jboss.weld</groupId>
-         <artifactId>weld-core</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-simple</artifactId>
-         <scope>test</scope>
       </dependency>
    </dependencies>
 
