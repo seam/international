@@ -29,7 +29,7 @@
    <properties>
       <seam.version>3.0.0.b01</seam.version>
       <!-- Use snapshot WeldX -->
-      <weld.extensions.version>1.0.0-SNAPSHOT</weld.extensions.version>
+      <weld.extensions.version>1.0.0.Beta1</weld.extensions.version>
    </properties>
 
    <dependencyManagement>
