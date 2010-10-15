@@ -28,7 +28,6 @@ import javax.inject.Inject;
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.locale.DefaultLocaleProducer;
-import org.jboss.seam.international.test.MockLogger;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -43,7 +42,7 @@ public class DefaultLocaleOverrideFailTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(MockLogger.class, DefaultLocaleProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml")).addManifestResource("org/jboss/seam/international/test/locale/override-fail.xml", ArchivePaths.create("seam-beans.xml"));
+      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(DefaultLocaleProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml")).addManifestResource("org/jboss/seam/international/test/locale/override-fail.xml", ArchivePaths.create("seam-beans.xml"));
    }
 
    @Inject

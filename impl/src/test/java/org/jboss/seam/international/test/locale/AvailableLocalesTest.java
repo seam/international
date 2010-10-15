@@ -27,15 +27,12 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.locale.AvailableLocales;
-import org.jboss.seam.international.test.MockLogger;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 //@RunWith(Arquillian.class)
 public class AvailableLocalesTest
@@ -43,14 +40,14 @@ public class AvailableLocalesTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(AvailableLocales.class, MockLogger.class).addManifestResource("org/jboss/seam/international/test/locale/override-available.xml", ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(AvailableLocales.class).addManifestResource("org/jboss/seam/international/test/locale/override-available.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject
    List<Locale> locales;
 
-//FIXME XML Override not working
-//   @Test
+   // FIXME XML Override not working
+   // @Test
    public void testAvailableLocalesProducer()
    {
       Assert.assertNotNull(locales);

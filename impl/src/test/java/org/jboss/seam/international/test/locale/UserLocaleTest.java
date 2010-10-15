@@ -32,7 +32,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.Changed;
 import org.jboss.seam.international.locale.DefaultLocaleProducer;
 import org.jboss.seam.international.locale.UserLocaleProducer;
-import org.jboss.seam.international.test.MockLogger;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -48,7 +47,7 @@ public class UserLocaleTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("userlocaletest.jar", JavaArchive.class).addClasses(MockLogger.class, UserLocaleProducer.class, DefaultLocaleProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("userlocaletest.jar", JavaArchive.class).addClasses(UserLocaleProducer.class, DefaultLocaleProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
    }
 
    @Inject

@@ -23,10 +23,10 @@ package org.jboss.seam.international.status.builder;
 
 import javax.inject.Inject;
 
+import org.jboss.logging.Logger;
 import org.jboss.seam.international.status.Bundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
-import org.slf4j.Logger;
 
 /**
  * 
@@ -73,19 +73,19 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage
     * Setters
     */
 
-   public BundleTemplateMessageImpl text(final BundleKey text)
+   public BundleTemplateMessageImpl key(final BundleKey text)
    {
       this.textKey = text;
       return this;
    }
 
-   public BundleTemplateMessage textDefault(final String text)
+   public BundleTemplateMessage defaults(final String text)
    {
       this.textDefault = text;
       return this;
    }
 
-   public BundleTemplateMessageImpl textParams(final Object... textParams)
+   public BundleTemplateMessageImpl params(final Object... textParams)
    {
       this.template.textParams(textParams);
       return this;

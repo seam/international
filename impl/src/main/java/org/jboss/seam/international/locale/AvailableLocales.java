@@ -32,7 +32,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 @ApplicationScoped
 public class AvailableLocales
@@ -40,7 +40,7 @@ public class AvailableLocales
    private String[] supportedLocaleKeys;
 
    @Inject
-   Logger log;
+   private Logger log;
 
    @Produces
    private List<Locale> locales = null;

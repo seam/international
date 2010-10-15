@@ -29,13 +29,13 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.jboss.logging.Logger;
 import org.joda.time.DateTimeZone;
-import org.slf4j.Logger;
 
 /**
  * Default TimeZone of the application. If configuration of the default TimeZone
  * is found that will be used, otherwise the JVM default TimeZone otherwise.
- *
+ * 
  * @author Ken Finnigan
  */
 

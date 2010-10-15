@@ -61,14 +61,14 @@ import org.jboss.seam.international.status.MessageBuilder;
 public interface BundleTemplateMessage extends MessageBuilder
 {
    /**
-    * Set the template for this message, using the given {@link BundleKey} to
-    * perform a resource lookup.
+    * Use the given {@link BundleKey} to perform a resource lookup, resolving
+    * the template to render for this message.
     * <p>
     * Any expressions of the form "{0}, {1} ... {N}" found in the template will
     * be interpolated; numbers reference the index of any given parameters, and
     * can be used more than once per template.
     */
-   public BundleTemplateMessage text(final BundleKey text);
+   public BundleTemplateMessage key(final BundleKey text);
 
    /**
     * Set the default template text.
@@ -81,7 +81,7 @@ public interface BundleTemplateMessage extends MessageBuilder
     * be interpolated; numbers reference the index of any given parameters, and
     * can be used more than once per template.
     */
-   public BundleTemplateMessage textDefault(final String text);
+   public BundleTemplateMessage defaults(final String text);
 
    /**
     * Set the parameters for this builder's template.
@@ -91,7 +91,7 @@ public interface BundleTemplateMessage extends MessageBuilder
     * {N}". The same parameters will be used when interpolating default text, in
     * the case when a {@link BundleKey} cannot be resolved.
     */
-   public BundleTemplateMessage textParams(final Object... textParams);
+   public BundleTemplateMessage params(final Object... textParams);
 
    /**
     * Set the targets for this message. If supported by the consuming

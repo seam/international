@@ -30,7 +30,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 @ApplicationScoped
 public class DefaultLocaleProducer implements Serializable
@@ -40,7 +40,7 @@ public class DefaultLocaleProducer implements Serializable
    private String defaultLocaleKey;
 
    @Inject
-   Logger log;
+   private Logger log;
 
    @Produces
    @Named

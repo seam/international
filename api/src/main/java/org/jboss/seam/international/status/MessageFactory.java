@@ -52,42 +52,42 @@ public class MessageFactory implements Serializable
     */
    public BundleTemplateMessage info(final BundleKey message)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.INFO);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.INFO);
    }
 
    public BundleTemplateMessage info(final BundleKey message, final Object... params)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.INFO).textParams(params);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.INFO).params(params);
    }
 
    public BundleTemplateMessage warn(final BundleKey message)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.WARN);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.WARN);
    }
 
    public BundleTemplateMessage warn(final BundleKey message, final Object... params)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.WARN).textParams(params);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.WARN).params(params);
    }
 
    public BundleTemplateMessage error(final BundleKey message)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.ERROR);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.ERROR);
    }
 
    public BundleTemplateMessage error(final BundleKey message, final Object... params)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.ERROR).textParams(params);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.ERROR).params(params);
    }
 
    public BundleTemplateMessage fatal(final BundleKey message)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.FATAL);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.FATAL);
    }
 
    public BundleTemplateMessage fatal(final BundleKey message, final Object... params)
    {
-      return getContextualInstance(BundleTemplateMessage.class).text(message).level(Level.FATAL).textParams(params);
+      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.FATAL).params(params);
    }
 
    /*

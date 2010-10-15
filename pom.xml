@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
    <parent>
@@ -30,6 +31,7 @@
       <seam.version>3.0.0.b01</seam.version>
       <!-- Use snapshot WeldX -->
       <weld.extensions.version>1.0.0.Beta1</weld.extensions.version>
+      <jboss-logging.version>3.0.0.Beta4</jboss-logging.version>
    </properties>
 
    <dependencyManagement>
@@ -61,18 +63,14 @@
             <artifactId>weld-extensions</artifactId>
             <version>${weld.extensions.version}</version>
          </dependency>
+
+         <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>${jboss-logging.version}</version>
+         </dependency>
       </dependencies>
    </dependencyManagement>
-
-   <dependencies>
-
-      <!-- Environment Dependencies -->
-      <dependency>
-         <groupId>javax.enterprise</groupId>
-         <artifactId>cdi-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-   </dependencies>
 
    <profiles>
       <profile>
@@ -130,19 +128,19 @@
 
    <developers>
       <developer>
+         <name>Ken Finnigan</name>
+         <timezone>GMT</timezone>
+         <roles>
+            <role>Project Lead</role>
+         </roles>
+      </developer>
+      <developer>
          <name>Lincoln Baxter, III</name>
          <email>lincolnbaxter@gmail.com</email>
          <url>http://ocpsoft.com</url>
          <organization>JBoss, by Red Hat</organization>
          <organizationUrl>http://jboss.org</organizationUrl>
          <timezone>EST</timezone>
-         <roles>
-            <role>Project Lead</role>
-         </roles>
-      </developer>
-      <developer>
-         <name>Ken Finnigan</name>
-         <timezone>GMT</timezone>
          <roles>
             <role>Project Lead</role>
          </roles>

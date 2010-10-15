@@ -25,7 +25,6 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.international.test.MockLogger;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -42,7 +41,7 @@ public class DefaultTimeZoneTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("defaulttimezonetest.jar", JavaArchive.class).addClasses(MockLogger.class, DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("defaulttimezonetest.jar", JavaArchive.class).addClasses(DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
    }
 
    @Inject
