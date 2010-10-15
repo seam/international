@@ -37,10 +37,12 @@ public class DefaultLocaleProducer implements Serializable
 {
    private static final long serialVersionUID = -4534087316489937649L;
 
-   private String defaultLocaleKey;
-
    @Inject
    private Logger log;
+
+   @Inject
+   @DefaultLocaleKeyConfig
+   private String defaultLocaleKey;
 
    @Produces
    @Named

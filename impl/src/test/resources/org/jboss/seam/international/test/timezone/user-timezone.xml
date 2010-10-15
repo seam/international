@@ -5,6 +5,6 @@
     <String>
       <Produces/>
       <tz:DefaultTimeZoneConfig/>
-      <value>America/Tijuana</value>
+      <value>America/NewYork</value>
     </String>
 </beans>

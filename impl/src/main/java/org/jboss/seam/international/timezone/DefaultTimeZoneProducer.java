@@ -44,10 +44,12 @@ public class DefaultTimeZoneProducer implements Serializable
 {
    private static final long serialVersionUID = 6181892144731122500L;
 
+   @Inject
+   @DefaultTimeZoneConfig
    private String defaultTimeZoneId;
 
    @Inject
-   Logger log;
+   private Logger log;
 
    @Produces
    @Named

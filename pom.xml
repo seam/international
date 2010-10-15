@@ -32,6 +32,7 @@
       <!-- Use snapshot WeldX -->
       <weld.extensions.version>1.0.0.Beta1</weld.extensions.version>
       <jboss-logging.version>3.0.0.Beta4</jboss-logging.version>
+      <seam-xml.version>3.0.0.Alpha3</seam-xml.version>
    </properties>
 
    <dependencyManagement>
@@ -53,9 +54,10 @@
          </dependency>
 
          <dependency>
-            <groupId>org.jboss.seam.international</groupId>
-            <artifactId>seam-international</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.jboss.seam.xml</groupId>
+            <artifactId>seam-xml-config</artifactId>
+            <version>${seam-xml.version}</version>
+            <scope>test</scope>
          </dependency>
 
          <dependency>

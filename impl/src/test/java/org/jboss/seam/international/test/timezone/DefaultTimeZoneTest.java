@@ -25,11 +25,11 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,7 +41,10 @@ public class DefaultTimeZoneTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("defaulttimezonetest.jar", JavaArchive.class).addClasses(DefaultTimeZoneProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("defaulttimezonetest.jar", JavaArchive.class)
+               .addClass(DefaultTimeZoneProducer.class)
+               .addClass(DefaultTimeZoneConfig.class)
+               .addManifestResource("org/jboss/seam/international/test/timezone/user-timezone.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject

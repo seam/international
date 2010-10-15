@@ -24,6 +24,8 @@ package org.jboss.seam.international.test.timezone;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -31,30 +33,28 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-//@RunWith(Arquillian.class)
+@RunWith(Arquillian.class)
 public class DefaultTimeZoneOverrideFailTest
 {
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(DefaultTimeZoneProducer.class).addManifestResource("org/jboss/seam/international/test/timezone/override-fail.xml", ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create("test.jar", JavaArchive.class)
+               .addClass(DefaultTimeZoneProducer.class)
+               .addClass(DefaultTimeZoneConfig.class)
+               .addManifestResource("org/jboss/seam/international/test/timezone/override-fail.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject
    DateTimeZone timeZone;
 
-   // FIXME XML override not working
-   // @Test
+   @Test
    public void testDefaultTimeZoneProducerDirect()
    {
       Assert.assertNotNull(timeZone);
       Assert.assertNotSame("America/Tijuana", timeZone.getID());
       Assert.assertEquals(DateTimeZone.getDefault().getID(), timeZone.getID());
-   }
-
-   @Test
-   public void testNothing()
-   {
    }
 }

@@ -24,6 +24,7 @@ package org.jboss.seam.international.test.timezone;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -31,8 +32,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-//@RunWith(Arquillian.class)
+@RunWith(Arquillian.class)
 public class DefaultTimeZoneOverrideTest
 {
    @Deployment
@@ -44,16 +46,10 @@ public class DefaultTimeZoneOverrideTest
    @Inject
    DateTimeZone timeZone;
 
-   // FIXME XML override not working
-   // @Test
+   @Test
    public void testDefaultTimeZoneProducerDirect()
    {
       Assert.assertNotNull(timeZone);
       Assert.assertEquals("America/Tijuana", timeZone.getID());
-   }
-
-   @Test
-   public void testNothing()
-   {
    }
 }

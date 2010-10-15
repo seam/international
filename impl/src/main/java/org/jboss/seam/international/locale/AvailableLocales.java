@@ -37,10 +37,12 @@ import org.jboss.logging.Logger;
 @ApplicationScoped
 public class AvailableLocales
 {
-   private String[] supportedLocaleKeys;
-
    @Inject
    private Logger log;
+
+   @Inject
+   @SupportedLocaleKeys
+   private String[] supportedLocaleKeys;
 
    @Produces
    private List<Locale> locales = null;
@@ -50,16 +52,19 @@ public class AvailableLocales
    {
       locales = new ArrayList<Locale>();
 
-      for (String localeKey : supportedLocaleKeys)
+      if (null != supportedLocaleKeys)
       {
-         try
+         for (String localeKey : supportedLocaleKeys)
          {
-            Locale lc = LocaleUtils.toLocale(localeKey);
-            locales.add(lc);
-         }
-         catch (IllegalArgumentException e)
-         {
-            log.error("AvailableLocales: Supported Locale key of " + localeKey + " was not formatted correctly", e);
+            try
+            {
+               Locale lc = LocaleUtils.toLocale(localeKey);
+               locales.add(lc);
+            }
+            catch (IllegalArgumentException e)
+            {
+               log.error("AvailableLocales: Supported Locale key of " + localeKey + " was not formatted correctly", e);
+            }
          }
       }
 

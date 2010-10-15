@@ -26,36 +26,35 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.international.locale.DefaultLocaleKeyConfig;
 import org.jboss.seam.international.locale.DefaultLocaleProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-//@RunWith(Arquillian.class)
+@RunWith(Arquillian.class)
 public class DefaultLocaleOverrideLangCountryTest
 {
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(DefaultLocaleProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml")).addManifestResource("org/jboss/seam/international/test/locale/override-lang-country.xml", ArchivePaths.create("seam-beans.xml"));
+      return ShrinkWrap.create("test.jar", JavaArchive.class)
+                       .addClass(DefaultLocaleProducer.class)
+                       .addClass(DefaultLocaleKeyConfig.class)
+                       .addManifestResource("org/jboss/seam/international/test/locale/override-lang-country.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject
    Locale locale;
 
-   // FIXME XML Override not working
-   // @Test
+   @Test
    public void testDefaultLocaleProducerDirect()
    {
       Assert.assertNotNull(locale);
       Assert.assertEquals("en_US", locale.toString());
-   }
-
-   @Test
-   public void testNothing()
-   {
    }
 }

@@ -27,35 +27,36 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.locale.AvailableLocales;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-//@RunWith(Arquillian.class)
+@RunWith(Arquillian.class)
 public class AvailableLocalesTest
 {
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(AvailableLocales.class).addManifestResource("org/jboss/seam/international/test/locale/override-available.xml", ArchivePaths.create("beans.xml"));
+      JavaArchive ja = ShrinkWrap.create("test.jar", JavaArchive.class)
+                           .addClass(AvailableLocales.class)
+                           .addClass(SupportedLocaleKeysBean.class)
+                           .addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ja;
    }
 
    @Inject
    List<Locale> locales;
 
-   // FIXME XML Override not working
-   // @Test
+   @Test
    public void testAvailableLocalesProducer()
    {
       Assert.assertNotNull(locales);
       Assert.assertEquals(2, locales.size());
-   }
-
-   @Test
-   public void testNothing()
-   {
    }
 }

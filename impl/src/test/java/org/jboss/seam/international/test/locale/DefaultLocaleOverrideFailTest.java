@@ -42,7 +42,10 @@ public class DefaultLocaleOverrideFailTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(DefaultLocaleProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml")).addManifestResource("org/jboss/seam/international/test/locale/override-fail.xml", ArchivePaths.create("seam-beans.xml"));
+      return ShrinkWrap.create("test.jar", JavaArchive.class)
+               .addClass(DefaultLocaleProducer.class)
+               .addClass(DefaultLocaleKeyFailBean.class)
+               .addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
    }
 
    @Inject

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="urn:java:ee"
+          xmlns:lc="urn:java:org.jboss.seam.international.locale">
+
+    <String>
+      <Produces/>
+      <lc:DefaultLocaleKeyConfig/>
+      <value>fr</value>
+    </String>
+
+</beans>

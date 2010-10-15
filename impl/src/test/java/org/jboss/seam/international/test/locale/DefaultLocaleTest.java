@@ -42,7 +42,11 @@ public class DefaultLocaleTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("defaultlocaletest.jar", JavaArchive.class).addClasses(DefaultLocaleProducer.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      JavaArchive ja = ShrinkWrap.create("defaultlocaletest.jar", JavaArchive.class)
+                           .addClass(DefaultLocaleProducer.class)
+                           .addClass(DefaultLocaleKeyBean.class)
+                           .addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ja;
    }
 
    @Inject
