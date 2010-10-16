@@ -150,8 +150,8 @@
    </developers>
 
    <scm>
-      <connection>scm:svn:http://anonsvn.jboss.org/repos/seam/modules/international/trunk</connection>
-      <developerConnection>scm:svn:https://svn.jboss.org/repos/seam/modules/international/trunk</developerConnection>
-      <url>http://fisheye.jboss.org/browse/Seam/modules/international/trunk</url>
+      <connection>scm:git:git://github.com/seam/international.git</connection>
+      <developerConnection>scm:git:git@github.com:seam/international.git</developerConnection>
+      <url>http://github.com/seam/international</url>
    </scm>
 </project>

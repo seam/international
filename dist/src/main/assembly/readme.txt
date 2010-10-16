@@ -36,7 +36,7 @@
  Seam 3 Home Page:     http://www.sfwk.org/Seam3
  Downloads:            http://www.sfwk.org/Seam3/DistributionDownloads
  Forums:               http://www.sfwk.org/Community/Seam3Users
- Source Code:          http://anonsvn.jboss.org/repos/seam/modules/international
+ Source Code:          git://github.com/seam/international.git
  Issue Tracking:       http://jira.jboss.org/jira/browse/SEAMINTL
 
  Release Notes
