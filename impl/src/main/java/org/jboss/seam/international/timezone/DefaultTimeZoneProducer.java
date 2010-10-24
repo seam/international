@@ -25,6 +25,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,8 +34,8 @@ import org.jboss.logging.Logger;
 import org.joda.time.DateTimeZone;
 
 /**
- * Default TimeZone of the application. If configuration of the default TimeZone
- * is found that will be used, otherwise the JVM default TimeZone otherwise.
+ * Default TimeZone of the application. If configuration of the default TimeZone is found that will be used, otherwise
+ * the JVM default TimeZone otherwise.
  * 
  * @author Ken Finnigan
  */
@@ -46,7 +47,7 @@ public class DefaultTimeZoneProducer implements Serializable
 
    @Inject
    @DefaultTimeZoneConfig
-   private String defaultTimeZoneId;
+   private Instance<String> defaultTimeZoneId;
 
    @Inject
    private Logger log;
@@ -58,11 +59,12 @@ public class DefaultTimeZoneProducer implements Serializable
    @PostConstruct
    public void init()
    {
-      if (null != defaultTimeZoneId)
+      if (!defaultTimeZoneId.isUnsatisfied())
       {
          try
          {
-            DateTimeZone dtz = DateTimeZone.forID(defaultTimeZoneId);
+            String id = defaultTimeZoneId.get();
+            DateTimeZone dtz = DateTimeZone.forID(id);
             defaultTimeZone = constructTimeZone(dtz);
          }
          catch (IllegalArgumentException e)
