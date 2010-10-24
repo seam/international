@@ -21,6 +21,9 @@
  */
 package org.jboss.seam.international.test.locale;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.enterprise.inject.Produces;
 
 import org.jboss.seam.international.locale.SupportedLocaleKeys;
@@ -31,5 +34,5 @@ public class SupportedLocaleKeysBean
    @SuppressWarnings("unused")
    @Produces
    @SupportedLocaleKeys
-   private String[] supportedLocaleKeys = {"en", "fr"};
+   private final List<String> supportedLocaleKeys = Arrays.asList("en", "fr");
 }

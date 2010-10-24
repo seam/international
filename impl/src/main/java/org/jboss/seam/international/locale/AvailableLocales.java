@@ -29,6 +29,7 @@ import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
@@ -42,7 +43,7 @@ public class AvailableLocales
 
    @Inject
    @SupportedLocaleKeys
-   private String[] supportedLocaleKeys;
+   private Instance<List<String>> supportedLocaleKeys;
 
    @Produces
    private List<Locale> locales = null;
@@ -52,9 +53,10 @@ public class AvailableLocales
    {
       locales = new ArrayList<Locale>();
 
-      if (null != supportedLocaleKeys)
+      if (!supportedLocaleKeys.isUnsatisfied())
       {
-         for (String localeKey : supportedLocaleKeys)
+         List<String> keys = supportedLocaleKeys.get();
+         for (String localeKey : keys)
          {
             try
             {

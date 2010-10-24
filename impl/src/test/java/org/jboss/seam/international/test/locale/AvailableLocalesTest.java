@@ -51,7 +51,7 @@ public class AvailableLocalesTest
    }
 
    @Inject
-   List<Locale> locales;
+   private List<Locale> locales;
 
    @Test
    public void testAvailableLocalesProducer()
