@@ -26,6 +26,7 @@ import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -42,7 +43,7 @@ public class DefaultLocaleProducer implements Serializable
 
    @Inject
    @DefaultLocaleKeyConfig
-   private String defaultLocaleKey;
+   private Instance<String> defaultLocaleKey;
 
    @Produces
    @Named
@@ -51,15 +52,17 @@ public class DefaultLocaleProducer implements Serializable
    @PostConstruct
    public void init()
    {
-      if (null != defaultLocaleKey)
+      if (!defaultLocaleKey.isUnsatisfied())
       {
          try
          {
-            defaultLocale = LocaleUtils.toLocale(defaultLocaleKey);
+            String key = defaultLocaleKey.get();
+            defaultLocale = LocaleUtils.toLocale(key);
          }
          catch (IllegalArgumentException e)
          {
-            log.error("DefaultLocaleProducer: Default Locale key of " + defaultLocale + " was not formatted correctly", e);
+            log.error("DefaultLocaleProducer: Default Locale key of " + defaultLocale + " was not formatted correctly",
+                     e);
          }
       }
       if (null == defaultLocale)
