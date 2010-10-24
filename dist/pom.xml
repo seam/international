@@ -23,12 +23,14 @@
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
          <artifactId>seam-international-api</artifactId>
+         <version>${project.version}</version>
          <optional>true</optional>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
          <artifactId>seam-international</artifactId>
+         <version>${project.version}</version>
          <optional>true</optional>
       </dependency>
 
