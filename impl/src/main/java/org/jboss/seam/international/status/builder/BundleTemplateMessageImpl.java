@@ -44,8 +44,7 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage
    @Inject
    Bundles bundles;
 
-   @Inject
-   Logger log;
+   private final Logger log = Logger.getLogger(BundleTemplateMessageImpl.class);
 
    public Message build()
    {

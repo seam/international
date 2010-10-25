@@ -49,8 +49,7 @@ public class DefaultTimeZoneProducer implements Serializable
    @DefaultTimeZoneConfig
    private Instance<String> defaultTimeZoneId;
 
-   @Inject
-   private Logger log;
+   private final Logger log = Logger.getLogger(DefaultTimeZoneProducer.class);
 
    @Produces
    @Named

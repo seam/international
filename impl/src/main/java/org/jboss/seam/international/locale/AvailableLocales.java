@@ -38,8 +38,7 @@ import org.jboss.logging.Logger;
 @ApplicationScoped
 public class AvailableLocales
 {
-   @Inject
-   private Logger log;
+   private final Logger log = Logger.getLogger(AvailableLocales.class);
 
    @Inject
    @SupportedLocaleKeys

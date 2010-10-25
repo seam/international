@@ -38,8 +38,7 @@ public class DefaultLocaleProducer implements Serializable
 {
    private static final long serialVersionUID = -4534087316489937649L;
 
-   @Inject
-   private Logger log;
+   private Logger log = Logger.getLogger(DefaultLocaleProducer.class);
 
    @Inject
    @DefaultLocaleKeyConfig
