@@ -9,7 +9,7 @@
 
    <artifactId>seam-international-parent</artifactId>
    <groupId>org.jboss.seam.international</groupId>
-   <version>3.0.0.Alpha2</version>
+   <version>3.0.0-SNAPSHOT</version>
 
    <prerequisites>
       <maven>3.0</maven>
