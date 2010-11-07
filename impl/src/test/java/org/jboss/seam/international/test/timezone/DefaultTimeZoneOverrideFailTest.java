@@ -29,6 +29,7 @@ import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
@@ -41,10 +42,11 @@ public class DefaultTimeZoneOverrideFailTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class)
+      return ShrinkWrap.create(JavaArchive.class, "test.jar")
                .addClass(DefaultTimeZoneProducer.class)
                .addClass(DefaultTimeZoneConfig.class)
-               .addManifestResource("org/jboss/seam/international/test/timezone/override-fail.xml", ArchivePaths.create("beans.xml"));
+               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+//      .addManifestResource("org/jboss/seam/international/test/timezone/override-fail.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject

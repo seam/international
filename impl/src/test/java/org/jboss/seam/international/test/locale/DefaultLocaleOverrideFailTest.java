@@ -30,8 +30,8 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.locale.DefaultLocaleProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,10 +42,10 @@ public class DefaultLocaleOverrideFailTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class)
+      return ShrinkWrap.create(JavaArchive.class, "test.jar")
                .addClass(DefaultLocaleProducer.class)
                .addClass(DefaultLocaleKeyFailBean.class)
-               .addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
    }
 
    @Inject

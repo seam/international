@@ -38,8 +38,8 @@ import org.jboss.seam.international.status.builder.BundleTemplateMessageImpl;
 import org.jboss.seam.international.status.builder.TemplateMessageImpl;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,7 +56,7 @@ public class MessagesTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("test.jar", JavaArchive.class).addClasses(MessagesImpl.class, MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, Bundles.class).addManifestResource(new ByteArrayAsset(new byte[0]), ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(MessagesImpl.class, MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, Bundles.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
    }
 
    @Inject

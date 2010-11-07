@@ -34,6 +34,7 @@ import org.jboss.seam.international.locale.DefaultLocaleProducer;
 import org.jboss.seam.international.locale.UserLocaleProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.weld.extensions.core.Client;
 import org.junit.Assert;
@@ -46,10 +47,11 @@ public class UserLocaleTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("userlocaletest.jar", JavaArchive.class)
+      return ShrinkWrap.create(JavaArchive.class, "test.jar")
                        .addClass(UserLocaleProducer.class)
                        .addClass(DefaultLocaleProducer.class)
-                       .addManifestResource("org/jboss/seam/international/test/locale/default-locale.xml", ArchivePaths.create("beans.xml"));
+                       .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+//      .addManifestResource("org/jboss/seam/international/test/locale/default-locale.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject

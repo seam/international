@@ -60,7 +60,7 @@
       </dependency>
       <dependency>
          <groupId>org.jboss.arquillian.container</groupId>
-         <artifactId>arquillian-weld-embedded</artifactId>
+         <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -74,9 +74,11 @@
          <scope>test</scope>
       </dependency>
       <dependency>
-         <groupId>javax.el</groupId>
-         <artifactId>el-api</artifactId>
-         <scope>test</scope>
+         <groupId>org.jboss.spec</groupId>
+         <artifactId>jboss-javaee-6.0</artifactId>
+         <version>${jboss.javaee.version}</version>
+         <scope>provided</scope>
+         <type>pom</type>
       </dependency>
    </dependencies>
 

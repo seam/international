@@ -4,7 +4,7 @@
    <parent>
       <groupId>org.jboss.seam</groupId>
       <artifactId>seam-parent</artifactId>
-      <version>3</version>
+      <version>4</version>
    </parent>
 
    <artifactId>seam-international-parent</artifactId>
@@ -27,11 +27,8 @@
    </modules>
 
    <properties>
-      <seam.version>3.0.0.b01</seam.version>
-      <!-- Use snapshot WeldX -->
-      <weld.extensions.version>1.0.0.Beta1</weld.extensions.version>
-      <jboss-logging.version>3.0.0.Beta4</jboss-logging.version>
-      <seam-xml.version>3.0.0.Alpha3</seam-xml.version>
+      <seam.version>3.0.0.b03</seam.version>
+      <jboss.javaee.version>1.0.0.Beta4</jboss.javaee.version>
    </properties>
 
    <dependencyManagement>
@@ -39,7 +36,7 @@
 
          <dependency>
             <groupId>org.jboss.seam</groupId>
-            <artifactId>seam</artifactId>
+            <artifactId>seam-bom</artifactId>
             <version>${seam.version}</version>
             <scope>import</scope>
             <type>pom</type>
@@ -50,25 +47,6 @@
             <groupId>org.jboss.seam.international</groupId>
             <artifactId>seam-international-api</artifactId>
             <version>${project.version}</version>
-         </dependency>
-
-         <dependency>
-            <groupId>org.jboss.seam.xml</groupId>
-            <artifactId>seam-xml-config</artifactId>
-            <version>${seam-xml.version}</version>
-            <scope>test</scope>
-         </dependency>
-
-         <dependency>
-            <groupId>org.jboss.weld</groupId>
-            <artifactId>weld-extensions</artifactId>
-            <version>${weld.extensions.version}</version>
-         </dependency>
-
-         <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>${jboss-logging.version}</version>
          </dependency>
       </dependencies>
    </dependencyManagement>

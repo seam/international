@@ -29,8 +29,8 @@ import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.impl.base.asset.ByteArrayAsset;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,10 +42,10 @@ public class DefaultTimeZoneUnconfiguredTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create("defaulttimezonetest.jar", JavaArchive.class)
+      return ShrinkWrap.create(JavaArchive.class, "test.jar")
                .addClass(DefaultTimeZoneProducer.class)
                .addClass(DefaultTimeZoneConfig.class)
-               .addManifestResource(new ByteArrayAsset("".getBytes()), ArchivePaths.create("beans.xml"));
+               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
    }
 
    @Inject
