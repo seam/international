@@ -30,7 +30,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.seam.international.Changed;
+import org.jboss.seam.international.Alter;
 import org.jboss.weld.extensions.core.Client;
 
 /**
@@ -56,7 +56,7 @@ public class UserLocaleProducer implements Serializable
       this.userLocale = defaultLocale;
    }
 
-   public void changeLocale(@Observes @Changed Locale lc)
+   public void changeLocale(@Observes @Alter @Client Locale lc)
    {
       this.userLocale = lc;
    }

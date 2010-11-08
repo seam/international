@@ -29,7 +29,7 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.international.Changed;
+import org.jboss.seam.international.Alter;
 import org.jboss.seam.international.locale.DefaultLocaleProducer;
 import org.jboss.seam.international.locale.UserLocaleProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
@@ -50,6 +50,7 @@ public class UserLocaleTest
       return ShrinkWrap.create(JavaArchive.class, "test.jar")
                        .addClass(UserLocaleProducer.class)
                        .addClass(DefaultLocaleProducer.class)
+                       .addClass(Alter.class)
                        .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
 //      .addManifestResource("org/jboss/seam/international/test/locale/default-locale.xml", ArchivePaths.create("beans.xml"));
    }
@@ -59,7 +60,8 @@ public class UserLocaleTest
    Locale locale;
 
    @Inject
-   @Changed
+   @Alter
+   @Client
    Event<Locale> localeEvent;
 
    @Inject

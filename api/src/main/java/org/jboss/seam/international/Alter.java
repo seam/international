@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 import javax.inject.Qualifier;
 
 /**
- * Qualifier used with Events to signify either a TimeZone or Locale has changed.
+ * Qualifier used with Events to signify either a TimeZone or Locale needs to change.
  * 
  * @author Ken Finnigan
  */
@@ -40,7 +40,7 @@ import javax.inject.Qualifier;
 @Retention(RUNTIME)
 @Documented
 @Qualifier
-public @interface Changed
+public @interface Alter
 {
 
 }

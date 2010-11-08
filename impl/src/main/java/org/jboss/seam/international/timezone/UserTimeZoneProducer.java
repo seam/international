@@ -29,7 +29,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.seam.international.Changed;
+import org.jboss.seam.international.Alter;
 import org.jboss.weld.extensions.core.Client;
 import org.joda.time.DateTimeZone;
 
@@ -56,7 +56,7 @@ public class UserTimeZoneProducer implements Serializable
       this.userTimeZone = defaultTimeZone;
    }
 
-   public void changeTimeZone(@Observes @Changed DateTimeZone tz)
+   public void changeTimeZone(@Observes @Alter @Client DateTimeZone tz)
    {
       this.userTimeZone = tz;
    }

@@ -27,7 +27,7 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.international.Changed;
+import org.jboss.seam.international.Alter;
 import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.seam.international.timezone.UserTimeZoneProducer;
@@ -51,6 +51,7 @@ public class UserTimeZoneTest
                   .addClass(UserTimeZoneProducer.class)
                   .addClass(DefaultTimeZoneProducer.class)
                   .addClass(DefaultTimeZoneConfig.class)
+                  .addClass(Alter.class)
                   .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
 //      .addManifestResource("org/jboss/seam/international/test/timezone/user-timezone.xml", ArchivePaths.create("beans.xml"));
    }
@@ -60,7 +61,8 @@ public class UserTimeZoneTest
    DateTimeZone timeZone;
 
    @Inject
-   @Changed
+   @Alter
+   @Client
    Event<DateTimeZone> timeZoneEvent;
 
    @Inject
