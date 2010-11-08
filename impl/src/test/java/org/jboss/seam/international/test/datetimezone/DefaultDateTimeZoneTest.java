@@ -19,13 +19,14 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.test.timezone;
+package org.jboss.seam.international.test.datetimezone;
 
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
+import org.jboss.seam.international.datetimezone.DefaultDateTimeZoneProducer;
+import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -36,15 +37,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultTimeZoneOverrideTest
+public class DefaultDateTimeZoneTest
 {
    @Deployment
    public static JavaArchive createTestArchive()
    {
       return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addClasses(DefaultTimeZoneProducer.class)
+               .addClass(DefaultDateTimeZoneProducer.class)
+               .addClass(DefaultTimeZoneConfig.class)
                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//      .addManifestResource("org/jboss/seam/international/test/timezone/override.xml", ArchivePaths.create("beans.xml"));
+//               .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject
@@ -54,7 +56,5 @@ public class DefaultTimeZoneOverrideTest
    public void testDefaultTimeZoneProducerDirect()
    {
       Assert.assertNotNull(timeZone);
-      //TODO Fix XML Override errors
-//      Assert.assertEquals("America/Tijuana", timeZone.getID());
    }
 }

@@ -19,55 +19,72 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.test.timezone;
+package org.jboss.seam.international.test.jdktimezone;
 
-import java.util.List;
+import java.util.TimeZone;
 
+import javax.enterprise.event.Event;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.international.timezone.AvailableTimeZones;
-import org.jboss.seam.international.timezone.ForwardingTimeZone;
+import org.jboss.seam.international.Alter;
+import org.jboss.seam.international.jdktimezone.DefaultTimeZoneProducer;
+import org.jboss.seam.international.jdktimezone.UserTimeZoneProducer;
+import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.joda.time.DateTimeZone;
+import org.jboss.weld.extensions.core.Client;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class AvailableTimeZonesTest
+public class UserTimeZoneTest
 {
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(AvailableTimeZones.class, AvailableTimeZoneBean.class, ForwardingTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+      return ShrinkWrap.create(JavaArchive.class, "test.jar")
+                  .addClass(UserTimeZoneProducer.class)
+                  .addClass(DefaultTimeZoneProducer.class)
+                  .addClass(DefaultTimeZoneConfig.class)
+                  .addClass(Alter.class)
+                  .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+//      .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject
-   Instance<AvailableTimeZoneBean> availBean;
+   @Client
+   TimeZone timeZone;
+
    @Inject
-   List<DateTimeZone> timeZones;
+   @Alter
+   @Client
+   Event<TimeZone> timeZoneEvent;
+
+   @Inject
+   @Client
+   Instance<TimeZone> timeZoneSource;
 
    @Test
-   public void testAvailableTimeZonesProducerViaBean()
+   public void testUserTimeZoneProducerDirect()
    {
-      Assert.assertNotNull(availBean);
-      List<DateTimeZone> list = availBean.get().getAvailTimeZones();
-      Assert.assertNotNull(list);
-      Assert.assertTrue(!list.isEmpty());
-      Assert.assertTrue(list.size() > 0);
+      Assert.assertNotNull(timeZone);
    }
 
    @Test
-   public void testAvailableTimeZonesProducerDirect()
+   public void testUserTimeZoneEvent()
    {
-      Assert.assertNotNull(timeZones);
-      Assert.assertTrue(!timeZones.isEmpty());
-      Assert.assertTrue(timeZones.size() > 0);
+      TimeZone tijuana = TimeZone.getTimeZone("America/Tijuana");
+      Assert.assertNotNull(timeZone);
+      Assert.assertFalse(timeZone.equals(tijuana));
+      timeZoneEvent.fire(tijuana);
+      TimeZone tz = timeZoneSource.get();
+      Assert.assertNotNull(tz);
+      Assert.assertTrue(tz.equals(tijuana));
    }
 }

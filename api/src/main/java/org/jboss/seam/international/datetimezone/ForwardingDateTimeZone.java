@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.timezone;
+package org.jboss.seam.international.datetimezone;
 
 import java.util.Locale;
 import java.util.TimeZone;
@@ -31,7 +31,7 @@ import org.joda.time.DateTimeZone;
  * 
  * @author Ken Finnigan
  */
-public abstract class ForwardingTimeZone extends DateTimeZone
+public abstract class ForwardingDateTimeZone extends DateTimeZone
 {
    /**
     * Abstract getter for the delegate
@@ -40,7 +40,7 @@ public abstract class ForwardingTimeZone extends DateTimeZone
     */
    protected abstract DateTimeZone delegate();
 
-   protected ForwardingTimeZone(String id)
+   protected ForwardingDateTimeZone(String id)
    {
       super(id);
    }

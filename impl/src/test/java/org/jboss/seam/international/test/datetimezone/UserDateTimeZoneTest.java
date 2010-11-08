@@ -19,44 +19,71 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.test.timezone;
+package org.jboss.seam.international.test.datetimezone;
 
+import javax.enterprise.event.Event;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.international.Alter;
+import org.jboss.seam.international.datetimezone.DefaultDateTimeZoneProducer;
+import org.jboss.seam.international.datetimezone.UserDateTimeZoneProducer;
 import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
-import org.jboss.seam.international.timezone.DefaultTimeZoneProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.weld.extensions.core.Client;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultTimeZoneOverrideFailTest
+public class UserDateTimeZoneTest
 {
    @Deployment
    public static JavaArchive createTestArchive()
    {
       return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addClass(DefaultTimeZoneProducer.class)
-               .addClass(DefaultTimeZoneConfig.class)
-               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//      .addManifestResource("org/jboss/seam/international/test/timezone/override-fail.xml", ArchivePaths.create("beans.xml"));
+                  .addClass(UserDateTimeZoneProducer.class)
+                  .addClass(DefaultDateTimeZoneProducer.class)
+                  .addClass(DefaultTimeZoneConfig.class)
+                  .addClass(Alter.class)
+                  .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+//      .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml", ArchivePaths.create("beans.xml"));
    }
 
    @Inject
+   @Client
    DateTimeZone timeZone;
 
+   @Inject
+   @Alter
+   @Client
+   Event<DateTimeZone> timeZoneEvent;
+
+   @Inject
+   @Client
+   Instance<DateTimeZone> timeZoneSource;
+
    @Test
-   public void testDefaultTimeZoneProducerDirect()
+   public void testUserTimeZoneProducerDirect()
    {
       Assert.assertNotNull(timeZone);
-      Assert.assertNotSame("America/Tijuana", timeZone.getID());
-      Assert.assertEquals(DateTimeZone.getDefault().getID(), timeZone.getID());
+   }
+
+   @Test
+   public void testUserTimeZoneEvent()
+   {
+      DateTimeZone tijuana = DateTimeZone.forID("America/Tijuana");
+      Assert.assertNotNull(timeZone);
+      Assert.assertFalse(timeZone.equals(tijuana));
+      timeZoneEvent.fire(tijuana);
+      DateTimeZone tz = timeZoneSource.get();
+      Assert.assertNotNull(tz);
+      Assert.assertTrue(tz.equals(tijuana));
    }
 }

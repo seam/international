@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.test.timezone;
+package org.jboss.seam.international.test.datetimezone;
 
 import java.util.List;
 
@@ -29,12 +29,12 @@ import javax.inject.Inject;
 import org.joda.time.DateTimeZone;
 
 @ApplicationScoped
-public class AvailableTimeZoneBean
+public class AvailableDateTimeZoneBean
 {
    @Inject
    private List<DateTimeZone> timeZones;
 
-   public AvailableTimeZoneBean()
+   public AvailableDateTimeZoneBean()
    {
    }
 

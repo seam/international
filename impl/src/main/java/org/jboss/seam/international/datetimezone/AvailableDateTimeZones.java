@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.timezone;
+package org.jboss.seam.international.datetimezone;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +31,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
+import org.jboss.seam.international.datetimezone.ForwardingDateTimeZone;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -55,18 +56,18 @@ import org.joda.time.DateTimeZone;
  * @author Dan Allen
  */
 @ApplicationScoped
-public class AvailableTimeZones
+public class AvailableDateTimeZones
 {
    private static final String TIMEZONE_ID_PREFIXES = "^(Africa|America|Asia|Atlantic|Australia|Europe|Indian|Pacific)/.*";
 
    @Produces
-   private List<ForwardingTimeZone> timeZones = null;
+   private List<ForwardingDateTimeZone> dateTimeZones = null;
 
    @SuppressWarnings("unchecked")
    @PostConstruct
    public void init()
    {
-      timeZones = new ArrayList<ForwardingTimeZone>();
+      dateTimeZones = new ArrayList<ForwardingDateTimeZone>();
       final Set timeZoneIds = DateTimeZone.getAvailableIDs();
       for (Object object : timeZoneIds)
       {
@@ -74,7 +75,7 @@ public class AvailableTimeZones
          if (id.matches(TIMEZONE_ID_PREFIXES))
          {
             final DateTimeZone dtz = DateTimeZone.forID(id);
-            timeZones.add(new ForwardingTimeZone(id)
+            dateTimeZones.add(new ForwardingDateTimeZone(id)
             {
                @Override
                protected DateTimeZone delegate()
@@ -84,13 +85,13 @@ public class AvailableTimeZones
             });
          }
       }
-      Collections.sort(timeZones, new Comparator<ForwardingTimeZone>()
+      Collections.sort(dateTimeZones, new Comparator<ForwardingDateTimeZone>()
       {
-         public int compare(final ForwardingTimeZone a, final ForwardingTimeZone b)
+         public int compare(final ForwardingDateTimeZone a, final ForwardingDateTimeZone b)
          {
             return a.getID().compareTo(b.getID());
          }
       });
-      timeZones = Collections.unmodifiableList(timeZones);
+      dateTimeZones = Collections.unmodifiableList(dateTimeZones);
    }
 }

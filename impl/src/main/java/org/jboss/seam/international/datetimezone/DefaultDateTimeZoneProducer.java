@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.timezone;
+package org.jboss.seam.international.datetimezone;
 
 import java.io.Serializable;
 
@@ -31,17 +31,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jboss.logging.Logger;
+import org.jboss.seam.international.datetimezone.ForwardingDateTimeZone;
+import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
 import org.joda.time.DateTimeZone;
 
 /**
- * Default TimeZone of the application. If configuration of the default TimeZone is found that will be used, otherwise
- * the JVM default TimeZone otherwise.
+ * Default DateTimeZone of the application. If configuration of the default DateTimeZone is found that will be used, otherwise
+ * the JVM default TimeZone.
  * 
  * @author Ken Finnigan
  */
 
 @ApplicationScoped
-public class DefaultTimeZoneProducer implements Serializable
+public class DefaultDateTimeZoneProducer implements Serializable
 {
    private static final long serialVersionUID = 6181892144731122500L;
 
@@ -49,11 +51,11 @@ public class DefaultTimeZoneProducer implements Serializable
    @DefaultTimeZoneConfig
    private Instance<String> defaultTimeZoneId;
 
-   private final Logger log = Logger.getLogger(DefaultTimeZoneProducer.class);
+   private final Logger log = Logger.getLogger(DefaultDateTimeZoneProducer.class);
 
    @Produces
    @Named
-   private DateTimeZone defaultTimeZone = null;
+   private DateTimeZone defaultDateTimeZone = null;
 
    @PostConstruct
    public void init()
@@ -64,23 +66,23 @@ public class DefaultTimeZoneProducer implements Serializable
          {
             String id = defaultTimeZoneId.get();
             DateTimeZone dtz = DateTimeZone.forID(id);
-            defaultTimeZone = constructTimeZone(dtz);
+            defaultDateTimeZone = constructTimeZone(dtz);
          }
          catch (IllegalArgumentException e)
          {
-            log.warn("DefaultTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
+            log.warn("DefaultDateTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
          }
       }
-      if (null == defaultTimeZone)
+      if (null == defaultDateTimeZone)
       {
          DateTimeZone dtz = DateTimeZone.getDefault();
-         defaultTimeZone = constructTimeZone(dtz);
+         defaultDateTimeZone = constructTimeZone(dtz);
       }
    }
 
-   private ForwardingTimeZone constructTimeZone(final DateTimeZone dtz)
+   private ForwardingDateTimeZone constructTimeZone(final DateTimeZone dtz)
    {
-      return new ForwardingTimeZone(dtz.getID())
+      return new ForwardingDateTimeZone(dtz.getID())
       {
          @Override
          protected DateTimeZone delegate()
