@@ -32,7 +32,7 @@ import javax.inject.Named;
 
 import org.jboss.logging.Logger;
 import org.jboss.seam.international.datetimezone.ForwardingDateTimeZone;
-import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
+import org.jboss.seam.international.timezone.DefaultTimeZone;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -48,7 +48,7 @@ public class DefaultDateTimeZoneProducer implements Serializable
    private static final long serialVersionUID = 6181892144731122500L;
 
    @Inject
-   @DefaultTimeZoneConfig
+   @DefaultTimeZone
    private Instance<String> defaultTimeZoneId;
 
    private final Logger log = Logger.getLogger(DefaultDateTimeZoneProducer.class);

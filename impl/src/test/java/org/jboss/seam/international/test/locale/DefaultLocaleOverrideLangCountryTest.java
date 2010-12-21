@@ -27,7 +27,7 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.international.locale.DefaultLocaleKeyConfig;
+import org.jboss.seam.international.locale.DefaultLocale;
 import org.jboss.seam.international.locale.DefaultLocaleProducer;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -45,7 +45,7 @@ public class DefaultLocaleOverrideLangCountryTest
    {
       return ShrinkWrap.create(JavaArchive.class, "test.jar")
                        .addClass(DefaultLocaleProducer.class)
-                       .addClass(DefaultLocaleKeyConfig.class)
+                       .addClass(DefaultLocale.class)
                        .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
 //      .addManifestResource("org/jboss/seam/international/test/locale/override-lang-country.xml", ArchivePaths.create("beans.xml"));
    }

@@ -30,7 +30,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.Alter;
 import org.jboss.seam.international.datetimezone.DefaultDateTimeZoneProducer;
 import org.jboss.seam.international.datetimezone.UserDateTimeZoneProducer;
-import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
+import org.jboss.seam.international.timezone.DefaultTimeZone;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -50,7 +50,7 @@ public class UserDateTimeZoneTest
       return ShrinkWrap.create(JavaArchive.class, "test.jar")
                   .addClass(UserDateTimeZoneProducer.class)
                   .addClass(DefaultDateTimeZoneProducer.class)
-                  .addClass(DefaultTimeZoneConfig.class)
+                  .addClass(DefaultTimeZone.class)
                   .addClass(Alter.class)
                   .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
 //      .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml", ArchivePaths.create("beans.xml"));

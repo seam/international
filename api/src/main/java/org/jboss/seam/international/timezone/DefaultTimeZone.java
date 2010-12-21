@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.seam.international.locale;
+package org.jboss.seam.international.timezone;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -38,11 +38,11 @@ import javax.inject.Qualifier;
 @Inherited
 @Qualifier
 /**
- * Qualifier for specifying the default locale of an application.
+ * Qualifier for specifying the id of a Default TimeZone for an application.
  * 
  * @author Ken Finnigan
  */
-public @interface DefaultLocaleKeyConfig
+public @interface DefaultTimeZone
 {
 
 }

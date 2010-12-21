@@ -32,7 +32,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jboss.logging.Logger;
-import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
+import org.jboss.seam.international.timezone.DefaultTimeZone;
 
 /**
  * Default TimeZone of the application. If configuration of the default TimeZone is found that will be used, otherwise
@@ -47,7 +47,7 @@ public class DefaultTimeZoneProducer implements Serializable
    private static final long serialVersionUID = 3277798729003795202L;
 
    @Inject
-   @DefaultTimeZoneConfig
+   @DefaultTimeZone
    private Instance<String> defaultTimeZoneId;
 
    private final Logger log = Logger.getLogger(DefaultTimeZoneProducer.class);

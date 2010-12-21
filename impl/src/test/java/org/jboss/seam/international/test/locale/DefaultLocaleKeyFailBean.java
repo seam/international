@@ -23,13 +23,13 @@ package org.jboss.seam.international.test.locale;
 
 import javax.enterprise.inject.Produces;
 
-import org.jboss.seam.international.locale.DefaultLocaleKeyConfig;
+import org.jboss.seam.international.locale.DefaultLocale;
 
 public class DefaultLocaleKeyFailBean
 {
 
    @SuppressWarnings("unused")
    @Produces
-   @DefaultLocaleKeyConfig
+   @DefaultLocale
    private String defaultLocaleKey = "z";
 }

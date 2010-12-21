@@ -26,7 +26,7 @@ import javax.inject.Inject;
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.datetimezone.DefaultDateTimeZoneProducer;
-import org.jboss.seam.international.timezone.DefaultTimeZoneConfig;
+import org.jboss.seam.international.timezone.DefaultTimeZone;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -44,7 +44,7 @@ public class DefaultDateTimeZoneUnconfiguredTest
    {
       return ShrinkWrap.create(JavaArchive.class, "test.jar")
                .addClass(DefaultDateTimeZoneProducer.class)
-               .addClass(DefaultTimeZoneConfig.class)
+               .addClass(DefaultTimeZone.class)
                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
    }
 

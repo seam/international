@@ -41,7 +41,7 @@ public class DefaultLocaleProducer implements Serializable
    private Logger log = Logger.getLogger(DefaultLocaleProducer.class);
 
    @Inject
-   @DefaultLocaleKeyConfig
+   @DefaultLocale
    private Instance<String> defaultLocaleKey;
 
    @Produces
