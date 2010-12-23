@@ -49,6 +49,13 @@
             <groupId>org.jboss.seam.international</groupId>
             <artifactId>seam-international-impl</artifactId>
             <version>${project.version}</version>
+            <scope>runtime</scope>
+         </dependency>
+
+         <dependency>
+            <groupId>org.jboss.seam.international</groupId>
+            <artifactId>seam-international</artifactId>
+            <version>${project.version}</version>
          </dependency>
 
          <dependency>
