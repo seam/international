@@ -1,5 +1,4 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
    <modelVersion>4.0.0</modelVersion>
 
    <parent>
@@ -19,11 +18,13 @@
    </properties>
 
    <build>
+      <defaultGoal>process-classes</defaultGoal>
       <plugins>
          <plugin>
             <groupId>org.jboss.maven.plugins</groupId>
             <artifactId>maven-jdocbook-plugin</artifactId>
          </plugin>
+
          <!-- Attach docs as a war so dist can retrieve them -->
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -31,12 +32,12 @@
             <executions>
                <execution>
                   <id>attach-zip</id>
-                  <phase>package</phase>
                   <goals>
                      <goal>attach-artifact</goal>
                   </goals>
                   <configuration>
                      <artifacts>
+                        <!-- Attach the build docs to the project as a war -->
                         <artifact>
                            <file>${project.build.outputDirectory}/${project.artifactId}-${project.version}.war</file>
                            <type>war</type>
