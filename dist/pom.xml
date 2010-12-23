@@ -55,15 +55,16 @@
 
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
-         <artifactId>seam-international</artifactId>
+         <artifactId>seam-international-impl</artifactId>
          <version>${project.version}</version>
          <classifier>sources</classifier>
+         <optional>true</optional>
       </dependency>
 
       <!--
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
-         <artifactId>seam-international</artifactId>
+         <artifactId>seam-international-impl</artifactId>
          <version>${project.version}</version>
          <classifier>javadoc</classifier>
          <optional>true</optional>
