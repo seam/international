@@ -11,9 +11,8 @@
 
    <groupId>org.jboss.seam.international</groupId>
    <artifactId>seam-international-reference-guide</artifactId>
-   <version>3.0.0-SNAPSHOT</version>
    <packaging>jdocbook</packaging>
-   <name>Seam International Module Reference Guide</name>
+   <name>Seam International Reference Guide</name>
 
    <properties>
       <pdf.name>${project.artifactId}.pdf</pdf.name>
@@ -49,7 +48,6 @@
          </plugin>
       </plugins>
    </build>
-
 
    <profiles>
       <profile>
