@@ -3,4 +3,3 @@ target
 .project
 .settings
 *.sw?
-release.properties
