@@ -31,7 +31,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jboss.seam.international.Alter;
-import org.jboss.weld.extensions.core.Client;
+import org.jboss.seam.solder.core.Client;
 
 /**
  * Locale for a User Session. Defaults to the Locale within DefaultLocale

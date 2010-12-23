@@ -27,6 +27,7 @@
          <outputDirectory>artifacts</outputDirectory>
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
+            <include>org.jboss.seam.international:seam-international-impl</include>
             <include>org.jboss.seam.international:seam-international-api</include>
             <include>org.jboss.seam.international:seam-international</include>
          </includes>

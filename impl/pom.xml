@@ -8,17 +8,17 @@
       <relativePath>../pom.xml</relativePath>
    </parent>
 
-   <artifactId>seam-international</artifactId>
-   <version>3.0.0-SNAPSHOT</version>
+   <artifactId>seam-international-impl</artifactId>
 
    <packaging>jar</packaging>
-   <name>Seam International Module Core Implementation</name>
+   <name>Seam International Implementation</name>
+   <!-- url required for JAR Manifest -->
+   <url>${project.parent.url}</url>
 
    <dependencies>
       <dependency>
          <artifactId>seam-international-api</artifactId>
          <groupId>org.jboss.seam.international</groupId>
-         <scope>compile</scope>
       </dependency>
       <dependency>
          <groupId>javax.enterprise</groupId>
@@ -28,13 +28,11 @@
       <dependency>
          <groupId>org.jboss.logging</groupId>
          <artifactId>jboss-logging</artifactId>
-         <scope>provided</scope>
       </dependency>
       <dependency>
-         <groupId>org.jboss.weld</groupId>
-         <artifactId>weld-extensions</artifactId>
+         <groupId>org.jboss.seam.solder</groupId>
+         <artifactId>seam-solder-api</artifactId>
       </dependency>
-
       <dependency>
          <groupId>com.ocpsoft</groupId>
          <artifactId>ocpsoft-pretty-time</artifactId>
@@ -48,25 +46,22 @@
 
       <!-- Test Dependencies -->
       <dependency>
-         <groupId>org.jboss.seam.xml</groupId>
-         <artifactId>seam-xml-config</artifactId>
+         <groupId>org.jboss.seam.config</groupId>
+         <artifactId>seam-config-xml</artifactId>
          <scope>test</scope>
       </dependency>
 
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
-         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.jboss.arquillian</groupId>
          <artifactId>arquillian-junit</artifactId>
-         <scope>test</scope>
       </dependency>
       <dependency>
-         <groupId>org.jboss.arquillian.container</groupId>
+         <groupId>org.jboss.weld.arquillian.container</groupId>
          <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
-         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.jboss.weld</groupId>
@@ -81,7 +76,6 @@
       <dependency>
          <groupId>org.jboss.spec</groupId>
          <artifactId>jboss-javaee-6.0</artifactId>
-         <version>${jboss.javaee.version}</version>
          <scope>provided</scope>
          <type>pom</type>
       </dependency>

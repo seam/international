@@ -1,20 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
-  <parent>
-    <artifactId>seam-international-parent</artifactId>
-    <groupId>org.jboss.seam.international</groupId>
-    <version>3.0.0-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
-  </parent>
-
-  <artifactId>seam-international-api</artifactId>
-  <version>3.0.0-SNAPSHOT</version>
-
-  <packaging>jar</packaging>
-  <name>Seam International Module API</name>
-
-  <dependencies>
+   <modelVersion>4.0.0</modelVersion>
+ 
+   <parent>
+      <groupId>org.jboss.seam.international</groupId>
+      <artifactId>seam-international-parent</artifactId>
+      <version>3.0.0-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
+ 
+   <artifactId>seam-international-api</artifactId>
+ 
+   <packaging>jar</packaging>
+   <name>Seam International API</name>
+   <!-- url required for JAR Manifest -->
+   <url>${project.parent.url}</url>
+ 
+   <dependencies>
       <dependency>
          <groupId>javax.enterprise</groupId>
          <artifactId>cdi-api</artifactId>
@@ -25,5 +26,17 @@
          <artifactId>joda-time</artifactId>
          <optional>true</optional>
       </dependency>
-  </dependencies>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <!-- No tests in the api, skip phase -->
+         <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <skipTests>true</skipTests>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
 </project>
