@@ -40,6 +40,7 @@
          <useTransitiveDependencies>true</useTransitiveDependencies>
          <excludes>
             <exclude>org.jboss.seam.international:*</exclude>
+            <exclude>org.jboss.seam.solder:seam-solder-api</exclude>
          </excludes>
          <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       </dependencySet>
