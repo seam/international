@@ -11,7 +11,7 @@
 
    <artifactId>seam-international-distribution</artifactId>
    <name>Seam International Distribution</name>
-   <description>Builds a Seam International release distribution</description>
+   <description>Builds the Seam International release distribution</description>
    <packaging>pom</packaging>
 
    <properties>
@@ -47,29 +47,18 @@
 
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
-         <artifactId>seam-international-api</artifactId>
-         <version>${project.version}</version>
-         <classifier>javadoc</classifier>
-         <optional>true</optional>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.seam.international</groupId>
          <artifactId>seam-international-impl</artifactId>
          <version>${project.version}</version>
          <classifier>sources</classifier>
          <optional>true</optional>
       </dependency>
 
-      <!--
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
-         <artifactId>seam-international-impl</artifactId>
+         <artifactId>seam-international-api</artifactId>
          <version>${project.version}</version>
          <classifier>javadoc</classifier>
-         <optional>true</optional>
       </dependency>
-      -->
 
       <dependency>
          <groupId>org.jboss.seam.international</groupId>

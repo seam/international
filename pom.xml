@@ -20,6 +20,7 @@
    <modules>
       <module>api</module>
       <module>impl</module>
+      <module>combined</module>
    </modules>
 
    <properties>
@@ -75,8 +76,8 @@
             </property>
          </activation>
          <modules>
-            <module>dist</module>
             <module>docs/reference</module>
+            <module>dist</module>
          </modules>
       </profile>
       <profile>
