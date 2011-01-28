@@ -1,6 +1,6 @@
 
  Seam International Module
- 3.0.0.Alpha3
+ 3.0.0.Beta1
 
  What is it?
  ===========
@@ -42,6 +42,12 @@
 
  Release Notes
  =============
+
+3.0.0.Beta1
+-----------
+
+3.0.0.Alpha3
+------------
 
  * [SEAMINTL-8] - Add support for JDK TimeZone
  * [SEAMINTL-10] - Modify Events for changing User Locale and TimeZone
