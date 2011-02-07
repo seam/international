@@ -20,29 +20,30 @@
          <artifactId>seam-international-api</artifactId>
          <groupId>org.jboss.seam.international</groupId>
       </dependency>
+
       <dependency>
          <groupId>javax.enterprise</groupId>
          <artifactId>cdi-api</artifactId>
          <scope>provided</scope>
       </dependency>
-      <dependency>
-         <groupId>org.jboss.logging</groupId>
-         <artifactId>jboss-logging</artifactId>
-      </dependency>
+
       <dependency>
          <groupId>org.jboss.seam.solder</groupId>
          <artifactId>seam-solder</artifactId>
       </dependency>
+
       <dependency>
          <groupId>com.ocpsoft</groupId>
          <artifactId>ocpsoft-pretty-time</artifactId>
          <optional>true</optional>
       </dependency>
+
       <dependency>
          <groupId>joda-time</groupId>
          <artifactId>joda-time</artifactId>
          <optional>true</optional>
       </dependency>
+
       <dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-api</artifactId>
