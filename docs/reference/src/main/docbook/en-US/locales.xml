@@ -14,8 +14,8 @@ java.util.Locale lc;]]></programlisting>
 			accessible via EL with "defaultLocale".
 		</para>
 		<para>
-			By default the <literal>Locale</literal> will be set to the JVM default, unless you override the <literal>DefaultLocaleProducer</literal> Bean through XML Config.
-			Here are a few examples of XML that can be used to define the various types of Locales that are available ...
+			By default the <literal>Locale</literal> will be set to the JVM default, unless you override the <literal>DefaultLocaleProducer</literal> Bean via the Seam Config module.
+			Here are a few examples of XML that can be used to define the various types of <literal>Locale</literal>s that are available.
 		</para>
 		<para>
 			This will set the default language to be French.
@@ -29,7 +29,7 @@ java.util.Locale lc;]]></programlisting>
       http://docs.jboss.org/cdi/beans_1_0.xsd">
 
     <lc:DefaultLocaleProducer>
-        <s:specializes/>
+        <s:replaces/>
         <lc:defaultLocaleKey>fr</lc:defaultLocaleKey>
     </lc:DefaultLocaleProducer>
 </beans>]]></programlisting>
@@ -45,12 +45,13 @@ java.util.Locale lc;]]></programlisting>
       http://docs.jboss.org/cdi/beans_1_0.xsd">
 
     <lc:DefaultLocaleProducer>
-        <s:specializes/>
+        <s:replaces/>
         <lc:defaultLocaleKey>en_US</lc:defaultLocaleKey>
     </lc:DefaultLocaleProducer>
 </beans>]]></programlisting>
 		<para>
-			As you can see from the previous examples, you can define the <literal>Locale</literal> with lang_country_variant.  It's important to note that the first two parts of the locale definition
+			As you can see from the previous examples, you can define the <literal>Locale</literal> with 
+			<literal>lang_country_variant</literal>.  It's important to note that the first two parts of the locale definition
 			are not expected to be greater than 2 characters otherwise an error will be produced and it will default to the JVM <literal>Locale</literal>.
 		</para>
 	</section>
@@ -63,7 +64,7 @@ java.util.Locale lc;]]></programlisting>
 @UserLocale
 java.util.Locale locale;]]></programlisting>
 		<para>
-			which is EL accessible via "userLocale".
+			which is EL accessible via <literal>userLocale</literal>.
 		</para>
 		<para>
 			By default the <literal>Locale</literal> will be the same as that of the application when the User Session is initially created.  However, changing the User's <literal>Locale</literal> is a simple
@@ -98,7 +99,7 @@ List<java.util.Locale> locales;]]></programlisting>
       http://docs.jboss.org/cdi/beans_1_0.xsd">
 
     <lc:AvailableLocales>
-        <s:specializes/>
+        <s:modifies/>
         <lc:supportedLocaleKeys>
             <s:value>en</s:value>
             <s:value>fr</s:value>

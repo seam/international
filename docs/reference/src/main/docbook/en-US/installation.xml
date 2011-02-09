@@ -4,9 +4,9 @@
 <chapter id="installation">
 	<title>Installation</title>
 	<para>
-		Most features of Seam International are installed automatically by including the seam-international.jar and seam-international-api.jar
-		in the web application library folder. If you are using <ulink url="http://maven.apache.org/">Maven</ulink> as your build tool, you can add the
-		following dependency to your pom.xml file:
+		Most features of Seam International are installed automatically by including <literal>seam-international.jar</literal>
+		in the web application library folder. If you are using <ulink url="http://maven.apache.org/">Maven</ulink> as your 
+		build tool, you can add the following dependency to your <literal>pom.xml</literal> file:
 	</para>
 	<programlisting role="XML"><![CDATA[<dependency>
 	<groupId>org.jboss.seam</groupId>

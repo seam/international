@@ -18,7 +18,7 @@ DateTimeZone applicationTimeZone;]]></programlisting>
 			It can also be accessed through EL by the name "defaultTimeZone"!
 		</para>
 		<para>
-			By default the <literal>TimeZone</literal> will be set to the JVM default, unless you override the <literal>DefaultTimeZoneProducer</literal> Bean through XML Config.
+			By default the <literal>TimeZone</literal> will be set to the JVM default, unless you override the <literal>DefaultTimeZoneProducer</literal> Bean using the Seam Config module.
 			For instance, adding this XML into <literal>seam-beans.xml</literal> or <literal>beans.xml</literal> will change the default <literal>TimeZone</literal> of the application to be Tijuana!
 		</para>
 <programlisting role="XML"><![CDATA[<beans xmlns="http://java.sun.com/xml/ns/javaee"
