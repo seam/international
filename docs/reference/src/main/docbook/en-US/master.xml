@@ -7,11 +7,11 @@
 
    <toc />
 
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="preface.xml" />
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="installation.xml" />
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="locales.xml" />
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="timezones.xml" />
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="messages.xml" />
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-preface.xml" />
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-installation.xml" />
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-locales.xml" />
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-timezones.xml" />
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-messages.xml" />
 
    <!--
    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="chapterXX.xml" />
