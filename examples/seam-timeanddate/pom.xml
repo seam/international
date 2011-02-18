@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+      <groupId>org.jboss.seam.international</groupId>
+      <artifactId>seam-international-parent</artifactId>
+      <version>3.0.0-SNAPSHOT</version>
+      <relativePath>../../pom.xml</relativePath>
+   </parent>
+
+  <groupId>org.jboss.seam.international.examples</groupId>
+  <artifactId>seam-timeanddate</artifactId>
+  <version>3.0.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>Seam International Time and Date Example</name>
+  <description>The Seam </description>
+  <url>http://seamframework.org/Seam3</url>
+
+  <pluginRepositories>
+	      <pluginRepository>
+				<id>zt</id>
+				<name>Zeroturnaround Maven Repository</name>
+				<url>http://repos.zeroturnaround.com//maven2</url>
+				<layout>default</layout>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+				<releases>
+					<updatePolicy>never</updatePolicy>
+				</releases>
+			</pluginRepository>
+   </pluginRepositories>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+         <groupId>org.jboss.spec</groupId>
+         <artifactId>jboss-javaee-6.0</artifactId>
+         <scope>provided</scope>
+         <type>pom</type>
+    </dependency>
+
+     <dependency>
+         <groupId>joda-time</groupId>
+         <artifactId>joda-time</artifactId>
+      </dependency>
+
+    <dependency>
+	   <groupId>org.jboss.seam.international</groupId>
+	   <artifactId>seam-international-api</artifactId>
+	</dependency>
+
+	<dependency>
+	   <groupId>org.jboss.seam.international</groupId>
+	   <artifactId>seam-international-impl</artifactId>
+	   <scope>runtime</scope>
+	</dependency>
+  </dependencies>
+
+  <build>
+      <defaultGoal>package</defaultGoal>
+      <finalName>${project.artifactId}</finalName>
+
+      <plugins>
+	 <plugin>
+	        <artifactId>maven-war-plugin</artifactId>
+	        <configuration>
+	          <warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+	        </configuration>
+	      </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+	        <configuration>
+	          <source>1.6</source>
+	          <target>1.6</target>
+	        </configuration>
+         </plugin>
+
+	     <plugin>
+		  <groupId>org.zeroturnaround</groupId>
+		  <artifactId>jrebel-maven-plugin</artifactId>
+		  <configuration>
+			<webappDirectory></webappDirectory>
+		  </configuration>
+		  <executions>
+		    <execution>
+		      <id>generate-rebel-xml</id>
+		      <phase>process-resources</phase>
+		      <goals>
+		        <goal>generate</goal>
+		      </goals>
+		    </execution>
+		  </executions>
+		</plugin>
+
+      </plugins>
+   </build>
+</project>
