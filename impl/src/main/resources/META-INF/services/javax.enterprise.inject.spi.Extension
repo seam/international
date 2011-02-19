@@ -1,2 +1,2 @@
-org.jboss.seam.international.locale.LocaleException
+org.jboss.seam.international.locale.LocaleVetoExtension
 org.jboss.seam.international.status.MessagesExtension
