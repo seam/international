@@ -43,11 +43,11 @@ public class AvailableLocalesTest
    @Deployment
    public static JavaArchive createTestArchive()
    {
-      JavaArchive ja = ShrinkWrap.create(JavaArchive.class, "test.jar")
-                           .addClass(AvailableLocales.class)
-                           .addClass(SupportedLocaleKeysBean.class)
-                           .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-      return ja;
+      JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar");
+      jar.addClass(AvailableLocales.class);
+      jar.addClass(CustomLocaleConfiguration.class);
+      jar.addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+      return jar;
    }
 
    @Inject

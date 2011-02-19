@@ -26,8 +26,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
@@ -40,21 +40,18 @@ public class AvailableLocales
 {
    private final Logger log = Logger.getLogger(AvailableLocales.class);
 
-   @Inject
-   @SupportedLocaleKeys
-   private Instance<List<String>> supportedLocaleKeys;
-
    @Produces
    private List<Locale> locales = null;
 
-   @PostConstruct
-   public void init()
+   @Inject
+   public void init(Instance<LocaleConfiguration> configuration)
    {
       locales = new ArrayList<Locale>();
 
-      if (!supportedLocaleKeys.isUnsatisfied())
+      if (!configuration.isAmbiguous() && !configuration.isUnsatisfied())
       {
-         List<String> keys = supportedLocaleKeys.get();
+         Set<String> keys = configuration.get().getSupportedLocaleKeys();
+         log.trace("Found " + keys.size() + " locales in configuration");
          for (String localeKey : keys)
          {
             try

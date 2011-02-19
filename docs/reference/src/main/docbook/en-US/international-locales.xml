@@ -92,19 +92,18 @@ List<java.util.Locale> locales;]]></programlisting>
 		</para>
 <programlisting role="XML"><![CDATA[<beans xmlns="http://java.sun.com/xml/ns/javaee"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:s="urn:java:seam:core" 
+   xmlns:s="urn:java:ee"
    xmlns:lc="urn:java:org.jboss.seam.international.locale"
    xsi:schemaLocation="
       http://java.sun.com/xml/ns/javaee 
       http://docs.jboss.org/cdi/beans_1_0.xsd">
 
-    <lc:AvailableLocales>
-        <s:modifies/>
+    <lc:LocaleConfiguration>
         <lc:supportedLocaleKeys>
             <s:value>en</s:value>
             <s:value>fr</s:value>
         </lc:supportedLocaleKeys>
-    </lc:AvailableLocales>
+    </lc:LocaleConfiguration>
 </beans>]]></programlisting>
 	</section>
 </chapter>
