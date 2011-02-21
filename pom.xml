@@ -71,6 +71,7 @@
          </activation>
          <modules>
             <module>docs/reference</module>
+            <module>examples/seam-timeanddate</module>
             <module>dist</module>
          </modules>
       </profile>
