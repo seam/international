@@ -9,7 +9,7 @@ public class CustomLocaleConfiguration extends LocaleConfiguration
    @PostConstruct
    public void setup()
    {
-      getSupportedLocaleKeys().add("en");
-      getSupportedLocaleKeys().add("fr");
+      addSupportedLocaleKey("en");
+      addSupportedLocaleKey("fr");
    }
 }
