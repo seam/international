@@ -39,74 +39,60 @@ import javax.inject.Named;
  */
 @Named
 @ApplicationScoped
-public class Bundles implements Map<String, ResourceBundle>, Serializable
-{
-   private static final long serialVersionUID = 1207758648760266247L;
+public class Bundles implements Map<String, ResourceBundle>, Serializable {
+    private static final long serialVersionUID = 1207758648760266247L;
 
-   private final Map<String, ResourceBundle> bundles = new ConcurrentHashMap<String, ResourceBundle>();
+    private final Map<String, ResourceBundle> bundles = new ConcurrentHashMap<String, ResourceBundle>();
 
-   public void clear()
-   {
-      bundles.clear();
-   }
+    public void clear() {
+        bundles.clear();
+    }
 
-   public boolean containsKey(final Object key)
-   {
-      return bundles.containsKey(key);
-   }
+    public boolean containsKey(final Object key) {
+        return bundles.containsKey(key);
+    }
 
-   public boolean containsValue(final Object value)
-   {
-      return bundles.containsValue(value);
-   }
+    public boolean containsValue(final Object value) {
+        return bundles.containsValue(value);
+    }
 
-   public Set<java.util.Map.Entry<String, ResourceBundle>> entrySet()
-   {
-      return bundles.entrySet();
-   }
+    public Set<java.util.Map.Entry<String, ResourceBundle>> entrySet() {
+        return bundles.entrySet();
+    }
 
-   public ResourceBundle get(final Object key)
-   {
-      if (!containsKey(key))
-      {
-         ResourceBundle bundle = ResourceBundle.getBundle(key.toString());
-         bundles.put(key.toString(), bundle);
-      }
-      return bundles.get(key);
-   }
+    public ResourceBundle get(final Object key) {
+        if (!containsKey(key)) {
+            ResourceBundle bundle = ResourceBundle.getBundle(key.toString());
+            bundles.put(key.toString(), bundle);
+        }
+        return bundles.get(key);
+    }
 
-   public boolean isEmpty()
-   {
-      return bundles.isEmpty();
-   }
+    public boolean isEmpty() {
+        return bundles.isEmpty();
+    }
 
-   public Set<String> keySet()
-   {
-      return keySet();
-   }
+    public Set<String> keySet() {
+        return keySet();
+    }
 
-   public ResourceBundle put(final String key, final ResourceBundle value)
-   {
-      return bundles.put(key, value);
-   }
+    public ResourceBundle put(final String key, final ResourceBundle value) {
+        return bundles.put(key, value);
+    }
 
-   public void putAll(final Map<? extends String, ? extends ResourceBundle> m)
-   {
-      bundles.putAll(m);
-   }
+    public void putAll(final Map<? extends String, ? extends ResourceBundle> m) {
+        bundles.putAll(m);
+    }
 
-   public ResourceBundle remove(final Object key)
-   {
-      return bundles.remove(key);
-   }
+    public ResourceBundle remove(final Object key) {
+        return bundles.remove(key);
+    }
 
-   public int size()
-   {
-      return bundles.size();
-   }
+    public int size() {
+        return bundles.size();
+    }
 
-   public Collection<ResourceBundle> values()
-   {
-      return bundles.values();
-   }
+    public Collection<ResourceBundle> values() {
+        return bundles.values();
+    }
 }

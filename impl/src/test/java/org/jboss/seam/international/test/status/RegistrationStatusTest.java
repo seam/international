@@ -36,45 +36,38 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 //@RunWith(Arquillian.class)
-public class RegistrationStatusTest
-{
-   // TODO temporary, test with dynamic proxies until tool accepts "BirdLogger extends BirdMessages" 
-   static
-   {
-      System.setProperty("jboss.i18n.generate-proxies", "true");
-   }
+public class RegistrationStatusTest {
+    // TODO temporary, test with dynamic proxies until tool accepts "BirdLogger extends BirdMessages"
+    static {
+        System.setProperty("jboss.i18n.generate-proxies", "true");
+    }
 
-//   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addPackage(MessagesImpl.class.getPackage())
-               .addClasses(RegisterAction.class, RegistrationStatusMessages.class)
-               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-   }
+    // @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(MessagesImpl.class.getPackage())
+                .addClasses(RegisterAction.class, RegistrationStatusMessages.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   MessagesImpl messages;
+    @Inject
+    MessagesImpl messages;
 
-   @Inject
-   RegisterAction register;
+    @Inject
+    RegisterAction register;
 
-//   @Before
-   public void before()
-   {
-      messages.clear();
-   }
+    // @Before
+    public void before() {
+        messages.clear();
+    }
 
-//   @Test
-   public void testMessages()
-   {
-      register.register("houdini");
-//      assertEquals(1, messages.getAll().size());
-   }
+    // @Test
+    public void testMessages() {
+        register.register("houdini");
+        // assertEquals(1, messages.getAll().size());
+    }
 
-   @Test
-   public void noTest()
-   {
-      
-   }
+    @Test
+    public void noTest() {
+
+    }
 }

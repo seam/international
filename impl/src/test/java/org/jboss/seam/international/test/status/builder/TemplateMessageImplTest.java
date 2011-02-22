@@ -43,46 +43,42 @@ import org.junit.runner.RunWith;
  * 
  */
 @RunWith(Arquillian.class)
-public class TemplateMessageImplTest
-{
-   @Deployment
-   public static Archive<?> createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(MessageFactory.class, TemplateMessageImpl.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-   }
+public class TemplateMessageImplTest {
+    @Deployment
+    public static Archive<?> createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(MessageFactory.class, TemplateMessageImpl.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   MessageFactory factory;
+    @Inject
+    MessageFactory factory;
 
-   @Test
-   public void testParameterizedTemplate() throws Exception
-   {
-      String expected = "There are 5 cars, and they are all green; green is the best color.";
-      TemplateMessage builder = factory.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");
-      assertEquals(expected, builder.build().getText());
-   }
+    @Test
+    public void testParameterizedTemplate() throws Exception {
+        String expected = "There are 5 cars, and they are all green; green is the best color.";
+        TemplateMessage builder = factory.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");
+        assertEquals(expected, builder.build().getText());
+    }
 
-   @Test
-   public void testParameterizedTemplateInsertsParamNumbersIfNotEnoughParamValues() throws Exception
-   {
-      String expected = "There are 5 cars, and they are all {1}; {1} is the best color.";
-      TemplateMessage builder = factory.warn("There are {0} cars, and they are all {1}; {1} is the best color.", 5);
-      assertEquals(expected, builder.build().getText());
-   }
+    @Test
+    public void testParameterizedTemplateInsertsParamNumbersIfNotEnoughParamValues() throws Exception {
+        String expected = "There are 5 cars, and they are all {1}; {1} is the best color.";
+        TemplateMessage builder = factory.warn("There are {0} cars, and they are all {1}; {1} is the best color.", 5);
+        assertEquals(expected, builder.build().getText());
+    }
 
-   @Test
-   public void testPlainTextTemplate() throws Exception
-   {
-      String expected = "There are 5 cars, and they are all green; green is the best color.";
-      TemplateMessage builder = factory.error("There are 5 cars, and they are all green; green is the best color.");
-      assertEquals(expected, builder.build().getText());
-   }
+    @Test
+    public void testPlainTextTemplate() throws Exception {
+        String expected = "There are 5 cars, and they are all green; green is the best color.";
+        TemplateMessage builder = factory.error("There are 5 cars, and they are all green; green is the best color.");
+        assertEquals(expected, builder.build().getText());
+    }
 
-   @Test
-   public void testPlainTextTemplateWithParamsIsUnmodified() throws Exception
-   {
-      String expected = "There are 5 cars, and they are all green; green is the best color.";
-      TemplateMessage builder = factory.fatal("There are 5 cars, and they are all green; green is the best color.", "blue", "red", 6);
-      assertEquals(expected, builder.build().getText());
-   }
+    @Test
+    public void testPlainTextTemplateWithParamsIsUnmodified() throws Exception {
+        String expected = "There are 5 cars, and they are all green; green is the best color.";
+        TemplateMessage builder = factory.fatal("There are 5 cars, and they are all green; green is the best color.", "blue",
+                "red", 6);
+        assertEquals(expected, builder.build().getText());
+    }
 }

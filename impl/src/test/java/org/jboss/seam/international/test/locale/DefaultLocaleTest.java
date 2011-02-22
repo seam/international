@@ -37,24 +37,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultLocaleTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      JavaArchive ja = ShrinkWrap.create(JavaArchive.class, "test.jar")
-                           .addClass(DefaultLocaleProducer.class)
-                           .addClass(DefaultLocaleKeyBean.class)
-                           .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-      return ja;
-   }
+public class DefaultLocaleTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        JavaArchive ja = ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultLocaleProducer.class)
+                .addClass(DefaultLocaleKeyBean.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        return ja;
+    }
 
-   @Inject
-   Locale lc;
+    @Inject
+    Locale lc;
 
-   @Test
-   public void testDefaultLocaleProducerDirect()
-   {
-      Assert.assertNotNull(lc);
-   }
+    @Test
+    public void testDefaultLocaleProducerDirect() {
+        Assert.assertNotNull(lc);
+    }
 }

@@ -49,74 +49,70 @@ import org.junit.runner.RunWith;
  * 
  */
 @RunWith(Arquillian.class)
-public class MessagesTest
-{
-   private static final String BUNDLE_PATH = "org.jboss.seam.international.test.status.TestBundle";
+public class MessagesTest {
+    private static final String BUNDLE_PATH = "org.jboss.seam.international.test.status.TestBundle";
 
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(MessagesImpl.class, MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, Bundles.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-   }
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap
+                .create(JavaArchive.class, "test.jar")
+                .addClasses(MessagesImpl.class, MessageFactory.class, BundleTemplateMessageImpl.class,
+                        TemplateMessageImpl.class, Bundles.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   MessagesImpl messages;
+    @Inject
+    MessagesImpl messages;
 
-   @Before
-   public void before()
-   {
-      messages.clear();
-   }
+    @Before
+    public void before() {
+        messages.clear();
+    }
 
-   @Test
-   public void testMessageBuildersAreAddedWhenUsingFactoryMethods()
-   {
-      messages.info("This is a message");
-      assertEquals(1, messages.getAll().size());
-      assertEquals(Level.INFO, messages.getAll().iterator().next().getLevel());
-   }
+    @Test
+    public void testMessageBuildersAreAddedWhenUsingFactoryMethods() {
+        messages.info("This is a message");
+        assertEquals(1, messages.getAll().size());
+        assertEquals(Level.INFO, messages.getAll().iterator().next().getLevel());
+    }
 
-   @Test
-   public void testMessageBuildersAreAddedWhenUsingFactoryMethodsBundle()
-   {
-      messages.error(new BundleKey(BUNDLE_PATH, "key1"));
-      assertEquals(1, messages.getAll().size());
-      assertEquals(Level.ERROR, messages.getAll().iterator().next().getLevel());
-   }
+    @Test
+    public void testMessageBuildersAreAddedWhenUsingFactoryMethodsBundle() {
+        messages.error(new BundleKey(BUNDLE_PATH, "key1"));
+        assertEquals(1, messages.getAll().size());
+        assertEquals(Level.ERROR, messages.getAll().iterator().next().getLevel());
+    }
 
-   @Test
-   public void testDuplicateMessageBuildersAreIgnored()
-   {
-      messages.warn("This is a message");
-      messages.warn("This is a message");
-      messages.warn("This is a message");
-      assertEquals(1, messages.getAll().size());
+    @Test
+    public void testDuplicateMessageBuildersAreIgnored() {
+        messages.warn("This is a message");
+        messages.warn("This is a message");
+        messages.warn("This is a message");
+        assertEquals(1, messages.getAll().size());
 
-      assertEquals(Level.WARN, messages.getAll().iterator().next().getLevel());
-   }
+        assertEquals(Level.WARN, messages.getAll().iterator().next().getLevel());
+    }
 
-   @Test
-   public void testDuplicateMessageBuildersResultMessagesAreIgnored()
-   {
-      messages.fatal("This is a message");
-      messages.fatal(new BundleKey(BUNDLE_PATH, "key2"));
-      assertEquals(1, messages.getAll().size());
+    @Test
+    public void testDuplicateMessageBuildersResultMessagesAreIgnored() {
+        messages.fatal("This is a message");
+        messages.fatal(new BundleKey(BUNDLE_PATH, "key2"));
+        assertEquals(1, messages.getAll().size());
 
-      assertEquals(Level.FATAL, messages.getAll().iterator().next().getLevel());
-   }
+        assertEquals(Level.FATAL, messages.getAll().iterator().next().getLevel());
+    }
 
-   @Test
-   public void testDuplicateMessagesAreIgnored() throws Exception
-   {
-      MutableMessage message = new MessageImpl();
-      String text = "This is a message!";
-      message.setText(text);
-      messages.add(message);
+    @Test
+    public void testDuplicateMessagesAreIgnored() throws Exception {
+        MutableMessage message = new MessageImpl();
+        String text = "This is a message!";
+        message.setText(text);
+        messages.add(message);
 
-      message = new MessageImpl();
-      message.setText(text);
-      messages.add(message);
+        message = new MessageImpl();
+        message.setText(text);
+        messages.add(message);
 
-      assertEquals(1, messages.getAll().size());
-   }
+        assertEquals(1, messages.getAll().size());
+    }
 }

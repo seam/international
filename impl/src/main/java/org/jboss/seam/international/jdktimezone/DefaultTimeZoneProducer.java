@@ -35,67 +35,56 @@ import org.jboss.logging.Logger;
 import org.jboss.seam.international.timezone.DefaultTimeZone;
 
 /**
- * Default TimeZone of the application. If configuration of the default TimeZone is found that will be used, otherwise
- * the JVM default TimeZone.
+ * Default TimeZone of the application. If configuration of the default TimeZone is found that will be used, otherwise the JVM
+ * default TimeZone.
  * 
  * @author Ken Finnigan
  */
 
 @ApplicationScoped
-public class DefaultTimeZoneProducer implements Serializable
-{
-   private static final long serialVersionUID = 3277798729003795202L;
+public class DefaultTimeZoneProducer implements Serializable {
+    private static final long serialVersionUID = 3277798729003795202L;
 
-   @Inject
-   @DefaultTimeZone
-   private Instance<String> defaultTimeZoneId;
+    @Inject
+    @DefaultTimeZone
+    private Instance<String> defaultTimeZoneId;
 
-   private final Logger log = Logger.getLogger(DefaultTimeZoneProducer.class);
+    private final Logger log = Logger.getLogger(DefaultTimeZoneProducer.class);
 
-   @Produces
-   @Named
-   private TimeZone defaultTimeZone = null;
+    @Produces
+    @Named
+    private TimeZone defaultTimeZone = null;
 
-   @PostConstruct
-   public void init()
-   {
-      if (!defaultTimeZoneId.isUnsatisfied())
-      {
-         try
-         {
-            String id = defaultTimeZoneId.get();
-            TimeZone dtz = TimeZone.getTimeZone(id);
+    @PostConstruct
+    public void init() {
+        if (!defaultTimeZoneId.isUnsatisfied()) {
+            try {
+                String id = defaultTimeZoneId.get();
+                TimeZone dtz = TimeZone.getTimeZone(id);
+                defaultTimeZone = constructTimeZone(dtz);
+            } catch (IllegalArgumentException e) {
+                log.warn("DefaultTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
+            }
+        }
+        if (null == defaultTimeZone) {
+            TimeZone dtz = TimeZone.getDefault();
             defaultTimeZone = constructTimeZone(dtz);
-         }
-         catch (IllegalArgumentException e)
-         {
-            log.warn("DefaultTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
-         }
-      }
-      if (null == defaultTimeZone)
-      {
-         TimeZone dtz = TimeZone.getDefault();
-         defaultTimeZone = constructTimeZone(dtz);
-      }
-   }
+        }
+    }
 
-   private ForwardingTimeZone constructTimeZone(final TimeZone dtz)
-   {
-      return new ForwardingTimeZone(dtz.getID())
-      {
-         private static final long serialVersionUID = 8409832600089507805L;
+    private ForwardingTimeZone constructTimeZone(final TimeZone dtz) {
+        return new ForwardingTimeZone(dtz.getID()) {
+            private static final long serialVersionUID = 8409832600089507805L;
 
-         @Override
-         protected TimeZone delegate()
-         {
-            return dtz;
-         }
+            @Override
+            protected TimeZone delegate() {
+                return dtz;
+            }
 
-         @Override
-         public void setRawOffset(int offsetMillis)
-         {
-            throw new UnsupportedOperationException();
-         }
-      };
-   }
+            @Override
+            public void setRawOffset(int offsetMillis) {
+                throw new UnsupportedOperationException();
+            }
+        };
+    }
 }

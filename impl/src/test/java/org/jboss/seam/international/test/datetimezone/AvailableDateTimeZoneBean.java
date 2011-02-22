@@ -29,17 +29,14 @@ import javax.inject.Inject;
 import org.joda.time.DateTimeZone;
 
 @ApplicationScoped
-public class AvailableDateTimeZoneBean
-{
-   @Inject
-   private List<DateTimeZone> timeZones;
+public class AvailableDateTimeZoneBean {
+    @Inject
+    private List<DateTimeZone> timeZones;
 
-   public AvailableDateTimeZoneBean()
-   {
-   }
+    public AvailableDateTimeZoneBean() {
+    }
 
-   public List<DateTimeZone> getAvailTimeZones()
-   {
-      return timeZones;
-   }
+    public List<DateTimeZone> getAvailTimeZones() {
+        return timeZones;
+    }
 }

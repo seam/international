@@ -38,25 +38,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class AvailableLocalesTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar");
-      jar.addClass(AvailableLocales.class);
-      jar.addClass(CustomLocaleConfiguration.class);
-      jar.addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-      return jar;
-   }
+public class AvailableLocalesTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar");
+        jar.addClass(AvailableLocales.class);
+        jar.addClass(CustomLocaleConfiguration.class);
+        jar.addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        return jar;
+    }
 
-   @Inject
-   private List<Locale> locales;
+    @Inject
+    private List<Locale> locales;
 
-   @Test
-   public void testAvailableLocalesProducer()
-   {
-      Assert.assertNotNull(locales);
-      Assert.assertEquals(2, locales.size());
-   }
+    @Test
+    public void testAvailableLocalesProducer() {
+        Assert.assertNotNull(locales);
+        Assert.assertEquals(2, locales.size());
+    }
 }

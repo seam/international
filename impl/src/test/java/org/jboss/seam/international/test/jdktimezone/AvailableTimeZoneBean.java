@@ -28,17 +28,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
-public class AvailableTimeZoneBean
-{
-   @Inject
-   private List<TimeZone> timeZones;
+public class AvailableTimeZoneBean {
+    @Inject
+    private List<TimeZone> timeZones;
 
-   public AvailableTimeZoneBean()
-   {
-   }
+    public AvailableTimeZoneBean() {
+    }
 
-   public List<TimeZone> getAvailTimeZones()
-   {
-      return timeZones;
-   }
+    public List<TimeZone> getAvailTimeZones() {
+        return timeZones;
+    }
 }

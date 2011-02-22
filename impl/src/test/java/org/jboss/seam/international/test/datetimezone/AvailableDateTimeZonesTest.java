@@ -40,34 +40,32 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class AvailableDateTimeZonesTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(AvailableDateTimeZones.class, AvailableDateTimeZoneBean.class, ForwardingDateTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-   }
+public class AvailableDateTimeZonesTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+                .addClasses(AvailableDateTimeZones.class, AvailableDateTimeZoneBean.class, ForwardingDateTimeZone.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   Instance<AvailableDateTimeZoneBean> availBean;
-   @Inject
-   List<DateTimeZone> timeZones;
+    @Inject
+    Instance<AvailableDateTimeZoneBean> availBean;
+    @Inject
+    List<DateTimeZone> timeZones;
 
-   @Test
-   public void testAvailableTimeZonesProducerViaBean()
-   {
-      Assert.assertNotNull(availBean);
-      List<DateTimeZone> list = availBean.get().getAvailTimeZones();
-      Assert.assertNotNull(list);
-      Assert.assertTrue(!list.isEmpty());
-      Assert.assertTrue(list.size() > 0);
-   }
+    @Test
+    public void testAvailableTimeZonesProducerViaBean() {
+        Assert.assertNotNull(availBean);
+        List<DateTimeZone> list = availBean.get().getAvailTimeZones();
+        Assert.assertNotNull(list);
+        Assert.assertTrue(!list.isEmpty());
+        Assert.assertTrue(list.size() > 0);
+    }
 
-   @Test
-   public void testAvailableTimeZonesProducerDirect()
-   {
-      Assert.assertNotNull(timeZones);
-      Assert.assertTrue(!timeZones.isEmpty());
-      Assert.assertTrue(timeZones.size() > 0);
-   }
+    @Test
+    public void testAvailableTimeZonesProducerDirect() {
+        Assert.assertNotNull(timeZones);
+        Assert.assertTrue(!timeZones.isEmpty());
+        Assert.assertTrue(timeZones.size() > 0);
+    }
 }

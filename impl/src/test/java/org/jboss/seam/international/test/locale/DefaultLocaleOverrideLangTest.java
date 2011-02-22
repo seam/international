@@ -37,25 +37,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultLocaleOverrideLangTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addClasses(DefaultLocaleProducer.class)
-               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//      .addManifestResource(DefaultLocaleOverrideLangTest.class.getPackage().getName().replaceAll("\\.", "/") + "/override-lang.xml", ArchivePaths.create("beans.xml"));
-   }
+public class DefaultLocaleOverrideLangTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(DefaultLocaleProducer.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        // .addManifestResource(DefaultLocaleOverrideLangTest.class.getPackage().getName().replaceAll("\\.", "/") +
+        // "/override-lang.xml", ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   Locale locale;
+    @Inject
+    Locale locale;
 
-   @Test
-   public void testDefaultLocaleProducerDirect()
-   {
-      Assert.assertNotNull(locale);
-      //TODO Fix XML override error
-      //Assert.assertEquals("fr", locale.toString());
-   }
+    @Test
+    public void testDefaultLocaleProducerDirect() {
+        Assert.assertNotNull(locale);
+        // TODO Fix XML override error
+        // Assert.assertEquals("fr", locale.toString());
+    }
 }

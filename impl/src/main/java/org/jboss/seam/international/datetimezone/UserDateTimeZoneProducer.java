@@ -34,30 +34,27 @@ import org.jboss.seam.solder.core.Client;
 import org.joda.time.DateTimeZone;
 
 /**
- * DateTimeZone for a User Session. Defaults to the DateTimeZone within DefaultDateTimeZone
- * and is altered when it receives the @Alter event.
+ * DateTimeZone for a User Session. Defaults to the DateTimeZone within DefaultDateTimeZone and is altered when it receives the @Alter
+ * event.
  * 
  * @author Ken Finnigan
  */
 
 @SessionScoped
-public class UserDateTimeZoneProducer implements Serializable
-{
-   private static final long serialVersionUID = -9008203923830420841L;
+public class UserDateTimeZoneProducer implements Serializable {
+    private static final long serialVersionUID = -9008203923830420841L;
 
-   @Produces
-   @Client
-   @Named
-   private DateTimeZone userDateTimeZone;
+    @Produces
+    @Client
+    @Named
+    private DateTimeZone userDateTimeZone;
 
-   @Inject
-   public void init(DateTimeZone defaultDateTimeZone)
-   {
-      this.userDateTimeZone = defaultDateTimeZone;
-   }
+    @Inject
+    public void init(DateTimeZone defaultDateTimeZone) {
+        this.userDateTimeZone = defaultDateTimeZone;
+    }
 
-   public void alterTimeZone(@Observes @Alter @Client DateTimeZone tz)
-   {
-      this.userDateTimeZone = tz;
-   }
+    public void alterTimeZone(@Observes @Alter @Client DateTimeZone tz) {
+        this.userDateTimeZone = tz;
+    }
 }

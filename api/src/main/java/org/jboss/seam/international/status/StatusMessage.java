@@ -50,41 +50,34 @@ import java.lang.annotation.Target;
 import javax.enterprise.event.TransactionPhase;
 
 /**
- * A typed status message method.  Indicates that this method will log the associated {@link Message}
- * to the UI.
- *
+ * A typed status message method. Indicates that this method will log the associated {@link Message} to the UI.
+ * 
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface StatusMessage
-{
+public @interface StatusMessage {
 
-   /**
-    * The UI target for the message.
-    *
-    * @return Target
-    */
-   String target() default "";
+    /**
+     * The UI target for the message.
+     * 
+     * @return Target
+     */
+    String target() default "";
 
-   TransactionPhase during() default TransactionPhase.AFTER_SUCCESS;
+    TransactionPhase during() default TransactionPhase.AFTER_SUCCESS;
 
-   /**
-    * The message level.
-    *
-    * @return the message level
-    */
-   Level level() default Level.INFO;
+    /**
+     * The message level.
+     * 
+     * @return the message level
+     */
+    Level level() default Level.INFO;
 
-   /**
-    * The possible level types.
-    */
-   enum Level {
-      FATAL,
-      ERROR,
-      WARN,
-      INFO,
-      DEBUG,
-      TRACE,
-   }
+    /**
+     * The possible level types.
+     */
+    enum Level {
+        FATAL, ERROR, WARN, INFO, DEBUG, TRACE,
+    }
 }

@@ -28,21 +28,20 @@ import java.io.Serializable;
  * 
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  */
-public interface Message extends Serializable
-{
-   /**
-    * Get the {@link Level} representing the severity of this message.
-    */
-   Level getLevel();
+public interface Message extends Serializable {
+    /**
+     * Get the {@link Level} representing the severity of this message.
+     */
+    Level getLevel();
 
-   /**
-    * Get the message text.
-    */
-   String getText();
+    /**
+     * Get the message text.
+     */
+    String getText();
 
-   /**
-    * Get the targets for which a given view-layer or consumer should display
-    * this message, or to which this message should be attached.
-    */
-   String getTargets();
+    /**
+     * Get the targets for which a given view-layer or consumer should display this message, or to which this message should be
+     * attached.
+     */
+    String getTargets();
 }

@@ -37,24 +37,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultLocaleOverrideFailTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addClass(DefaultLocaleProducer.class)
-               .addClass(DefaultLocaleKeyFailBean.class)
-               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-   }
+public class DefaultLocaleOverrideFailTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultLocaleProducer.class)
+                .addClass(DefaultLocaleKeyFailBean.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   Locale locale;
+    @Inject
+    Locale locale;
 
-   @Test
-   public void testDefaultLocaleProducerDirect()
-   {
-      Assert.assertNotNull(locale);
-      Assert.assertEquals(Locale.getDefault().toString(), locale.toString());
-   }
+    @Test
+    public void testDefaultLocaleProducerDirect() {
+        Assert.assertNotNull(locale);
+        Assert.assertEquals(Locale.getDefault().toString(), locale.toString());
+    }
 }

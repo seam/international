@@ -23,13 +23,12 @@ package org.jboss.seam.international.test.status;
 
 import javax.inject.Inject;
 
-public class RegisterAction
-{
+public class RegisterAction {
 
-   @Inject
-   RegistrationStatusMessages status;
+    @Inject
+    RegistrationStatusMessages status;
 
-   public void register(String username) {
-      status.duplicateUsername(username);
-   }
+    public void register(String username) {
+        status.duplicateUsername(username);
+    }
 }

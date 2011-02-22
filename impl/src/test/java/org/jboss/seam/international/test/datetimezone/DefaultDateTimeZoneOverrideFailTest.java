@@ -37,26 +37,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultDateTimeZoneOverrideFailTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addClass(DefaultDateTimeZoneProducer.class)
-               .addClass(DefaultTimeZone.class)
-               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//      .addManifestResource("org/jboss/seam/international/test/datetimezone/override-fail.xml", ArchivePaths.create("beans.xml"));
-   }
+public class DefaultDateTimeZoneOverrideFailTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultDateTimeZoneProducer.class)
+                .addClass(DefaultTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        // .addManifestResource("org/jboss/seam/international/test/datetimezone/override-fail.xml",
+        // ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   DateTimeZone timeZone;
+    @Inject
+    DateTimeZone timeZone;
 
-   @Test
-   public void testDefaultTimeZoneProducerDirect()
-   {
-      Assert.assertNotNull(timeZone);
-      Assert.assertNotSame("America/Tijuana", timeZone.getID());
-      Assert.assertEquals(DateTimeZone.getDefault().getID(), timeZone.getID());
-   }
+    @Test
+    public void testDefaultTimeZoneProducerDirect() {
+        Assert.assertNotNull(timeZone);
+        Assert.assertNotSame("America/Tijuana", timeZone.getID());
+        Assert.assertEquals(DateTimeZone.getDefault().getID(), timeZone.getID());
+    }
 }

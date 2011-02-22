@@ -30,97 +30,77 @@ import java.util.ResourceBundle;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public class BundleKey implements Serializable
-{
-   private static final long serialVersionUID = -4817189437146173796L;
+public class BundleKey implements Serializable {
+    private static final long serialVersionUID = -4817189437146173796L;
 
-   private String bundle;
-   private String key;
+    private String bundle;
+    private String key;
 
-   public BundleKey(final String bundle, final String key)
-   {
-      super();
-      this.bundle = bundle;
-      this.key = key;
-   }
+    public BundleKey(final String bundle, final String key) {
+        super();
+        this.bundle = bundle;
+        this.key = key;
+    }
 
-   @Override
-   public String toString()
-   {
-      return "BundleKey [bundle=" + bundle + ", key=" + key + "]";
-   }
+    @Override
+    public String toString() {
+        return "BundleKey [bundle=" + bundle + ", key=" + key + "]";
+    }
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((bundle == null) ? 0 : bundle.hashCode());
-      result = prime * result + ((key == null) ? 0 : key.hashCode());
-      return result;
-   }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((bundle == null) ? 0 : bundle.hashCode());
+        result = prime * result + ((key == null) ? 0 : key.hashCode());
+        return result;
+    }
 
-   @Override
-   public boolean equals(final Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (obj == null)
-      {
-         return false;
-      }
-      if (getClass() != obj.getClass())
-      {
-         return false;
-      }
-      BundleKey other = (BundleKey) obj;
-      if (bundle == null)
-      {
-         if (other.bundle != null)
-         {
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
-         }
-      }
-      else if (!bundle.equals(other.bundle))
-      {
-         return false;
-      }
-      if (key == null)
-      {
-         if (other.key != null)
-         {
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-         }
-      }
-      else if (!key.equals(other.key))
-      {
-         return false;
-      }
-      return true;
-   }
+        }
+        BundleKey other = (BundleKey) obj;
+        if (bundle == null) {
+            if (other.bundle != null) {
+                return false;
+            }
+        } else if (!bundle.equals(other.bundle)) {
+            return false;
+        }
+        if (key == null) {
+            if (other.key != null) {
+                return false;
+            }
+        } else if (!key.equals(other.key)) {
+            return false;
+        }
+        return true;
+    }
 
-   /*
-    * Getters & Setters
-    */
-   public String getBundle()
-   {
-      return bundle;
-   }
+    /*
+     * Getters & Setters
+     */
+    public String getBundle() {
+        return bundle;
+    }
 
-   public void setBundle(final String bundle)
-   {
-      this.bundle = bundle;
-   }
+    public void setBundle(final String bundle) {
+        this.bundle = bundle;
+    }
 
-   public String getKey()
-   {
-      return key;
-   }
+    public String getKey() {
+        return key;
+    }
 
-   public void setKey(final String key)
-   {
-      this.key = key;
-   }
+    public void setKey(final String key) {
+        this.key = key;
+    }
 }

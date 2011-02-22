@@ -36,44 +36,35 @@ import javax.inject.Inject;
 import org.jboss.logging.Logger;
 
 @ApplicationScoped
-public class AvailableLocales
-{
-   private final Logger log = Logger.getLogger(AvailableLocales.class);
+public class AvailableLocales {
+    private final Logger log = Logger.getLogger(AvailableLocales.class);
 
-   @Produces
-   private List<Locale> locales = null;
+    @Produces
+    private List<Locale> locales = null;
 
-   @Inject
-   public void init(Instance<LocaleConfiguration> configuration)
-   {
-      locales = new ArrayList<Locale>();
+    @Inject
+    public void init(Instance<LocaleConfiguration> configuration) {
+        locales = new ArrayList<Locale>();
 
-      if (!configuration.isAmbiguous() && !configuration.isUnsatisfied())
-      {
-         Set<String> keys = configuration.get().getSupportedLocaleKeys();
-         log.trace("Found " + keys.size() + " locales in configuration");
-         for (String localeKey : keys)
-         {
-            try
-            {
-               Locale lc = LocaleUtils.toLocale(localeKey);
-               locales.add(lc);
+        if (!configuration.isAmbiguous() && !configuration.isUnsatisfied()) {
+            Set<String> keys = configuration.get().getSupportedLocaleKeys();
+            log.trace("Found " + keys.size() + " locales in configuration");
+            for (String localeKey : keys) {
+                try {
+                    Locale lc = LocaleUtils.toLocale(localeKey);
+                    locales.add(lc);
+                } catch (IllegalArgumentException e) {
+                    log.error("AvailableLocales: Supported Locale key of " + localeKey + " was not formatted correctly", e);
+                }
             }
-            catch (IllegalArgumentException e)
-            {
-               log.error("AvailableLocales: Supported Locale key of " + localeKey + " was not formatted correctly", e);
+        }
+
+        Collections.sort(locales, new Comparator<Locale>() {
+            public int compare(final Locale a, final Locale b) {
+                return a.toString().compareTo(b.toString());
             }
-         }
-      }
+        });
 
-      Collections.sort(locales, new Comparator<Locale>()
-      {
-         public int compare(final Locale a, final Locale b)
-         {
-            return a.toString().compareTo(b.toString());
-         }
-      });
-
-      locales = Collections.unmodifiableList(locales);
-   }
+        locales = Collections.unmodifiableList(locales);
+    }
 }

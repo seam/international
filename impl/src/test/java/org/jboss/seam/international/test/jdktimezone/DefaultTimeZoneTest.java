@@ -38,24 +38,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultTimeZoneTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addClass(DefaultTimeZoneProducer.class)
-               .addClass(DefaultTimeZone.class)
-               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//               .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml", ArchivePaths.create("beans.xml"));
-   }
+public class DefaultTimeZoneTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultTimeZoneProducer.class)
+                .addClass(DefaultTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        // .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml",
+        // ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   TimeZone timeZone;
+    @Inject
+    TimeZone timeZone;
 
-   @Test
-   public void testDefaultTimeZoneProducerDirect()
-   {
-      Assert.assertNotNull(timeZone);
-   }
+    @Test
+    public void testDefaultTimeZoneProducerDirect() {
+        Assert.assertNotNull(timeZone);
+    }
 }

@@ -34,30 +34,26 @@ import org.jboss.seam.international.Alter;
 import org.jboss.seam.solder.core.Client;
 
 /**
- * Locale for a User Session. Defaults to the Locale within DefaultLocale
- * and is altered when it receives the @Changed event.
+ * Locale for a User Session. Defaults to the Locale within DefaultLocale and is altered when it receives the @Changed event.
  * 
  * @author Ken Finnigan
  */
 
 @SessionScoped
-public class UserLocaleProducer implements Serializable
-{
-   private static final long serialVersionUID = -7602504535585397561L;
+public class UserLocaleProducer implements Serializable {
+    private static final long serialVersionUID = -7602504535585397561L;
 
-   @Produces
-   @Client
-   @Named
-   private Locale userLocale;
+    @Produces
+    @Client
+    @Named
+    private Locale userLocale;
 
-   @Inject
-   public void init(Locale defaultLocale)
-   {
-      this.userLocale = defaultLocale;
-   }
+    @Inject
+    public void init(Locale defaultLocale) {
+        this.userLocale = defaultLocale;
+    }
 
-   public void changeLocale(@Observes @Alter @Client Locale lc)
-   {
-      this.userLocale = lc;
-   }
+    public void changeLocale(@Observes @Alter @Client Locale lc) {
+        this.userLocale = lc;
+    }
 }

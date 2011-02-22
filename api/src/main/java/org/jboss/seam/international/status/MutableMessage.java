@@ -27,21 +27,20 @@ package org.jboss.seam.international.status;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public interface MutableMessage extends Message
-{
-   /**
-    * Set the {@link Level} representing the severity of this message.
-    */
-   void setLevel(Level level);
+public interface MutableMessage extends Message {
+    /**
+     * Set the {@link Level} representing the severity of this message.
+     */
+    void setLevel(Level level);
 
-   /**
-    * Set the message text.
-    */
-   void setText(String summary);
+    /**
+     * Set the message text.
+     */
+    void setText(String summary);
 
-   /**
-    * Set the targets for which a given view-layer or consumer should display
-    * this message, or to which this message should be attached.
-    */
-   void setTargets(String targets);
+    /**
+     * Set the targets for which a given view-layer or consumer should display this message, or to which this message should be
+     * attached.
+     */
+    void setTargets(String targets);
 }

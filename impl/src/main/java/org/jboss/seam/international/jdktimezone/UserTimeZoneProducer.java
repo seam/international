@@ -34,30 +34,27 @@ import org.jboss.seam.international.Alter;
 import org.jboss.seam.solder.core.Client;
 
 /**
- * TimeZone for a User Session. Defaults to the TimeZone within DefaultTimeZone
- * and is altered when it receives the @Alter event.
+ * TimeZone for a User Session. Defaults to the TimeZone within DefaultTimeZone and is altered when it receives the @Alter
+ * event.
  * 
  * @author Ken Finnigan
  */
 
 @SessionScoped
-public class UserTimeZoneProducer implements Serializable
-{
-   private static final long serialVersionUID = -8444034098944500444L;
+public class UserTimeZoneProducer implements Serializable {
+    private static final long serialVersionUID = -8444034098944500444L;
 
-   @Produces
-   @Client
-   @Named
-   private TimeZone userTimeZone;
+    @Produces
+    @Client
+    @Named
+    private TimeZone userTimeZone;
 
-   @Inject
-   public void init(TimeZone defaultTimeZone)
-   {
-      this.userTimeZone = defaultTimeZone;
-   }
+    @Inject
+    public void init(TimeZone defaultTimeZone) {
+        this.userTimeZone = defaultTimeZone;
+    }
 
-   public void alterTimeZone(@Observes @Alter @Client TimeZone tz)
-   {
-      this.userTimeZone = tz;
-   }
+    public void alterTimeZone(@Observes @Alter @Client TimeZone tz) {
+        this.userTimeZone = tz;
+    }
 }

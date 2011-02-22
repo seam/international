@@ -33,130 +33,108 @@ import org.jboss.seam.international.status.builder.BundleTemplateMessage;
 import org.jboss.seam.international.status.builder.TemplateMessage;
 
 /**
- * A utility for building {@link Message} objects via message templates, or
- * message bundles. See {@link TemplateMessage} or {@link BundleTemplateMessage}
- * .
+ * A utility for building {@link Message} objects via message templates, or message bundles. See {@link TemplateMessage} or
+ * {@link BundleTemplateMessage} .
  * 
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public class MessageFactory implements Serializable
-{
-   private static final long serialVersionUID = -7899463141244189001L;
+public class MessageFactory implements Serializable {
+    private static final long serialVersionUID = -7899463141244189001L;
 
-   @Inject
-   BeanManager manager;
+    @Inject
+    BeanManager manager;
 
-   /*
-    * Bundle Factory Methods
-    */
-   public BundleTemplateMessage info(final BundleKey message)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.INFO);
-   }
+    /*
+     * Bundle Factory Methods
+     */
+    public BundleTemplateMessage info(final BundleKey message) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.INFO);
+    }
 
-   public BundleTemplateMessage info(final BundleKey message, final Object... params)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.INFO).params(params);
-   }
+    public BundleTemplateMessage info(final BundleKey message, final Object... params) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.INFO).params(params);
+    }
 
-   public BundleTemplateMessage warn(final BundleKey message)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.WARN);
-   }
+    public BundleTemplateMessage warn(final BundleKey message) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.WARN);
+    }
 
-   public BundleTemplateMessage warn(final BundleKey message, final Object... params)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.WARN).params(params);
-   }
+    public BundleTemplateMessage warn(final BundleKey message, final Object... params) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.WARN).params(params);
+    }
 
-   public BundleTemplateMessage error(final BundleKey message)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.ERROR);
-   }
+    public BundleTemplateMessage error(final BundleKey message) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.ERROR);
+    }
 
-   public BundleTemplateMessage error(final BundleKey message, final Object... params)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.ERROR).params(params);
-   }
+    public BundleTemplateMessage error(final BundleKey message, final Object... params) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.ERROR).params(params);
+    }
 
-   public BundleTemplateMessage fatal(final BundleKey message)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.FATAL);
-   }
+    public BundleTemplateMessage fatal(final BundleKey message) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.FATAL);
+    }
 
-   public BundleTemplateMessage fatal(final BundleKey message, final Object... params)
-   {
-      return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.FATAL).params(params);
-   }
+    public BundleTemplateMessage fatal(final BundleKey message, final Object... params) {
+        return getContextualInstance(BundleTemplateMessage.class).key(message).level(Level.FATAL).params(params);
+    }
 
-   /*
-    * Template Factory Methods
-    */
-   public TemplateMessage info(final String message)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.INFO);
-   }
+    /*
+     * Template Factory Methods
+     */
+    public TemplateMessage info(final String message) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.INFO);
+    }
 
-   public TemplateMessage info(final String message, final Object... params)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.INFO).textParams(params);
-   }
+    public TemplateMessage info(final String message, final Object... params) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.INFO).textParams(params);
+    }
 
-   public TemplateMessage warn(final String message)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.WARN);
-   }
+    public TemplateMessage warn(final String message) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.WARN);
+    }
 
-   public TemplateMessage warn(final String message, final Object... params)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.WARN).textParams(params);
-   }
+    public TemplateMessage warn(final String message, final Object... params) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.WARN).textParams(params);
+    }
 
-   public TemplateMessage error(final String message)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.ERROR);
-   }
+    public TemplateMessage error(final String message) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.ERROR);
+    }
 
-   public TemplateMessage error(final String message, final Object... params)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.ERROR).textParams(params);
-   }
+    public TemplateMessage error(final String message, final Object... params) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.ERROR).textParams(params);
+    }
 
-   public TemplateMessage fatal(final String message)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.FATAL);
-   }
+    public TemplateMessage fatal(final String message) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.FATAL);
+    }
 
-   public TemplateMessage fatal(final String message, final Object... params)
-   {
-      return getContextualInstance(TemplateMessage.class).text(message).level(Level.FATAL).textParams(params);
-   }
+    public TemplateMessage fatal(final String message, final Object... params) {
+        return getContextualInstance(TemplateMessage.class).text(message).level(Level.FATAL).textParams(params);
+    }
 
-   /**
-    * Get a single CDI managed instance of a specific class. Return only the
-    * first result if multiple beans are available.
-    * <p>
-    * <b>NOTE:</b> Using this method should be avoided at all costs.
-    * 
-    * @param manager The bean manager with which to perform the lookup.
-    * @param type The class for which to return an instance.
-    * @return The managed instance, or null if none could be provided.
-    */
-   @SuppressWarnings("unchecked")
-   private <T extends MessageBuilder> T getContextualInstance(final Class<T> type)
-   {
-      T result = null;
-      Bean<T> bean = (Bean<T>) manager.resolve(manager.getBeans(type));
-      if (bean != null)
-      {
-         CreationalContext<T> context = manager.createCreationalContext(bean);
-         if (context != null)
-         {
-            result = (T) manager.getReference(bean, type, context);
-         }
-      }
-      return result;
-   }
+    /**
+     * Get a single CDI managed instance of a specific class. Return only the first result if multiple beans are available.
+     * <p>
+     * <b>NOTE:</b> Using this method should be avoided at all costs.
+     * 
+     * @param manager The bean manager with which to perform the lookup.
+     * @param type The class for which to return an instance.
+     * @return The managed instance, or null if none could be provided.
+     */
+    @SuppressWarnings("unchecked")
+    private <T extends MessageBuilder> T getContextualInstance(final Class<T> type) {
+        T result = null;
+        Bean<T> bean = (Bean<T>) manager.resolve(manager.getBeans(type));
+        if (bean != null) {
+            CreationalContext<T> context = manager.createCreationalContext(bean);
+            if (context != null) {
+                result = (T) manager.getReference(bean, type, context);
+            }
+        }
+        return result;
+    }
 
 }

@@ -34,39 +34,31 @@ import javax.inject.Named;
 import org.jboss.logging.Logger;
 
 @ApplicationScoped
-public class DefaultLocaleProducer implements Serializable
-{
-   private static final long serialVersionUID = -4534087316489937649L;
+public class DefaultLocaleProducer implements Serializable {
+    private static final long serialVersionUID = -4534087316489937649L;
 
-   private Logger log = Logger.getLogger(DefaultLocaleProducer.class);
+    private Logger log = Logger.getLogger(DefaultLocaleProducer.class);
 
-   @Inject
-   @DefaultLocale
-   private Instance<String> defaultLocaleKey;
+    @Inject
+    @DefaultLocale
+    private Instance<String> defaultLocaleKey;
 
-   @Produces
-   @Named
-   private Locale defaultLocale;
+    @Produces
+    @Named
+    private Locale defaultLocale;
 
-   @PostConstruct
-   public void init()
-   {
-      if (!defaultLocaleKey.isUnsatisfied())
-      {
-         try
-         {
-            String key = defaultLocaleKey.get();
-            defaultLocale = LocaleUtils.toLocale(key);
-         }
-         catch (IllegalArgumentException e)
-         {
-            log.error("DefaultLocaleProducer: Default Locale key of " + defaultLocale + " was not formatted correctly",
-                     e);
-         }
-      }
-      if (null == defaultLocale)
-      {
-         defaultLocale = Locale.getDefault();
-      }
-   }
+    @PostConstruct
+    public void init() {
+        if (!defaultLocaleKey.isUnsatisfied()) {
+            try {
+                String key = defaultLocaleKey.get();
+                defaultLocale = LocaleUtils.toLocale(key);
+            } catch (IllegalArgumentException e) {
+                log.error("DefaultLocaleProducer: Default Locale key of " + defaultLocale + " was not formatted correctly", e);
+            }
+        }
+        if (null == defaultLocale) {
+            defaultLocale = Locale.getDefault();
+        }
+    }
 }

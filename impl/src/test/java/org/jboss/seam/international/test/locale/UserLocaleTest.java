@@ -42,47 +42,42 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class UserLocaleTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                       .addClass(UserLocaleProducer.class)
-                       .addClass(DefaultLocaleProducer.class)
-                       .addClass(Alter.class)
-                       .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//      .addManifestResource("org/jboss/seam/international/test/locale/default-locale.xml", ArchivePaths.create("beans.xml"));
-   }
+public class UserLocaleTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(UserLocaleProducer.class)
+                .addClass(DefaultLocaleProducer.class).addClass(Alter.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        // .addManifestResource("org/jboss/seam/international/test/locale/default-locale.xml",
+        // ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   @Client
-   Locale locale;
+    @Inject
+    @Client
+    Locale locale;
 
-   @Inject
-   @Alter
-   @Client
-   Event<Locale> localeEvent;
+    @Inject
+    @Alter
+    @Client
+    Event<Locale> localeEvent;
 
-   @Inject
-   @Client
-   Instance<Locale> localeSource;
+    @Inject
+    @Client
+    Instance<Locale> localeSource;
 
-   @Test
-   public void testUserLocaleProducerDirect()
-   {
-      Assert.assertNotNull(locale);
-   }
+    @Test
+    public void testUserLocaleProducerDirect() {
+        Assert.assertNotNull(locale);
+    }
 
-   @Test
-   public void testUserLocaleEvent()
-   {
-      Locale canada = Locale.CANADA;
-      Assert.assertNotNull(locale);
-      Assert.assertFalse(locale.equals(canada));
-      localeEvent.fire(canada);
-      Locale lc = localeSource.get();
-      Assert.assertNotNull(lc);
-      Assert.assertTrue(lc.equals(canada));
-   }
+    @Test
+    public void testUserLocaleEvent() {
+        Locale canada = Locale.CANADA;
+        Assert.assertNotNull(locale);
+        Assert.assertFalse(locale.equals(canada));
+        localeEvent.fire(canada);
+        Locale lc = localeSource.get();
+        Assert.assertNotNull(lc);
+        Assert.assertTrue(lc.equals(canada));
+    }
 }

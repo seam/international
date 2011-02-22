@@ -30,91 +30,77 @@ import java.util.TimeZone;
  * 
  * @author Ken Finnigan
  */
-public abstract class ForwardingTimeZone extends TimeZone
-{
-   /**
-    * Abstract getter for the delegate
-    * 
-    * @return The delegate
-    */
-   protected abstract TimeZone delegate();
+public abstract class ForwardingTimeZone extends TimeZone {
+    /**
+     * Abstract getter for the delegate
+     * 
+     * @return The delegate
+     */
+    protected abstract TimeZone delegate();
 
-   protected ForwardingTimeZone(String id)
-   {
-      super();
-      setID(id);
-   }
+    protected ForwardingTimeZone(String id) {
+        super();
+        setID(id);
+    }
 
-   @Override
-   public int getOffset(int era, int year, int month, int day, int dayOfWeek, int milliseconds)
-   {
-      return delegate().getOffset(era, year, month, day, dayOfWeek, milliseconds);
-   }
+    @Override
+    public int getOffset(int era, int year, int month, int day, int dayOfWeek, int milliseconds) {
+        return delegate().getOffset(era, year, month, day, dayOfWeek, milliseconds);
+    }
 
-   @Override
-   public int getOffset(long date)
-   {
-      return delegate().getOffset(date);
-   }
+    @Override
+    public int getOffset(long date) {
+        return delegate().getOffset(date);
+    }
 
-   @Override
-   public int getRawOffset()
-   {
-      return delegate().getRawOffset();
-   }
+    @Override
+    public int getRawOffset() {
+        return delegate().getRawOffset();
+    }
 
-   @Override
-   public String getID()
-   {
-      return delegate().getID();
-   }
+    @Override
+    public String getID() {
+        return delegate().getID();
+    }
 
-   @Override
-   public String getDisplayName(boolean daylight, int style, Locale locale)
-   {
-      return delegate().getDisplayName(daylight, style, locale);
-   }
+    @Override
+    public String getDisplayName(boolean daylight, int style, Locale locale) {
+        return delegate().getDisplayName(daylight, style, locale);
+    }
 
-   @Override
-   public int getDSTSavings()
-   {
-      return delegate().getDSTSavings();
-   }
+    @Override
+    public int getDSTSavings() {
+        return delegate().getDSTSavings();
+    }
 
-   @Override
-   public boolean useDaylightTime()
-   {
-      return delegate().useDaylightTime();
-   }
+    @Override
+    public boolean useDaylightTime() {
+        return delegate().useDaylightTime();
+    }
 
-   @Override
-   public boolean inDaylightTime(Date date)
-   {
-      return delegate().inDaylightTime(date);
-   }
+    @Override
+    public boolean inDaylightTime(Date date) {
+        return delegate().inDaylightTime(date);
+    }
 
-   @Override
-   public boolean hasSameRules(TimeZone other)
-   {
-      return delegate().hasSameRules(other);
-   }
+    @Override
+    public boolean hasSameRules(TimeZone other) {
+        return delegate().hasSameRules(other);
+    }
 
-   @Override
-   public int hashCode()
-   {
-      return delegate().hashCode();
-   }
+    @Override
+    public int hashCode() {
+        return delegate().hashCode();
+    }
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      return delegate().equals(obj);
-   }
+    @Override
+    public boolean equals(Object obj) {
+        return delegate().equals(obj);
+    }
 
-   @Override
-   public String toString()
-   {
-      return delegate().toString();
-   }
+    @Override
+    public String toString() {
+        return delegate().toString();
+    }
 
 }

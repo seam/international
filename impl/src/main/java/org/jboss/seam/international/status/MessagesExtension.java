@@ -59,27 +59,24 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
- *
+ * 
  */
-public class MessagesExtension implements Extension
-{
+public class MessagesExtension implements Extension {
 
-   private static final Logger log = LoggerFactory.getLogger(MessagesExtension.class);
+    private static final Logger log = LoggerFactory.getLogger(MessagesExtension.class);
 
-   <X> void detectBundleInjectionTargets(@Observes ProcessInjectionTarget<X> event, BeanManager beanManager)
-   {
-      AnnotatedType<X> type = event.getAnnotatedType();
-      for (AnnotatedField<?> f : type.getFields())
-      {
-         Field field = f.getJavaMember();
-         Class<?> clz = field.getType();
-         if (clz.isAnnotationPresent(MessageBundle.class))
-         {
-            log.info("Add @MessageBundle to " + type.getJavaClass().getName() + "." + field.getName() + " injection point for the type: " + clz.getName());
-            AnnotatedTypeBuilder<X> typeBuilder = new AnnotatedTypeBuilder<X>().readFromType(type);
-            typeBuilder.addToField(field, MessageBundleLiteral.INSTANCE);
-            event.setInjectionTarget(beanManager.createInjectionTarget(typeBuilder.create()));
-         }
-      }
-   }
+    <X> void detectBundleInjectionTargets(@Observes ProcessInjectionTarget<X> event, BeanManager beanManager) {
+        AnnotatedType<X> type = event.getAnnotatedType();
+        for (AnnotatedField<?> f : type.getFields()) {
+            Field field = f.getJavaMember();
+            Class<?> clz = field.getType();
+            if (clz.isAnnotationPresent(MessageBundle.class)) {
+                log.info("Add @MessageBundle to " + type.getJavaClass().getName() + "." + field.getName()
+                        + " injection point for the type: " + clz.getName());
+                AnnotatedTypeBuilder<X> typeBuilder = new AnnotatedTypeBuilder<X>().readFromType(type);
+                typeBuilder.addToField(field, MessageBundleLiteral.INSTANCE);
+                event.setInjectionTarget(beanManager.createInjectionTarget(typeBuilder.create()));
+            }
+        }
+    }
 }

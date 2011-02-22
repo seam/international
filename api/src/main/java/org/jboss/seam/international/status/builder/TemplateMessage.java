@@ -26,8 +26,7 @@ import org.jboss.seam.international.status.Message;
 import org.jboss.seam.international.status.MessageBuilder;
 
 /**
- * This {@link MessageBuilder} creates {@link Message} objects by interpolating
- * templates with values supplied as parameters.
+ * This {@link MessageBuilder} creates {@link Message} objects by interpolating templates with values supplied as parameters.
  * <p>
  * <b>For example:</b> Given the following {@link Message} m
  * 
@@ -42,35 +41,31 @@ import org.jboss.seam.international.status.MessageBuilder;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public interface TemplateMessage extends MessageBuilder
-{
-   /**
-    * Set the template for this message.
-    * <p>
-    * Any expressions of the form "{0}, {1} ... {N}" found in the template will
-    * be interpolated; numbers reference the index of any given parameters, and
-    * can be used more than once per template.
-    */
-   public TemplateMessage text(final String summary);
+public interface TemplateMessage extends MessageBuilder {
+    /**
+     * Set the template for this message.
+     * <p>
+     * Any expressions of the form "{0}, {1} ... {N}" found in the template will be interpolated; numbers reference the index of
+     * any given parameters, and can be used more than once per template.
+     */
+    public TemplateMessage text(final String summary);
 
-   /**
-    * Set the parameters for this builder's template.
-    * <p>
-    * Parameters may be referenced by index in the template, using expressions
-    * of the form "{0}, {1} ... {N}"
-    */
-   public TemplateMessage textParams(final Object... summaryParams);
+    /**
+     * Set the parameters for this builder's template.
+     * <p>
+     * Parameters may be referenced by index in the template, using expressions of the form "{0}, {1} ... {N}"
+     */
+    public TemplateMessage textParams(final Object... summaryParams);
 
-   /**
-    * Set the targets for this message. If supported by the consuming
-    * view-layer, these targets may control where/how the message is displayed
-    * to the user.
-    */
-   public TemplateMessage targets(final String targets);
+    /**
+     * Set the targets for this message. If supported by the consuming view-layer, these targets may control where/how the
+     * message is displayed to the user.
+     */
+    public TemplateMessage targets(final String targets);
 
-   /**
-    * Set the severity, level of importance of this message.
-    */
-   public TemplateMessage level(final Level level);
+    /**
+     * Set the severity, level of importance of this message.
+     */
+    public TemplateMessage level(final Level level);
 
 }

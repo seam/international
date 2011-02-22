@@ -36,11 +36,10 @@ import javax.inject.Qualifier;
  * 
  * @author Ken Finnigan
  */
-@Target( { PARAMETER, FIELD })
+@Target({ PARAMETER, FIELD })
 @Retention(RUNTIME)
 @Documented
 @Qualifier
-public @interface Alter
-{
+public @interface Alter {
 
 }

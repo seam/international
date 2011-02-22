@@ -33,135 +33,107 @@ import org.jboss.seam.international.status.Message;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
  */
-public class BundleTemplateMessageImpl implements BundleTemplateMessage
-{
-   @Inject
-   TemplateMessage template;
+public class BundleTemplateMessageImpl implements BundleTemplateMessage {
+    @Inject
+    TemplateMessage template;
 
-   private String textDefault;
-   private BundleKey textKey;
+    private String textDefault;
+    private BundleKey textKey;
 
-   @Inject
-   Bundles bundles;
+    @Inject
+    Bundles bundles;
 
-   private final Logger log = Logger.getLogger(BundleTemplateMessageImpl.class);
+    private final Logger log = Logger.getLogger(BundleTemplateMessageImpl.class);
 
-   public Message build()
-   {
-      String text;
-      try
-      {
-         text = bundles.get(textKey.getBundle()).getString(textKey.getKey());
-      }
-      catch (Exception e)
-      {
-         log.warn("Could not load bundle: " + textKey);
-         text = textDefault;
-      }
+    public Message build() {
+        String text;
+        try {
+            text = bundles.get(textKey.getBundle()).getString(textKey.getKey());
+        } catch (Exception e) {
+            log.warn("Could not load bundle: " + textKey);
+            text = textDefault;
+        }
 
-      if ((text == null) || "".equals(text))
-      {
-         text = textKey.toString();
-      }
+        if ((text == null) || "".equals(text)) {
+            text = textKey.toString();
+        }
 
-      template.text(text);
-      return template.build();
-   }
+        template.text(text);
+        return template.build();
+    }
 
-   /*
-    * Setters
-    */
+    /*
+     * Setters
+     */
 
-   public BundleTemplateMessageImpl key(final BundleKey text)
-   {
-      this.textKey = text;
-      return this;
-   }
+    public BundleTemplateMessageImpl key(final BundleKey text) {
+        this.textKey = text;
+        return this;
+    }
 
-   public BundleTemplateMessage defaults(final String text)
-   {
-      this.textDefault = text;
-      return this;
-   }
+    public BundleTemplateMessage defaults(final String text) {
+        this.textDefault = text;
+        return this;
+    }
 
-   public BundleTemplateMessageImpl params(final Object... textParams)
-   {
-      this.template.textParams(textParams);
-      return this;
-   }
+    public BundleTemplateMessageImpl params(final Object... textParams) {
+        this.template.textParams(textParams);
+        return this;
+    }
 
-   public BundleTemplateMessage targets(final String targets)
-   {
-      this.template.targets(targets);
-      return this;
-   }
+    public BundleTemplateMessage targets(final String targets) {
+        this.template.targets(targets);
+        return this;
+    }
 
-   public BundleTemplateMessage level(final Level level)
-   {
-      this.template.level(level);
-      return this;
-   }
+    public BundleTemplateMessage level(final Level level) {
+        this.template.level(level);
+        return this;
+    }
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((template == null) ? 0 : template.hashCode());
-      result = prime * result + ((textDefault == null) ? 0 : textDefault.hashCode());
-      result = prime * result + ((textKey == null) ? 0 : textKey.hashCode());
-      return result;
-   }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((template == null) ? 0 : template.hashCode());
+        result = prime * result + ((textDefault == null) ? 0 : textDefault.hashCode());
+        result = prime * result + ((textKey == null) ? 0 : textKey.hashCode());
+        return result;
+    }
 
-   @Override
-   public boolean equals(final Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (obj == null)
-      {
-         return false;
-      }
-      if (getClass() != obj.getClass())
-      {
-         return false;
-      }
-      BundleTemplateMessageImpl other = (BundleTemplateMessageImpl) obj;
-      if (template == null)
-      {
-         if (other.template != null)
-         {
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
-         }
-      }
-      else if (!template.equals(other.template))
-      {
-         return false;
-      }
-      if (textDefault == null)
-      {
-         if (other.textDefault != null)
-         {
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-         }
-      }
-      else if (!textDefault.equals(other.textDefault))
-      {
-         return false;
-      }
-      if (textKey == null)
-      {
-         if (other.textKey != null)
-         {
+        }
+        BundleTemplateMessageImpl other = (BundleTemplateMessageImpl) obj;
+        if (template == null) {
+            if (other.template != null) {
+                return false;
+            }
+        } else if (!template.equals(other.template)) {
             return false;
-         }
-      }
-      else if (!textKey.equals(other.textKey))
-      {
-         return false;
-      }
-      return true;
-   }
+        }
+        if (textDefault == null) {
+            if (other.textDefault != null) {
+                return false;
+            }
+        } else if (!textDefault.equals(other.textDefault)) {
+            return false;
+        }
+        if (textKey == null) {
+            if (other.textKey != null) {
+                return false;
+            }
+        } else if (!textKey.equals(other.textKey)) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -43,52 +43,42 @@ import org.joda.time.DateTimeZone;
  */
 
 @ApplicationScoped
-public class DefaultDateTimeZoneProducer implements Serializable
-{
-   private static final long serialVersionUID = 6181892144731122500L;
+public class DefaultDateTimeZoneProducer implements Serializable {
+    private static final long serialVersionUID = 6181892144731122500L;
 
-   @Inject
-   @DefaultTimeZone
-   private Instance<String> defaultTimeZoneId;
+    @Inject
+    @DefaultTimeZone
+    private Instance<String> defaultTimeZoneId;
 
-   private final Logger log = Logger.getLogger(DefaultDateTimeZoneProducer.class);
+    private final Logger log = Logger.getLogger(DefaultDateTimeZoneProducer.class);
 
-   @Produces
-   @Named
-   private DateTimeZone defaultDateTimeZone = null;
+    @Produces
+    @Named
+    private DateTimeZone defaultDateTimeZone = null;
 
-   @PostConstruct
-   public void init()
-   {
-      if (!defaultTimeZoneId.isUnsatisfied())
-      {
-         try
-         {
-            String id = defaultTimeZoneId.get();
-            DateTimeZone dtz = DateTimeZone.forID(id);
+    @PostConstruct
+    public void init() {
+        if (!defaultTimeZoneId.isUnsatisfied()) {
+            try {
+                String id = defaultTimeZoneId.get();
+                DateTimeZone dtz = DateTimeZone.forID(id);
+                defaultDateTimeZone = constructTimeZone(dtz);
+            } catch (IllegalArgumentException e) {
+                log.warn("DefaultDateTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
+            }
+        }
+        if (null == defaultDateTimeZone) {
+            DateTimeZone dtz = DateTimeZone.getDefault();
             defaultDateTimeZone = constructTimeZone(dtz);
-         }
-         catch (IllegalArgumentException e)
-         {
-            log.warn("DefaultDateTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
-         }
-      }
-      if (null == defaultDateTimeZone)
-      {
-         DateTimeZone dtz = DateTimeZone.getDefault();
-         defaultDateTimeZone = constructTimeZone(dtz);
-      }
-   }
+        }
+    }
 
-   private ForwardingDateTimeZone constructTimeZone(final DateTimeZone dtz)
-   {
-      return new ForwardingDateTimeZone(dtz.getID())
-      {
-         @Override
-         protected DateTimeZone delegate()
-         {
-            return dtz;
-         }
-      };
-   }
+    private ForwardingDateTimeZone constructTimeZone(final DateTimeZone dtz) {
+        return new ForwardingDateTimeZone(dtz.getID()) {
+            @Override
+            protected DateTimeZone delegate() {
+                return dtz;
+            }
+        };
+    }
 }

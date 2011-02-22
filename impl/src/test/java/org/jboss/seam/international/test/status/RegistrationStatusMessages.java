@@ -27,9 +27,10 @@ import org.jboss.seam.solder.logging.Message;
 import org.jboss.seam.solder.logging.MessageBundle;
 
 @MessageBundle
-public interface RegistrationStatusMessages
-{
+public interface RegistrationStatusMessages {
 
-   @Message("Username {0} is already taken.  Please choose another.") @StatusMessage() @Locale("en_US")
-   String duplicateUsername(String username);
+    @Message("Username {0} is already taken.  Please choose another.")
+    @StatusMessage()
+    @Locale("en_US")
+    String duplicateUsername(String username);
 }

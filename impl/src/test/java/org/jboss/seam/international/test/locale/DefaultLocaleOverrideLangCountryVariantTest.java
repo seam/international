@@ -37,25 +37,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class DefaultLocaleOverrideLangCountryVariantTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-               .addClasses(DefaultLocaleProducer.class)
-               .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//      .addManifestResource("org/jboss/seam/international/test/locale/override-lang-country-variant.xml", ArchivePaths.create("beans.xml"));
-   }
+public class DefaultLocaleOverrideLangCountryVariantTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(DefaultLocaleProducer.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        // .addManifestResource("org/jboss/seam/international/test/locale/override-lang-country-variant.xml",
+        // ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   Locale locale;
+    @Inject
+    Locale locale;
 
-   @Test
-   public void testDefaultLocaleProducerDirect()
-   {
-      Assert.assertNotNull(locale);
-      //TODO Fix XML Override error
-//      Assert.assertEquals("en_US_UNIX", locale.toString());
-   }
+    @Test
+    public void testDefaultLocaleProducerDirect() {
+        Assert.assertNotNull(locale);
+        // TODO Fix XML Override error
+        // Assert.assertEquals("en_US_UNIX", locale.toString());
+    }
 }

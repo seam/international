@@ -42,7 +42,6 @@ import javax.inject.Qualifier;
  * 
  * @author Ken Finnigan
  */
-public @interface DefaultLocale
-{
+public @interface DefaultLocale {
 
 }

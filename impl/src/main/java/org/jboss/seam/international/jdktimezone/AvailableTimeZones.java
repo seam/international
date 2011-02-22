@@ -33,68 +33,55 @@ import javax.enterprise.inject.Produces;
 
 /**
  * <p>
- * Seam component that provides a list of time zones, limited to time zones with
- * IDs in the form Continent/Place, excluding deprecated three-letter time zone
- * IDs. The time zones returned have a fixed offset from UTC, which takes
- * daylight savings time into account. For example, Europe/Amsterdam is UTC+1;
- * in winter this is GMT+1 and in summer GMT+2.
+ * Seam component that provides a list of time zones, limited to time zones with IDs in the form Continent/Place, excluding
+ * deprecated three-letter time zone IDs. The time zones returned have a fixed offset from UTC, which takes daylight savings
+ * time into account. For example, Europe/Amsterdam is UTC+1; in winter this is GMT+1 and in summer GMT+2.
  * </p>
  * 
  * <p>
- * The time zone objects returned are wrapped in an implementation of TimeZone
- * that provides a more friendly interface for accessing the time zone
- * information. In particular, this type provides a more bean-friend property
- * for the time zone id (id than ID) and provides a convenience property named
- * label that formats the time zone for display in the UI. This wrapper can be
- * disabled by setting the component property wrap to false.
+ * The time zone objects returned are wrapped in an implementation of TimeZone that provides a more friendly interface for
+ * accessing the time zone information. In particular, this type provides a more bean-friend property for the time zone id (id
+ * than ID) and provides a convenience property named label that formats the time zone for display in the UI. This wrapper can
+ * be disabled by setting the component property wrap to false.
  * </p>
  * 
  * @author Peter Hilton, Lunatech Research
  * @author Dan Allen
  */
 @ApplicationScoped
-public class AvailableTimeZones
-{
-   private static final String TIMEZONE_ID_PREFIXES = "^(Africa|America|Asia|Atlantic|Australia|Europe|Indian|Pacific)/.*";
+public class AvailableTimeZones {
+    private static final String TIMEZONE_ID_PREFIXES = "^(Africa|America|Asia|Atlantic|Australia|Europe|Indian|Pacific)/.*";
 
-   @Produces
-   private List<ForwardingTimeZone> timeZones = null;
+    @Produces
+    private List<ForwardingTimeZone> timeZones = null;
 
-   @PostConstruct
-   public void init()
-   {
-      timeZones = new ArrayList<ForwardingTimeZone>();
-      final String[] timeZoneIds = TimeZone.getAvailableIDs();
-      for (String id : timeZoneIds)
-      {
-         if (id.matches(TIMEZONE_ID_PREFIXES))
-         {
-            final TimeZone dtz = TimeZone.getTimeZone(id);
-            timeZones.add(new ForwardingTimeZone(id)
-            {
-               private static final long serialVersionUID = 8409832600089507805L;
+    @PostConstruct
+    public void init() {
+        timeZones = new ArrayList<ForwardingTimeZone>();
+        final String[] timeZoneIds = TimeZone.getAvailableIDs();
+        for (String id : timeZoneIds) {
+            if (id.matches(TIMEZONE_ID_PREFIXES)) {
+                final TimeZone dtz = TimeZone.getTimeZone(id);
+                timeZones.add(new ForwardingTimeZone(id) {
+                    private static final long serialVersionUID = 8409832600089507805L;
 
-               @Override
-               protected TimeZone delegate()
-               {
-                  return dtz;
-               }
+                    @Override
+                    protected TimeZone delegate() {
+                        return dtz;
+                    }
 
-               @Override
-               public void setRawOffset(int offsetMillis)
-               {
-                  throw new UnsupportedOperationException();
-               }
-            });
-         }
-      }
-      Collections.sort(timeZones, new Comparator<ForwardingTimeZone>()
-      {
-         public int compare(final ForwardingTimeZone a, final ForwardingTimeZone b)
-         {
-            return a.getID().compareTo(b.getID());
-         }
-      });
-      timeZones = Collections.unmodifiableList(timeZones);
-   }
+                    @Override
+                    public void setRawOffset(int offsetMillis) {
+                        throw new UnsupportedOperationException();
+                    }
+                });
+            }
+        }
+        Collections.sort(timeZones, new Comparator<ForwardingTimeZone>() {
+            public int compare(final ForwardingTimeZone a, final ForwardingTimeZone b) {
+                return a.getID().compareTo(b.getID());
+            }
+        });
+        timeZones = Collections.unmodifiableList(timeZones);
+    }
 }

@@ -25,11 +25,10 @@ import javax.enterprise.inject.Produces;
 
 import org.jboss.seam.international.locale.DefaultLocale;
 
-public class DefaultLocaleKeyFailBean
-{
+public class DefaultLocaleKeyFailBean {
 
-   @SuppressWarnings("unused")
-   @Produces
-   @DefaultLocale
-   private String defaultLocaleKey = "z";
+    @SuppressWarnings("unused")
+    @Produces
+    @DefaultLocale
+    private String defaultLocaleKey = "z";
 }

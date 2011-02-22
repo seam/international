@@ -25,11 +25,10 @@ import javax.enterprise.inject.Produces;
 
 import org.jboss.seam.international.locale.DefaultLocale;
 
-public class DefaultLocaleKeyBean
-{
+public class DefaultLocaleKeyBean {
 
-   @SuppressWarnings("unused")
-   @Produces
-   @DefaultLocale
-   private String defaultLocaleKey = "en";
+    @SuppressWarnings("unused")
+    @Produces
+    @DefaultLocale
+    private String defaultLocaleKey = "en";
 }

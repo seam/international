@@ -43,48 +43,42 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class UserTimeZoneTest
-{
-   @Deployment
-   public static JavaArchive createTestArchive()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                  .addClass(UserTimeZoneProducer.class)
-                  .addClass(DefaultTimeZoneProducer.class)
-                  .addClass(DefaultTimeZone.class)
-                  .addClass(Alter.class)
-                  .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-//      .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml", ArchivePaths.create("beans.xml"));
-   }
+public class UserTimeZoneTest {
+    @Deployment
+    public static JavaArchive createTestArchive() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(UserTimeZoneProducer.class)
+                .addClass(DefaultTimeZoneProducer.class).addClass(DefaultTimeZone.class).addClass(Alter.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        // .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml",
+        // ArchivePaths.create("beans.xml"));
+    }
 
-   @Inject
-   @Client
-   TimeZone timeZone;
+    @Inject
+    @Client
+    TimeZone timeZone;
 
-   @Inject
-   @Alter
-   @Client
-   Event<TimeZone> timeZoneEvent;
+    @Inject
+    @Alter
+    @Client
+    Event<TimeZone> timeZoneEvent;
 
-   @Inject
-   @Client
-   Instance<TimeZone> timeZoneSource;
+    @Inject
+    @Client
+    Instance<TimeZone> timeZoneSource;
 
-   @Test
-   public void testUserTimeZoneProducerDirect()
-   {
-      Assert.assertNotNull(timeZone);
-   }
+    @Test
+    public void testUserTimeZoneProducerDirect() {
+        Assert.assertNotNull(timeZone);
+    }
 
-   @Test
-   public void testUserTimeZoneEvent()
-   {
-      TimeZone tijuana = TimeZone.getTimeZone("America/Tijuana");
-      Assert.assertNotNull(timeZone);
-      Assert.assertFalse(timeZone.equals(tijuana));
-      timeZoneEvent.fire(tijuana);
-      TimeZone tz = timeZoneSource.get();
-      Assert.assertNotNull(tz);
-      Assert.assertTrue(tz.equals(tijuana));
-   }
+    @Test
+    public void testUserTimeZoneEvent() {
+        TimeZone tijuana = TimeZone.getTimeZone("America/Tijuana");
+        Assert.assertNotNull(timeZone);
+        Assert.assertFalse(timeZone.equals(tijuana));
+        timeZoneEvent.fire(tijuana);
+        TimeZone tz = timeZoneSource.get();
+        Assert.assertNotNull(tz);
+        Assert.assertTrue(tz.equals(tijuana));
+    }
 }
