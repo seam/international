@@ -67,6 +67,15 @@
          <type>war</type>
          <optional>true</optional>
       </dependency>
+      
+      <dependency>
+         <groupId>org.jboss.seam.international</groupId>
+         <artifactId>seam-international-example-timeanddate</artifactId>
+         <version>${project.version}</version>
+         <type>zip</type>
+         <classifier>distsources</classifier>
+         <optional>true</optional>
+      </dependency>      
 
    </dependencies>
 

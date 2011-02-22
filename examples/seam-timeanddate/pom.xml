@@ -3,18 +3,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-      <groupId>org.jboss.seam.international</groupId>
-      <artifactId>seam-international-parent</artifactId>
-      <version>3.0.0-SNAPSHOT</version>
-      <relativePath>../../pom.xml</relativePath>
-   </parent>
+    <groupId>org.jboss.seam.international</groupId>
+    <artifactId>seam-international-parent</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
 
-  <groupId>org.jboss.seam.international.examples</groupId>
-  <artifactId>seam-timeanddate</artifactId>
+  <groupId>org.jboss.seam.international</groupId>
+  <artifactId>seam-international-example-timeanddate</artifactId>
   <version>3.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Seam International Time and Date Example</name>
-  <description>The Seam </description>
   <url>http://seamframework.org/Seam3</url>
 
   <pluginRepositories>
@@ -33,7 +32,6 @@
    </pluginRepositories>
 
   <dependencies>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -48,60 +46,81 @@
          <type>pom</type>
     </dependency>
 
-     <dependency>
-         <groupId>joda-time</groupId>
-         <artifactId>joda-time</artifactId>
-      </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+    </dependency>
 
     <dependency>
-	   <groupId>org.jboss.seam.international</groupId>
-	   <artifactId>seam-international-api</artifactId>
-	</dependency>
+	    <groupId>org.jboss.seam.international</groupId>
+	    <artifactId>seam-international-api</artifactId>
+    </dependency>
 
-	<dependency>
-	   <groupId>org.jboss.seam.international</groupId>
-	   <artifactId>seam-international-impl</artifactId>
-	   <scope>runtime</scope>
-	</dependency>
+    <dependency>
+	    <groupId>org.jboss.seam.international</groupId>
+	    <artifactId>seam-international-impl</artifactId>
+	    <scope>runtime</scope>
+    </dependency>
   </dependencies>
 
   <build>
-      <defaultGoal>package</defaultGoal>
-      <finalName>${project.artifactId}</finalName>
+    <defaultGoal>package</defaultGoal>
+    <finalName>${project.artifactId}</finalName>
 
-      <plugins>
-	 <plugin>
-	        <artifactId>maven-war-plugin</artifactId>
-	        <configuration>
-	          <warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
-	        </configuration>
-	      </plugin>
-         <plugin>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+	      <groupId>org.zeroturnaround</groupId>
+	      <artifactId>jrebel-maven-plugin</artifactId>
+	      <configuration>
+          <webappDirectory></webappDirectory>
+	      </configuration>
+	      <executions>
+          <execution>
+	          <id>generate-rebel-xml</id>
+	          <phase>process-resources</phase>
+	          <goals>
+	            <goal>generate</goal>
+	          </goals>
+	        </execution>
+	      </executions>
+	    </plugin>
+
+    </plugins>
+  </build>
+   
+  <profiles>
+    <profile>
+      <id>distribution</id>
+      <activation>
+        <property>
+          <name>release</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-	        <configuration>
-	          <source>1.6</source>
-	          <target>1.6</target>
-	        </configuration>
-         </plugin>
-
-	     <plugin>
-		  <groupId>org.zeroturnaround</groupId>
-		  <artifactId>jrebel-maven-plugin</artifactId>
-		  <configuration>
-			<webappDirectory></webappDirectory>
-		  </configuration>
-		  <executions>
-		    <execution>
-		      <id>generate-rebel-xml</id>
-		      <phase>process-resources</phase>
-		      <goals>
-		        <goal>generate</goal>
-		      </goals>
-		    </execution>
-		  </executions>
-		</plugin>
-
-      </plugins>
-   </build>
+            <artifactId>maven-assembly-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>     
+  </profiles>
+  
 </project>

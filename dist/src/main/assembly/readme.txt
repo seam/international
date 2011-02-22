@@ -1,11 +1,10 @@
-
  Seam International Module
- 3.0.0.Beta2
+ ${project.version}
 
  What is it?
  ===========
 
- The Seam 3 International Module is focused on a unified approach to configuring
+ The Seam International Module is focused on a unified approach to configuring
  your application for the right language and locale, propagating them to all
  parts of the application.
 
@@ -16,13 +15,21 @@
  
     Provided libraries
 
+ doc/
+
+    API Docs and reference guide.
+        
+ examples/
+ 
+    Module examples
+
  lib/
 
     Dependencies
-
- docs/
-
-    API Docs and reference guide.
+    
+ source/
+ 
+    Source code
   
  Licensing
  =========
@@ -42,6 +49,17 @@
 
  Release Notes
  =============
+
+3.0.0.CR1
+---------
+ * [SEAMINTL-25] - AvailableLocales.locales always has zero elements when configuration follows the documentation
+ * [SEAMINTL-19] - Develop i18n module example based on timeanddate.com
+ * [SEAMINTL-28] - Remove / update license headers
+
+3.0.0.Beta2
+-----------
+ * [SEAMINTL-24] - Misc documentation issues
+ * [SEAMINTL-23] - Remove jboss-logging dependency
 
 3.0.0.Beta1
 -----------
