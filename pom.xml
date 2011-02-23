@@ -22,8 +22,6 @@
       <module>api</module>
       <module>impl</module>
       <module>combined</module>
-      <module>docs</module>
-      <module>examples/seam-timeanddate</module>
    </modules>
 
    <properties>
@@ -72,7 +70,7 @@
             </property>
          </activation>
          <modules>
-            <module>docs/reference</module>
+            <module>docs</module>
             <module>examples/seam-timeanddate</module>
             <module>dist</module>
          </modules>
