@@ -22,6 +22,8 @@
       <module>api</module>
       <module>impl</module>
       <module>combined</module>
+      <module>docs</module>
+      <module>examples/seam-timeanddate</module>
    </modules>
 
    <properties>
