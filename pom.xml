@@ -11,7 +11,7 @@
    <groupId>org.jboss.seam.international</groupId>
    <artifactId>seam-international-parent</artifactId>
    <packaging>pom</packaging>
-   <version>3.0.0-SNAPSHOT</version>
+   <version>3.0.0.CR1</version>
 
    <name>Seam International Module</name>
    <description>A unified approach to configuring the language and locale of a CDI-based application</description>
