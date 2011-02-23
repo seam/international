@@ -61,30 +61,45 @@
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
       </dependency>
+
       <dependency>
          <groupId>org.jboss.arquillian</groupId>
          <artifactId>arquillian-junit</artifactId>
       </dependency>
+
       <dependency>
          <groupId>org.jboss.weld.arquillian.container</groupId>
          <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
       </dependency>
+
       <dependency>
          <groupId>org.jboss.weld</groupId>
          <artifactId>weld-core</artifactId>
          <scope>test</scope>
       </dependency>
+
       <dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-simple</artifactId>
          <scope>test</scope>
       </dependency>
+
       <dependency>
-         <groupId>org.jboss.spec</groupId>
-         <artifactId>jboss-javaee-6.0</artifactId>
-         <scope>provided</scope>
-         <type>pom</type>
+         <groupId>org.jboss.spec.javax.ejb</groupId>
+         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+         <scope>test</scope>
       </dependency>
+
+      <dependency>
+         <groupId>javax.validation</groupId>
+         <artifactId>validation-api</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.spec.javax.el</groupId>
+         <artifactId>jboss-el-api_2.2_spec</artifactId>
+      </dependency>
+
    </dependencies>
 
    <build>
