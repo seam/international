@@ -22,7 +22,8 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.international.status.Bundles;
+import org.jboss.seam.international.locale.DefaultLocaleProducer;
+import org.jboss.seam.international.status.ApplicationBundles;
 import org.jboss.seam.international.status.MessageFactory;
 import org.jboss.seam.international.status.builder.BundleTemplateMessageImpl;
 import org.jboss.seam.international.status.builder.TemplateMessage;
@@ -44,7 +45,7 @@ public class BundleTemplateMessageImplTest {
     @Deployment
     public static Archive<?> createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                .addClasses(MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, Bundles.class)
+                .addClasses(MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, ApplicationBundles.class, DefaultLocaleProducer.class)
                 .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 

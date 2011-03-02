@@ -19,7 +19,7 @@ package org.jboss.seam.international.status.builder;
 import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
-import org.jboss.seam.international.status.Bundles;
+import org.jboss.seam.international.status.ApplicationBundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
 
@@ -36,7 +36,7 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
     private BundleKey textKey;
 
     @Inject
-    Bundles bundles;
+    ApplicationBundles bundles;
 
     private final Logger log = Logger.getLogger(BundleTemplateMessageImpl.class);
 
