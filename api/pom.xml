@@ -22,6 +22,10 @@
          <scope>provided</scope>
       </dependency>
       <dependency>
+         <groupId>org.jboss.seam.solder</groupId>
+         <artifactId>seam-solder</artifactId>
+      </dependency>
+      <dependency>
          <groupId>joda-time</groupId>
          <artifactId>joda-time</artifactId>
          <optional>true</optional>
