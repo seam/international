@@ -44,8 +44,10 @@ import org.junit.runner.RunWith;
 public class BundleTemplateMessageImplTest {
     @Deployment
     public static Archive<?> createTestArchive() {
-        return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                .addClasses(MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class, ApplicationBundles.class, DefaultLocaleProducer.class)
+        return ShrinkWrap
+                .create(JavaArchive.class, "test.jar")
+                .addClasses(MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class,
+                        ApplicationBundles.class, DefaultLocaleProducer.class)
                 .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 

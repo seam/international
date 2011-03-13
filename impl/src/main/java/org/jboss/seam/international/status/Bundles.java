@@ -32,79 +32,65 @@ import org.jboss.seam.solder.core.Client;
 /**
  * Access to map of {@link ResourceBundle} objects for user locale.
  * 
- * @author <a href="http://community.jboss.org/people/ssachtleben">Sebastian
- *         Sachtleben</a>
+ * @author <a href="http://community.jboss.org/people/ssachtleben">Sebastian Sachtleben</a>
  */
 @Named
 @RequestScoped
-public class Bundles implements Map<String, ResourceBundle>, Serializable
-{
-   private static final long serialVersionUID = -1608918108928277728L;
+public class Bundles implements Map<String, ResourceBundle>, Serializable {
+    private static final long serialVersionUID = -1608918108928277728L;
 
-   @Inject
-   private ApplicationBundles bundles;
+    @Inject
+    private ApplicationBundles bundles;
 
-   @Inject
-   @Client
-   private Locale locale;
+    @Inject
+    @Client
+    private Locale locale;
 
-   public int size()
-   {
-      return bundles.size(locale);
-   }
+    public int size() {
+        return bundles.size(locale);
+    }
 
-   public boolean isEmpty()
-   {
-      return bundles.isEmpty(locale);
-   }
+    public boolean isEmpty() {
+        return bundles.isEmpty(locale);
+    }
 
-   public boolean containsKey(final Object key)
-   {
-      return bundles.containsKey(locale, key);
-   }
+    public boolean containsKey(final Object key) {
+        return bundles.containsKey(locale, key);
+    }
 
-   public boolean containsValue(final Object value)
-   {
-      return bundles.containsValue(locale, value);
-   }
+    public boolean containsValue(final Object value) {
+        return bundles.containsValue(locale, value);
+    }
 
-   public ResourceBundle get(final Object key)
-   {
-      return bundles.get(locale, key);
-   }
+    public ResourceBundle get(final Object key) {
+        return bundles.get(locale, key);
+    }
 
-   public ResourceBundle put(final String key, final ResourceBundle value)
-   {
-      return bundles.put(locale, key, value);
-   }
+    public ResourceBundle put(final String key, final ResourceBundle value) {
+        return bundles.put(locale, key, value);
+    }
 
-   public ResourceBundle remove(final Object key)
-   {
-      return bundles.remove(locale, key);
-   }
+    public ResourceBundle remove(final Object key) {
+        return bundles.remove(locale, key);
+    }
 
-   public void putAll(final Map<? extends String, ? extends ResourceBundle> m)
-   {
-      bundles.putAll(locale, m);
-   }
+    public void putAll(final Map<? extends String, ? extends ResourceBundle> m) {
+        bundles.putAll(locale, m);
+    }
 
-   public void clear()
-   {
-      bundles.clear(locale);
-   }
+    public void clear() {
+        bundles.clear(locale);
+    }
 
-   public Set<String> keySet()
-   {
-      return bundles.keySet(locale);
-   }
+    public Set<String> keySet() {
+        return bundles.keySet(locale);
+    }
 
-   public Collection<ResourceBundle> values()
-   {
-      return bundles.values(locale);
-   }
+    public Collection<ResourceBundle> values() {
+        return bundles.values(locale);
+    }
 
-   public Set<java.util.Map.Entry<String, ResourceBundle>> entrySet()
-   {
-      return bundles.entrySet(locale);
-   }
+    public Set<java.util.Map.Entry<String, ResourceBundle>> entrySet() {
+        return bundles.entrySet(locale);
+    }
 }
