@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.datetimezone.DefaultDateTimeZoneProducer;
+import org.jboss.seam.international.timezone.DefaultTimeZone;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -30,14 +31,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Test overriding default DateTimeZone
+ *
+ * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
+ */
 @RunWith(Arquillian.class)
 public class DefaultDateTimeZoneOverrideTest {
     @Deployment
     public static JavaArchive createTestArchive() {
-        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(DefaultDateTimeZoneProducer.class)
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(DefaultDateTimeZoneProducer.class,
+                DefaultDateTimeZoneOverrideProducerBean.class, DefaultTimeZone.class)
                 .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-        // .addManifestResource("org/jboss/seam/international/test/datetimezone/override.xml",
-        // ArchivePaths.create("beans.xml"));
     }
 
     @Inject
@@ -46,7 +51,6 @@ public class DefaultDateTimeZoneOverrideTest {
     @Test
     public void testDefaultTimeZoneProducerDirect() {
         Assert.assertNotNull(timeZone);
-        // TODO Fix XML Override errors
-        // Assert.assertEquals("America/Tijuana", timeZone.getID());
+        Assert.assertEquals("America/Tijuana", timeZone.getID());
     }
 }

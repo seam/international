@@ -21,17 +21,17 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import org.joda.time.DateTimeZone;
+import org.jboss.seam.international.datetimezone.ForwardingDateTimeZone;
 
 @ApplicationScoped
 public class AvailableDateTimeZoneBean {
     @Inject
-    private List<DateTimeZone> timeZones;
+    private List<ForwardingDateTimeZone> timeZones;
 
     public AvailableDateTimeZoneBean() {
     }
 
-    public List<DateTimeZone> getAvailTimeZones() {
+    public List<ForwardingDateTimeZone> getAvailTimeZones() {
         return timeZones;
     }
 }

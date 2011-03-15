@@ -56,9 +56,12 @@ public class DefaultTimeZoneProducer implements Serializable {
             try {
                 String id = defaultTimeZoneId.get();
                 TimeZone dtz = TimeZone.getTimeZone(id);
+                if (!dtz.getID().equals(id)) {
+                    throw new IllegalArgumentException();
+                }
                 defaultTimeZone = constructTimeZone(dtz);
             } catch (IllegalArgumentException e) {
-                log.warn("DefaultTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId + " was not found");
+                log.warn("DefaultTimeZoneProducer: Default TimeZone Id of " + defaultTimeZoneId.get() + " was not found");
             }
         }
         if (null == defaultTimeZone) {

@@ -17,6 +17,8 @@
 package org.jboss.seam.international.test.status;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import javax.inject.Inject;
 
@@ -73,10 +75,35 @@ public class MessagesTest {
     }
 
     @Test
+    public void testMessageBuildersAreAddedWhenUsingFactoryMethodsAll() {
+        messages.info("This is a %s", "message");
+        messages.error("This is a message");
+        messages.error("This is a %s", "message");
+        messages.fatal("This is a message");
+        messages.fatal("This is a %s", "message");
+        messages.warn("This is a message");
+        messages.warn("This is a %s", "message");
+        assertEquals(7, messages.getAll().size());
+    }
+
+    @Test
     public void testMessageBuildersAreAddedWhenUsingFactoryMethodsBundle() {
-        messages.error(new BundleKey(BUNDLE_PATH, "key1"));
+        messages.warn(new BundleKey(BUNDLE_PATH, "key1"));
         assertEquals(1, messages.getAll().size());
-        assertEquals(Level.ERROR, messages.getAll().iterator().next().getLevel());
+        assertEquals(Level.WARN, messages.getAll().iterator().next().getLevel());
+    }
+
+    @Test
+    public void testMessageBuildersAreAddedWhenUsingFactoryMethodsBundleAll() {
+        messages.error(new BundleKey(BUNDLE_PATH, "key1"));
+        messages.error(new BundleKey(BUNDLE_PATH, "key1"), "something");
+        messages.info(new BundleKey(BUNDLE_PATH, "key1"));
+        messages.info(new BundleKey(BUNDLE_PATH, "key1"), "something");
+        messages.warn(new BundleKey(BUNDLE_PATH, "key1"));
+        messages.warn(new BundleKey(BUNDLE_PATH, "key1"), "something");
+        messages.fatal(new BundleKey(BUNDLE_PATH, "key1"), "something");
+        assertFalse(messages.isEmpty());
+        assertEquals(7, messages.getAll().size());
     }
 
     @Test
@@ -105,10 +132,51 @@ public class MessagesTest {
         message.setText(text);
         messages.add(message);
 
-        message = new MessageImpl();
-        message.setText(text);
-        messages.add(message);
+        MutableMessage message2 = new MessageImpl();
+        message2.setText(text);
+        messages.add(message2);
 
         assertEquals(1, messages.getAll().size());
+        assertTrue(message.equals(message2));
+    }
+
+    @Test
+    public void testEmptyMessages() {
+        assertTrue(messages.isEmpty());
+        assertEquals(0, messages.getAll().size());
+    }
+
+    @Test
+    public void testMessageEquals() {
+        MutableMessage message = new MessageImpl();
+        String text = "This is a message!";
+        message.setText(text);
+
+        MutableMessage message2 = new MessageImpl();
+        message2.setText(text);
+
+        assertTrue(message.equals(message2));
+        MutableMessage message3 = message;
+        assertTrue(message.equals(message3));
+        assertFalse(message.equals(null));
+        assertFalse(message.equals("message"));
+        message.setLevel(Level.FATAL);
+        message2.setLevel(Level.WARN);
+        assertFalse(message.equals(message2));
+        message.setLevel(null);
+        assertFalse(message.equals(message2));
+        message.setLevel(Level.WARN);
+        message2.setTargets("targets");
+        assertFalse(message.equals(message2));
+        message.setTargets("otherTarget");
+        assertFalse(message.equals(message2));
+        assertTrue(message.getTargets().equals("otherTarget"));
+
+        message = new MessageImpl();
+        message2 = new MessageImpl();
+        message2.setText("summary");
+        assertFalse(message.equals(message2));
+        message.setText("different summary");
+        assertFalse(message.equals(message2));
     }
 }

@@ -31,14 +31,20 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Test failure to override the default DateTimeZone.
+ *
+ * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
+ */
 @RunWith(Arquillian.class)
 public class DefaultDateTimeZoneOverrideFailTest {
     @Deployment
     public static JavaArchive createTestArchive() {
-        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultDateTimeZoneProducer.class)
-                .addClass(DefaultTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-        // .addManifestResource("org/jboss/seam/international/test/datetimezone/override-fail.xml",
-        // ArchivePaths.create("beans.xml"));
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+                .addClass(DefaultDateTimeZoneProducer.class)
+                .addClass(DefaultTimeZone.class)
+                .addClass(DefaultDateTimeZoneOverrideFailProducerBean.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

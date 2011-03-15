@@ -17,7 +17,6 @@
 package org.jboss.seam.international.test.jdktimezone;
 
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -46,12 +45,12 @@ public class AvailableTimeZonesTest {
     @Inject
     Instance<AvailableTimeZoneBean> availBean;
     @Inject
-    List<TimeZone> timeZones;
+    List<ForwardingTimeZone> timeZones;
 
     @Test
     public void testAvailableTimeZonesProducerViaBean() {
         Assert.assertNotNull(availBean);
-        List<TimeZone> list = availBean.get().getAvailTimeZones();
+        List<ForwardingTimeZone> list = availBean.get().getAvailTimeZones();
         Assert.assertNotNull(list);
         Assert.assertTrue(!list.isEmpty());
         Assert.assertTrue(list.size() > 0);
@@ -62,5 +61,14 @@ public class AvailableTimeZonesTest {
         Assert.assertNotNull(timeZones);
         Assert.assertTrue(!timeZones.isEmpty());
         Assert.assertTrue(timeZones.size() > 0);
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testRawOffsetUnsupportedOperationException() {
+        Assert.assertNotNull(timeZones);
+        Assert.assertTrue(!timeZones.isEmpty());
+        Assert.assertTrue(timeZones.size() > 0);
+        ForwardingTimeZone ftz = timeZones.get(0);
+        ftz.setRawOffset(123);
     }
 }

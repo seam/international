@@ -32,12 +32,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Test overriding default TimeZone
+ *
+ * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
+ */
 @RunWith(Arquillian.class)
-public class DefaultTimeZoneTest {
+public class DefaultTimeZoneOverrideTest {
     @Deployment
     public static JavaArchive createTestArchive() {
-        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultTimeZoneProducer.class)
-                .addClass(DefaultTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(DefaultTimeZoneProducer.class,
+                DefaultTimeZoneOverrideProducerBean.class, DefaultTimeZone.class)
+                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject
@@ -46,10 +52,6 @@ public class DefaultTimeZoneTest {
     @Test
     public void testDefaultTimeZoneProducerDirect() {
         Assert.assertNotNull(timeZone);
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testRawOffsetUnsupportedOperationException() {
-        timeZone.setRawOffset(123);
+        Assert.assertEquals("America/Tijuana", timeZone.getID());
     }
 }

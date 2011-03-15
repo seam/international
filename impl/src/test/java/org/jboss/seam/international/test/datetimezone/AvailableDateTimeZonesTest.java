@@ -17,6 +17,7 @@
 package org.jboss.seam.international.test.datetimezone;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -29,7 +30,6 @@ import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,15 +46,27 @@ public class AvailableDateTimeZonesTest {
     @Inject
     Instance<AvailableDateTimeZoneBean> availBean;
     @Inject
-    List<DateTimeZone> timeZones;
+    List<ForwardingDateTimeZone> timeZones;
 
     @Test
     public void testAvailableTimeZonesProducerViaBean() {
         Assert.assertNotNull(availBean);
-        List<DateTimeZone> list = availBean.get().getAvailTimeZones();
+        List<ForwardingDateTimeZone> list = availBean.get().getAvailTimeZones();
         Assert.assertNotNull(list);
         Assert.assertTrue(!list.isEmpty());
         Assert.assertTrue(list.size() > 0);
+    }
+
+    @Test
+    public void testAvailableTimeZonesProducerViaBeanAccessingDtz() {
+        Assert.assertNotNull(availBean);
+        List<ForwardingDateTimeZone> list = availBean.get().getAvailTimeZones();
+        Assert.assertNotNull(list);
+        Assert.assertTrue(!list.isEmpty());
+        Assert.assertTrue(list.size() > 0);
+        ForwardingDateTimeZone dtz = list.get(0);
+        Assert.assertNotNull(dtz);
+        dtz.getName(234, Locale.US);
     }
 
     @Test

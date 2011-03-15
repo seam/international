@@ -17,20 +17,21 @@
 package org.jboss.seam.international.test.jdktimezone;
 
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import org.jboss.seam.international.jdktimezone.ForwardingTimeZone;
+
 @ApplicationScoped
 public class AvailableTimeZoneBean {
     @Inject
-    private List<TimeZone> timeZones;
+    private List<ForwardingTimeZone> timeZones;
 
     public AvailableTimeZoneBean() {
     }
 
-    public List<TimeZone> getAvailTimeZones() {
+    public List<ForwardingTimeZone> getAvailTimeZones() {
         return timeZones;
     }
 }
