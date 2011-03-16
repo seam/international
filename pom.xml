@@ -58,6 +58,12 @@
             <artifactId>seam-international</artifactId>
             <version>${project.version}</version>
          </dependency>
+
+         <dependency>
+            <groupId>org.jboss.seam.solder</groupId>
+            <artifactId>seam-solder</artifactId>
+            <version>3.0.0.CR2</version>
+         </dependency>
       </dependencies>
    </dependencyManagement>
 
