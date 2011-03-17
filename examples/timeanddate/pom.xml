@@ -88,7 +88,7 @@
 
   <build>
     <defaultGoal>package</defaultGoal>
-    <finalName>${project.artifactId}</finalName>
+    <finalName>international-timeanddate</finalName>
 
     <plugins>
       <plugin>
