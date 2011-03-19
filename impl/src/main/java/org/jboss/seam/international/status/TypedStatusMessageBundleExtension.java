@@ -48,16 +48,15 @@ import javax.enterprise.inject.spi.ProcessInjectionTarget;
 
 import org.jboss.logging.Logger;
 import org.jboss.seam.solder.literal.MessageBundleLiteral;
-import org.jboss.seam.solder.logging.MessageBundle;
+import org.jboss.seam.solder.messages.MessageBundle;
 import org.jboss.seam.solder.reflection.annotated.AnnotatedTypeBuilder;
 
 /**
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
- * 
  */
-public class MessagesExtension implements Extension {
+public class TypedStatusMessageBundleExtension implements Extension {
 
-    private static final Logger log = Logger.getLogger(MessagesExtension.class);
+    private static final Logger log = Logger.getLogger(TypedStatusMessageBundleExtension.class);
 
     <X> void detectBundleInjectionTargets(@Observes ProcessInjectionTarget<X> event, BeanManager beanManager) {
         AnnotatedType<X> type = event.getAnnotatedType();

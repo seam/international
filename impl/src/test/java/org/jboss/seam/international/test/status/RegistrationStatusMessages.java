@@ -16,16 +16,15 @@
  */
 package org.jboss.seam.international.test.status;
 
-import org.jboss.seam.international.status.StatusMessage;
-import org.jboss.seam.solder.log.Locale;
-import org.jboss.seam.solder.logging.Message;
-import org.jboss.seam.solder.logging.MessageBundle;
+import org.jboss.seam.international.status.Status;
+import org.jboss.seam.solder.messages.Locale;
+import org.jboss.seam.solder.messages.Message;
+import org.jboss.seam.solder.messages.MessageBundle;
 
 @MessageBundle
 public interface RegistrationStatusMessages {
-
-    @Message("Username {0} is already taken.  Please choose another.")
-    @StatusMessage()
+    @Status
+    @Message("Username {0} is already taken. Please choose another.")
     @Locale("en_US")
     String duplicateUsername(String username);
 }
