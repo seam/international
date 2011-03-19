@@ -25,7 +25,7 @@
    </modules>
 
    <properties>
-      <seam.version>3.0.0.CR1</seam.version>
+      <seam.version>3.0.0.CR5</seam.version>
    </properties>
 
    <dependencyManagement>
@@ -57,12 +57,6 @@
             <groupId>org.jboss.seam.international</groupId>
             <artifactId>seam-international</artifactId>
             <version>${project.version}</version>
-         </dependency>
-
-         <dependency>
-            <groupId>org.jboss.seam.solder</groupId>
-            <artifactId>seam-solder</artifactId>
-            <version>3.0.0.CR2</version>
          </dependency>
       </dependencies>
    </dependencyManagement>
@@ -141,6 +135,7 @@
    <developers>
       <developer>
          <name>Ken Finnigan</name>
+         <email>ken@kenfinnigan.me</email>
          <timezone>EST</timezone>
          <roles>
             <role>Project Lead</role>
