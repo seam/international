@@ -51,7 +51,7 @@ import javax.enterprise.event.TransactionPhase;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface StatusMessage {
+public @interface Status {
 
     /**
      * The UI target for the message.

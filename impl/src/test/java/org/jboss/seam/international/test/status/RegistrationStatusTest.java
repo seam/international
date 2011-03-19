@@ -32,11 +32,6 @@ import org.junit.runner.RunWith;
 
 //@RunWith(Arquillian.class)
 public class RegistrationStatusTest {
-    // TODO temporary, test with dynamic proxies until tool accepts "BirdLogger extends BirdMessages"
-    static {
-        System.setProperty("jboss.i18n.generate-proxies", "true");
-    }
-
     // @Deployment
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(MessagesImpl.class.getPackage())
