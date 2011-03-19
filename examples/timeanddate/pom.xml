@@ -4,13 +4,13 @@
   <parent>
     <groupId>org.jboss.seam.international</groupId>
     <artifactId>seam-international-parent</artifactId>
-    <version>3.0.0.CR3</version>
+    <version>3.0.0-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.jboss.seam.international</groupId>
   <artifactId>seam-international-example-timeanddate</artifactId>
-  <version>3.0.0.CR3</version>
+  <version>3.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Seam International Time and Date Example</name>
   <url>http://seamframework.org/Seam3</url>
