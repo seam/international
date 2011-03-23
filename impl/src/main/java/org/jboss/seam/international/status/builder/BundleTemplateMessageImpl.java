@@ -16,12 +16,15 @@
  */
 package org.jboss.seam.international.status.builder;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
 import org.jboss.seam.international.status.ApplicationBundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
+import org.jboss.seam.solder.core.Client;
 
 /**
  * 
@@ -38,12 +41,16 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
     @Inject
     ApplicationBundles bundles;
 
+    @Inject
+    @Client
+    Locale clientLocale;
+
     private final Logger log = Logger.getLogger(BundleTemplateMessageImpl.class);
 
     public Message build() {
         String text;
         try {
-            text = bundles.get(textKey.getBundle()).getString(textKey.getKey());
+            text = bundles.get(clientLocale, textKey.getBundle()).getString(textKey.getKey());
         } catch (Exception e) {
             log.warn("Could not load bundle: " + textKey);
             text = textDefault;
