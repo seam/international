@@ -23,9 +23,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.jboss.seam.solder.core.Client;
 
@@ -34,8 +32,6 @@ import org.jboss.seam.solder.core.Client;
  * 
  * @author <a href="http://community.jboss.org/people/ssachtleben">Sebastian Sachtleben</a>
  */
-@Named
-@RequestScoped
 public class Bundles implements Map<String, ResourceBundle>, Serializable {
     private static final long serialVersionUID = -1608918108928277728L;
 
