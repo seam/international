@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.jboss.logging.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -36,20 +37,19 @@ public class AvailableTimeZonesBean {
 	@Inject
 	DateTimeZone applicationTimeZone;
 
-	//@Inject
-	//private Logger log;
+	@Inject
+	private Logger log;
 
 
 	@PostConstruct
 	public void startupTimeAroundTheWorld(){
-		//TODO change sysout to log.info().
-		System.out.println("This bean started on: ");
+		log.info("This bean started on: ");
 		for (Iterator<DateTimeZone> iterator = timeZones.iterator(); iterator.hasNext();) {
 			DateTimeZone dtz = iterator.next();
 			DateTimeFormatter fmt = DateTimeFormat.forPattern(STANDARD_DATE_TIME_FORMAT);
 			DateTime dt = new DateTime().withZone(dtz);
 
-			System.out.println(dtz.getID() + " - "+ fmt.print(dt));
+			log.info(dtz.getID() + " - "+ fmt.print(dt));
 		}
 	}
 
