@@ -23,7 +23,10 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.jboss.seam.solder.core.Client;
 
@@ -32,61 +35,71 @@ import org.jboss.seam.solder.core.Client;
  * 
  * @author <a href="http://community.jboss.org/people/ssachtleben">Sebastian Sachtleben</a>
  */
+@Named
+@RequestScoped
 public class Bundles implements Map<String, ResourceBundle>, Serializable {
     private static final long serialVersionUID = -1608918108928277728L;
 
     @Inject
-    private ApplicationBundles bundles;
+    private Instance<ApplicationBundles> bundlesInstance;
 
     @Inject
     @Client
-    private Locale locale;
+    private Instance<Locale> localeInstance;
+
+    private ApplicationBundles getAppBundle() {
+        return bundlesInstance.get();
+    }
+
+    private Locale getClientLocale() {
+        return localeInstance.get();
+    }
 
     public int size() {
-        return bundles.size(locale);
+        return getAppBundle().size(getClientLocale());
     }
 
     public boolean isEmpty() {
-        return bundles.isEmpty(locale);
+        return getAppBundle().isEmpty(getClientLocale());
     }
 
     public boolean containsKey(final Object key) {
-        return bundles.containsKey(locale, key);
+        return getAppBundle().containsKey(getClientLocale(), key);
     }
 
     public boolean containsValue(final Object value) {
-        return bundles.containsValue(locale, value);
+        return getAppBundle().containsValue(getClientLocale(), value);
     }
 
     public ResourceBundle get(final Object key) {
-        return bundles.get(locale, key);
+        return getAppBundle().get(getClientLocale(), key);
     }
 
     public ResourceBundle put(final String key, final ResourceBundle value) {
-        return bundles.put(locale, key, value);
+        return getAppBundle().put(getClientLocale(), key, value);
     }
 
     public ResourceBundle remove(final Object key) {
-        return bundles.remove(locale, key);
+        return getAppBundle().remove(getClientLocale(), key);
     }
 
     public void putAll(final Map<? extends String, ? extends ResourceBundle> m) {
-        bundles.putAll(locale, m);
+        getAppBundle().putAll(getClientLocale(), m);
     }
 
     public void clear() {
-        bundles.clear(locale);
+        getAppBundle().clear(getClientLocale());
     }
 
     public Set<String> keySet() {
-        return bundles.keySet(locale);
+        return getAppBundle().keySet(getClientLocale());
     }
 
     public Collection<ResourceBundle> values() {
-        return bundles.values(locale);
+        return getAppBundle().values(getClientLocale());
     }
 
     public Set<java.util.Map.Entry<String, ResourceBundle>> entrySet() {
-        return bundles.entrySet(locale);
+        return getAppBundle().entrySet(getClientLocale());
     }
 }

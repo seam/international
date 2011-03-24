@@ -21,6 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.ResourceBundle;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
@@ -32,7 +33,7 @@ import org.jboss.seam.international.status.Bundles;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -45,9 +46,9 @@ public class BundlesTest {
     private static final String BUNDLE_PATH = "org.jboss.seam.international.test.status.TestBundle";
 
     @Deployment
-    public static JavaArchive createTestArchive() {
+    public static WebArchive createTestArchive() {
         return ShrinkWrap
-                .create(JavaArchive.class, "test.jar")
+                .create(WebArchive.class, "test.war")
                 .addPackage(DefaultLocaleProducer.class.getPackage())
                 .addPackage(ApplicationBundles.class.getPackage())
                 .addClass(DefaultLocale.class)
@@ -56,10 +57,11 @@ public class BundlesTest {
     }
 
     @Inject
-    Bundles bundles;
+    Instance<Bundles> bundlesInstance;
 
     @Test
     public void testGetBundles() {
+        Bundles bundles = bundlesInstance.get();
         bundles.put("keyTest", ResourceBundle.getBundle(BUNDLE_PATH));
         assertEquals(1, bundles.size());
         ResourceBundle bdle = bundles.get("keyTest");
