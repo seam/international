@@ -47,6 +47,9 @@ public class Bundles implements Map<String, ResourceBundle>, Serializable {
     @Client
     private Instance<Locale> localeInstance;
 
+    public Bundles() {
+    }
+
     private ApplicationBundles getAppBundle() {
         return bundlesInstance.get();
     }

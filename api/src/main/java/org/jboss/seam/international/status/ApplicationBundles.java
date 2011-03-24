@@ -43,6 +43,9 @@ public class ApplicationBundles implements Serializable {
     @Inject
     Locale appLocale;
 
+    public ApplicationBundles() {
+    }
+
     public void clear(final Locale locale) {
         containsLocaleMap(locale);
         bundles.get(locale).clear();
