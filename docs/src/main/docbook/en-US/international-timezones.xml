@@ -30,10 +30,10 @@
          that can be retrieved with
       </para>
       <programlisting role="JAVA"><![CDATA[@Inject
-DateTimeZone applicationDateTimeZone;
+private DateTimeZone applicationDateTimeZone;
 
 @Inject
-TimeZone applicationTimeZone]]></programlisting>
+private TimeZone applicationTimeZone]]></programlisting>
       <para>
          It can also be accessed through EL by the name "defaultDateTimeZone" for Joda-Time
          or "defaultTimeZone" for JDK!
@@ -61,11 +61,11 @@ private String defaultTimeZoneId = "America/Tijuana";]]></programlisting>
       </para>
       <programlisting role="JAVA"><![CDATA[@Inject
 @Client
-DateTimeZone userDateTimeZone;
+private DateTimeZone userDateTimeZone;
 
 @Inject
 @Client
-TimeZone userTimeZone;]]></programlisting>
+private TimeZone userTimeZone;]]></programlisting>
       <para>
          It can also be accessed through EL using "userDateTimeZone" for Joda-Time
          and "userTimeZone" for JDK.
@@ -80,20 +80,19 @@ TimeZone userTimeZone;]]></programlisting>
       <programlisting role="JAVA"><![CDATA[@Inject
 @Client
 @Alter
-Event<DateTimeZone> dtzEvent;
+private Event<DateTimeZone> dtzEvent;
 
 @Inject
 @Client
 @Alter
-Event<TimeZone> tzEvent;
+private Event<TimeZone> tzEvent;
 
-public void setUserDateTimeZone()
-{
-     DateTimeZone dtzTijuana = DateTimeZone.forID("America/Tijuana");
-     dtzEvent.fire(dtzTijuana);
+public void setUserDateTimeZone() {
+    DateTimeZone dtzTijuana = DateTimeZone.forID("America/Tijuana");
+    dtzEvent.fire(dtzTijuana);
 
-     TimeZone tzTijuana = TimeZone.getTimeZone("America/Tijuana");
-     tzEvent.fire(tzTijuana);
+    TimeZone tzTijuana = TimeZone.getTimeZone("America/Tijuana");
+    tzEvent.fire(tzTijuana);
 }]]></programlisting>
    </section>
    <section id="availtz">
@@ -102,9 +101,9 @@ public void setUserDateTimeZone()
          We've also provided a list of available TimeZones that can be accessed via
       </para>
       <programlisting role="JAVA"><![CDATA[@Inject
-List<ForwardingDateTimeZone> dateTimeZones;
+private List<ForwardingDateTimeZone> dateTimeZones;
 
 @Inject
-List<ForwardingTimeZone> timeZones;]]></programlisting>
+private List<ForwardingTimeZone> timeZones;]]></programlisting>
    </section>
 </chapter>

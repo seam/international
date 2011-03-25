@@ -9,7 +9,7 @@
 			In a similar fashion to TimeZones we have an Application <literal>Locale</literal>:
 		</para>
 <programlisting role="JAVA"><![CDATA[@Inject
-java.util.Locale lc;]]></programlisting>
+private java.util.Locale lc;]]></programlisting>
 		<para>
 			accessible via EL with "defaultLocale".
 		</para>
@@ -37,7 +37,7 @@ private String defaultLocaleKey = "en_US";]]></programlisting>
 		<para>The Locale associated with the User Session can be retrieved by:</para>
 <programlisting role="JAVA"><![CDATA[@Inject
 @Client
-java.util.Locale locale;]]></programlisting>
+private java.util.Locale locale;]]></programlisting>
 		<para>
 			which is EL accessible via <literal>userLocale</literal>.
 		</para>
@@ -48,12 +48,11 @@ java.util.Locale locale;]]></programlisting>
 		</para>
 <programlisting role="JAVA"><![CDATA[@Inject
 @Alter
-Event<java.util.Locale> localeEvent;
+private Event<java.util.Locale> localeEvent;
  
-public void setUserLocale()
-{
-     Locale canada = Locale.CANADA;
-     localeEvent.fire(canada);
+public void setUserLocale() {
+    Locale canada = Locale.CANADA;
+    localeEvent.fire(canada);
 }]]></programlisting>
 	</section>
 	<section id="availlc">
@@ -62,7 +61,7 @@ public void setUserLocale()
 			We've also provided a list of available Locales that can be accessed via:
 		</para>
 <programlisting role="JAVA"><![CDATA[@Inject
-List<java.util.Locale> locales;]]></programlisting>
+private List<java.util.Locale> locales;]]></programlisting>
 		<para>
 			The locales that will be returned as available can be defined by extending <literal>LocaleConfiguration</literal>.
          As seen here:

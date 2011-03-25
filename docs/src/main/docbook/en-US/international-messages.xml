@@ -13,22 +13,20 @@
          directly to the UI, but want to log it out, or store it somewhere else
       </para>
 <programlisting role="JAVA"><![CDATA[@Inject
-MessageFactory factory;
+private MessageFactory factory;
  
-public String getMessage()
-{
-     MessageBuilder builder = factory.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");#
-     return builder.build().getText();
+public String getMessage() {
+    MessageBuilder builder = factory.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");
+    return builder.build().getText();
 }]]></programlisting>
       <para>
          The second is to add the message to a list that will be returned to the UI for display.
       </para>
 <programlisting role="JAVA"><![CDATA[@Inject
-Messages messages;
+private Messages messages;
  
-public void setMessage()
-{
-     messages.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");
+public void setMessage() {
+    messages.info("There are {0} cars, and they are all {1}; {1} is the best color.", 5, "green");
 }]]></programlisting>
       <para>
          Either of these methods supports the four message levels which are info, warning, error and fatal.
