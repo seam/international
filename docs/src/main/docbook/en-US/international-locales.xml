@@ -4,9 +4,9 @@
 <chapter id="international.locales">
 	<title>Locales</title>
 	<section id="defaultlc">
-		<title>Default Locale</title>
+		<title>Application Locale</title>
 		<para>
-			In a similar fashion to TimeZones we have an application <literal>Locale</literal> retrieved by
+			In a similar fashion to TimeZones we have an Application <literal>Locale</literal>:
 		</para>
 <programlisting role="JAVA"><![CDATA[@Inject
 java.util.Locale lc;]]></programlisting>
@@ -14,64 +14,40 @@ java.util.Locale lc;]]></programlisting>
 			accessible via EL with "defaultLocale".
 		</para>
 		<para>
-			By default the <literal>Locale</literal> will be set to the JVM default, unless you override the <literal>DefaultLocaleProducer</literal> Bean via the Seam Config module.
-			Here are a few examples of XML that can be used to define the various types of <literal>Locale</literal>s that are available.
+			By default the <literal>Locale</literal> will be set to the JVM default, unless you
+         produce a String annotated with <literal>@DefaultLocale</literal>.  This can be achieved
+         through either the Seam Config module, with any bean that <literal>@Produces</literal>
+         a method or field that matches the type and qualifier.
 		</para>
 		<para>
-			This will set the default language to be French.
+			This will set the application language to be English with the country of US:
 		</para>
-<programlisting role="XML"><![CDATA[<beans xmlns="http://java.sun.com/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:s="urn:java:seam:core" 
-   xmlns:lc="urn:java:org.jboss.seam.international.locale"
-   xsi:schemaLocation="
-      http://java.sun.com/xml/ns/javaee 
-      http://docs.jboss.org/cdi/beans_1_0.xsd">
-
-    <lc:DefaultLocaleProducer>
-        <s:replaces/>
-        <lc:defaultLocaleKey>fr</lc:defaultLocaleKey>
-    </lc:DefaultLocaleProducer>
-</beans>]]></programlisting>
+<programlisting role="JAVA"><![CDATA[@Produces
+@DefaultLocale
+private String defaultLocaleKey = "en_US";]]></programlisting>
 		<para>
-			This will set the default language to be English with the country of US.
-		</para>
-<programlisting role="XML"><![CDATA[<beans xmlns="http://java.sun.com/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:s="urn:java:seam:core" 
-   xmlns:lc="urn:java:org.jboss.seam.international.locale"
-   xsi:schemaLocation="
-      http://java.sun.com/xml/ns/javaee 
-      http://docs.jboss.org/cdi/beans_1_0.xsd">
-
-    <lc:DefaultLocaleProducer>
-        <s:replaces/>
-        <lc:defaultLocaleKey>en_US</lc:defaultLocaleKey>
-    </lc:DefaultLocaleProducer>
-</beans>]]></programlisting>
-		<para>
-			As you can see from the previous examples, you can define the <literal>Locale</literal> with 
+			As you can see from the previous example, you can define the <literal>Locale</literal> with 
 			<literal>lang_country_variant</literal>.  It's important to note that the first two parts of the locale definition
-			are not expected to be greater than 2 characters otherwise an error will be produced and it will default to the JVM <literal>Locale</literal>.
+			are not expected to be greater than 2 characters otherwise an error will be produced
+         and it will default to the JVM <literal>Locale</literal>.
 		</para>
 	</section>
 	<section id="userlc">
 		<title>User Locale</title>
-		<para>
-			The Locale associated with the User Session can be retrieved by
-		</para>
+		<para>The Locale associated with the User Session can be retrieved by:</para>
 <programlisting role="JAVA"><![CDATA[@Inject
-@UserLocale
+@Client
 java.util.Locale locale;]]></programlisting>
 		<para>
 			which is EL accessible via <literal>userLocale</literal>.
 		</para>
 		<para>
-			By default the <literal>Locale</literal> will be the same as that of the application when the User Session is initially created.  However, changing the User's <literal>Locale</literal> is a simple
-			matter of firing an event to update it.  An example would be
+			By default the <literal>Locale</literal> will be that of the Application when the User Session
+         is initialized.  However, changing the User's <literal>Locale</literal> is a simple
+			matter of firing an event to update it.  An example would be:
 		</para>
 <programlisting role="JAVA"><![CDATA[@Inject
-@Changed
+@Alter
 Event<java.util.Locale> localeEvent;
  
 public void setUserLocale()
@@ -83,27 +59,20 @@ public void setUserLocale()
 	<section id="availlc">
 		<title>Available Locales</title>
 		<para>
-			We've also provided a list of available Locales that can be accessed via
+			We've also provided a list of available Locales that can be accessed via:
 		</para>
 <programlisting role="JAVA"><![CDATA[@Inject
 List<java.util.Locale> locales;]]></programlisting>
 		<para>
-			The locales that will be returned with this can be defined with XML configuration of the <literal>AvailableLocales</literal> Bean such as
+			The locales that will be returned as available can be defined by extending <literal>LocaleConfiguration</literal>.
+         As seen here:
 		</para>
-<programlisting role="XML"><![CDATA[<beans xmlns="http://java.sun.com/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:s="urn:java:ee"
-   xmlns:lc="urn:java:org.jboss.seam.international.locale"
-   xsi:schemaLocation="
-      http://java.sun.com/xml/ns/javaee 
-      http://docs.jboss.org/cdi/beans_1_0.xsd">
-
-    <lc:LocaleConfiguration>
-        <lc:supportedLocaleKeys>
-            <s:value>en</s:value>
-            <s:value>fr</s:value>
-        </lc:supportedLocaleKeys>
-    </lc:LocaleConfiguration>
-</beans>]]></programlisting>
+<programlisting role="JAVA"><![CDATA[public class CustomLocaleConfiguration extends LocaleConfiguration {
+    @PostConstruct
+    public void setup() {
+        addSupportedLocaleKey("en");
+        addSupportedLocaleKey("fr");
+    }
+}]]></programlisting>
 	</section>
 </chapter>

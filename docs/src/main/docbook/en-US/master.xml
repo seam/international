@@ -3,14 +3,14 @@
    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
 <book lang="en">
 
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="book_info.xml" />
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-book_info.xml" />
 
    <toc />
 
    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-preface.xml" />
    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-installation.xml" />
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-locales.xml" />
    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-timezones.xml" />
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-locales.xml" />
    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="international-messages.xml" />
 
    <!--

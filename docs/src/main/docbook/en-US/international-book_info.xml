@@ -5,9 +5,9 @@
 <bookinfo>
    <title>Seam International Module</title>
    <subtitle>Reference Guide</subtitle>
-   <releaseinfo>3.0.0-SNAPSHOT</releaseinfo>
 
-   <xi:include href="author_group.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+   <xi:include href="international-author_group.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+   <xi:include href="version_info.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
 
 <!--
 vim:et:ts=3:sw=3:tw=120

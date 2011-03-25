@@ -9,7 +9,7 @@
 		build tool, you can add the following dependency to your <literal>pom.xml</literal> file:
 	</para>
 	<programlisting role="XML"><![CDATA[<dependency>
-	<groupId>org.jboss.seam</groupId>
+	<groupId>org.jboss.seam.international</groupId>
 	<artifactId>seam-international</artifactId>
 	<version>${seam-international-version}</version>
 </dependency>]]></programlisting>	
