@@ -47,6 +47,7 @@ private java.util.Locale locale;]]></programlisting>
 			matter of firing an event to update it.  An example would be:
 		</para>
 <programlisting role="JAVA"><![CDATA[@Inject
+@Client
 @Alter
 private Event<java.util.Locale> localeEvent;
  
