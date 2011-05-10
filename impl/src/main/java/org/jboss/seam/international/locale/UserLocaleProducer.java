@@ -30,7 +30,7 @@ import org.jboss.seam.solder.core.Client;
 
 /**
  * Locale for a User Session. Defaults to the Locale within DefaultLocale and is altered when it receives the @Changed event.
- * 
+ *
  * @author Ken Finnigan
  */
 

@@ -21,9 +21,8 @@ import java.util.ResourceBundle;
 
 /**
  * Represents the name/key pair for a {@link ResourceBundle} lookup.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public class BundleKey implements Serializable {
     private static final long serialVersionUID = -4817189437146173796L;

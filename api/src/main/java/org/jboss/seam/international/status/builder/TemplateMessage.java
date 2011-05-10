@@ -22,24 +22,23 @@ import org.jboss.seam.international.status.MessageBuilder;
 
 /**
  * This {@link MessageBuilder} creates {@link Message} objects by interpolating templates with values supplied as parameters.
- * <p>
+ * <p/>
  * <b>For example:</b> Given the following {@link Message} m
- * 
+ * <p/>
  * <pre>
  * Message m = {@link MessageFactory}.info(&quot;There are {0} cars, and they are all {1}.&quot;, 5, &quot;green&quot;).build();
  * </pre>
- * 
+ * <p/>
  * A subsequent call to <code>m.getSummary()</code> will return:<br/>
  * <code>"There are 5 cars, and they are all green."</code>;
- * <p>
- * 
+ * <p/>
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public interface TemplateMessage extends MessageBuilder {
     /**
      * Set the template for this message.
-     * <p>
+     * <p/>
      * Any expressions of the form "{0}, {1} ... {N}" found in the template will be interpolated; numbers reference the index of
      * any given parameters, and can be used more than once per template.
      */
@@ -47,7 +46,7 @@ public interface TemplateMessage extends MessageBuilder {
 
     /**
      * Set the parameters for this builder's template.
-     * <p>
+     * <p/>
      * Parameters may be referenced by index in the template, using expressions of the form "{0}, {1} ... {N}"
      */
     public TemplateMessage textParams(final Object... summaryParams);

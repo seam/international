@@ -31,7 +31,7 @@ import org.jboss.seam.solder.core.Client;
 /**
  * TimeZone for a User Session. Defaults to the TimeZone within DefaultTimeZone and is altered when it receives the @Alter
  * event.
- * 
+ *
  * @author Ken Finnigan
  */
 

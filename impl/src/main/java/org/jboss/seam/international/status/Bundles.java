@@ -32,7 +32,7 @@ import org.jboss.seam.solder.core.Client;
 
 /**
  * Access to map of {@link ResourceBundle} objects for user locale.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/ssachtleben">Sebastian Sachtleben</a>
  */
 @Named

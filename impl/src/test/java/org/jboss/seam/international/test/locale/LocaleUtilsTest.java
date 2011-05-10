@@ -19,7 +19,6 @@ package org.jboss.seam.international.test.locale;
 import java.util.Locale;
 
 import junit.framework.Assert;
-
 import org.jboss.seam.international.locale.LocaleUtils;
 import org.junit.Test;
 

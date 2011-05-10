@@ -21,15 +21,13 @@ import java.util.regex.Pattern;
 
 /**
  * Populates an interpolated string using the given template and parameters:
- * <p>
+ * <p/>
  * <b>For example:</b><br>
  * Template: <code>"This is a {0} template with {1} parameters. Just {1}."</code><br>
  * Parameters: <code>"simple", 2</code><br>
  * Result: <code>"This is a simple template with 2 parameters. Just 2"</code>
- * 
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 class Interpolator {
     private static final String templateRegex = "\\{(\\d+)\\}";

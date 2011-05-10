@@ -16,10 +16,6 @@
  */
 package org.jboss.seam.international.test.status;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
@@ -43,9 +39,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 @RunWith(Arquillian.class)
 public class MessagesTest {

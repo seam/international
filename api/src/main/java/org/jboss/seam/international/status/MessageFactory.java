@@ -30,9 +30,8 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
 /**
  * A utility for building {@link Message} objects via message templates, or message bundles. See {@link TemplateMessage} or
  * {@link BundleTemplateMessage} .
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public class MessageFactory implements Serializable {
     private static final long serialVersionUID = -7899463141244189001L;
@@ -112,11 +111,11 @@ public class MessageFactory implements Serializable {
 
     /**
      * Get a single CDI managed instance of a specific class. Return only the first result if multiple beans are available.
-     * <p>
+     * <p/>
      * <b>NOTE:</b> Using this method should be avoided at all costs.
-     * 
+     *
      * @param manager The bean manager with which to perform the lookup.
-     * @param type The class for which to return an instance.
+     * @param type    The class for which to return an instance.
      * @return The managed instance, or null if none could be provided.
      */
     @SuppressWarnings("unchecked")

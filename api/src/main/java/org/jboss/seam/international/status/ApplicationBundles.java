@@ -29,7 +29,7 @@ import javax.inject.Inject;
 
 /**
  * Maintains a global map of locales containing {@link ResourceBundle} objects.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * @author <a href="http://community.jboss.org/people/ssachtleben">Sebastian Sachtleben</a>
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>

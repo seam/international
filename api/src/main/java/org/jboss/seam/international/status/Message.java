@@ -20,7 +20,7 @@ import java.io.Serializable;
 
 /**
  * An object representing a message that needs to be displayed to the User.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  */
 public interface Message extends Serializable {

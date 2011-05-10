@@ -23,7 +23,7 @@ import org.jboss.seam.solder.core.Veto;
 
 /**
  * The locale configuration provides a list of locales defined in the seam-beans.xml.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/ssachtleben">Sebastian Sachtleben</a>
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
  */

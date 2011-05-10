@@ -26,14 +26,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jboss.logging.Logger;
-import org.jboss.seam.international.datetimezone.ForwardingDateTimeZone;
 import org.jboss.seam.international.timezone.DefaultTimeZone;
 import org.joda.time.DateTimeZone;
 
 /**
  * Default DateTimeZone of the application. If configuration of the default DateTimeZone is found that will be used, otherwise
  * the JVM default TimeZone.
- * 
+ *
  * @author Ken Finnigan
  */
 

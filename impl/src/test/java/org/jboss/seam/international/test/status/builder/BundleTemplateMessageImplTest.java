@@ -16,8 +16,6 @@
  */
 package org.jboss.seam.international.test.status.builder;
 
-import static org.junit.Assert.assertEquals;
-
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
@@ -37,9 +35,10 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 @RunWith(Arquillian.class)
 public class BundleTemplateMessageImplTest {

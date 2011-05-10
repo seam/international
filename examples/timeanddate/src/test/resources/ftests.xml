@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
 <suite name="Seam TimeAndDate Example" verbose="2" parallel="false">
-   <test name="timeanddate_ftest">
-      <parameter name="example.context.path" value="/seam-international-example-timeanddate" />
-      <packages>
-         <package name="org.jboss.seam.international.examples.timeanddate.ftest" />
-      </packages>
-   </test>
+    <test name="timeanddate_ftest">
+        <parameter name="example.context.path" value="/seam-international-example-timeanddate"/>
+        <packages>
+            <package name="org.jboss.seam.international.examples.timeanddate.ftest"/>
+        </packages>
+    </test>
 </suite>

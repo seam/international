@@ -26,7 +26,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
-import org.jboss.seam.international.datetimezone.ForwardingDateTimeZone;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -35,14 +34,14 @@ import org.joda.time.DateTimeZone;
  * deprecated three-letter time zone IDs. The time zones returned have a fixed offset from UTC, which takes daylight savings
  * time into account. For example, Europe/Amsterdam is UTC+1; in winter this is GMT+1 and in summer GMT+2.
  * </p>
- * 
+ * <p/>
  * <p>
  * The time zone objects returned are wrapped in an implementation of TimeZone that provides a more friendly interface for
  * accessing the time zone information. In particular, this type provides a more bean-friend property for the time zone id (id
  * than ID) and provides a convenience property named label that formats the time zone for display in the UI. This wrapper can
  * be disabled by setting the component property wrap to false.
  * </p>
- * 
+ *
  * @author Peter Hilton, Lunatech Research
  * @author Dan Allen
  */

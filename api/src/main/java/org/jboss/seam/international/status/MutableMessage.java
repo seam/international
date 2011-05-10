@@ -18,9 +18,8 @@ package org.jboss.seam.international.status;
 
 /**
  * A stateful {@link Message} object.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public interface MutableMessage extends Message {
     /**

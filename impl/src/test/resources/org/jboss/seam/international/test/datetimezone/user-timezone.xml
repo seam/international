@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="urn:java:ee"
-          xmlns:tz="urn:java:org.jboss.seam.international.timezone">
+       xmlns:tz="urn:java:org.jboss.seam.international.timezone">
 
     <String>
-      <Produces/>
-      <tz:DefaultTimeZoneConfig/>
-      <value>America/NewYork</value>
+        <Produces/>
+        <tz:DefaultTimeZoneConfig/>
+        <value>America/NewYork</value>
     </String>
 </beans>

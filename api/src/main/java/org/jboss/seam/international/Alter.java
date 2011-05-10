@@ -16,22 +16,22 @@
  */
 package org.jboss.seam.international;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import javax.inject.Qualifier;
 
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 /**
  * Qualifier used with Events to signify either a TimeZone or Locale needs to change.
- * 
+ *
  * @author Ken Finnigan
  */
-@Target({ PARAMETER, FIELD })
+@Target({PARAMETER, FIELD})
 @Retention(RUNTIME)
 @Documented
 @Qualifier

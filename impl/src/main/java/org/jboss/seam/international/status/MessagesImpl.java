@@ -30,9 +30,8 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
 
 /**
  * An implementation of the {@link Messages} interface.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com>Lincoln Baxter, III</a>
- * 
  */
 @RequestScoped
 public class MessagesImpl implements Messages {

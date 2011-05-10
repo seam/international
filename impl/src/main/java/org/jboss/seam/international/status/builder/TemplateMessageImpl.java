@@ -25,9 +25,7 @@ import org.jboss.seam.international.status.MessageImpl;
 import org.jboss.seam.international.status.MutableMessage;
 
 /**
- * 
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public class TemplateMessageImpl implements MessageBuilder, TemplateMessage {
     private final Interpolator interpolator = new Interpolator();

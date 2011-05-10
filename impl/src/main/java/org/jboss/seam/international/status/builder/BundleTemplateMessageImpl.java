@@ -27,9 +27,7 @@ import org.jboss.seam.international.status.Message;
 import org.jboss.seam.solder.core.Client;
 
 /**
- * 
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public class BundleTemplateMessageImpl implements BundleTemplateMessage {
     @Inject

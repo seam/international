@@ -22,13 +22,13 @@ import java.util.TimeZone;
 
 /**
  * Delegating TimeZone.
- * 
+ *
  * @author Ken Finnigan
  */
 public abstract class ForwardingTimeZone extends TimeZone {
     /**
      * Abstract getter for the delegate
-     * 
+     *
      * @return The delegate
      */
     protected abstract TimeZone delegate();

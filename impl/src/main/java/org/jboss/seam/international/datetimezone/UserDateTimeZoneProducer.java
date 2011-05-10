@@ -31,7 +31,7 @@ import org.joda.time.DateTimeZone;
 /**
  * DateTimeZone for a User Session. Defaults to the DateTimeZone within DefaultDateTimeZone and is altered when it receives the @Alter
  * event.
- * 
+ *
  * @author Ken Finnigan
  */
 

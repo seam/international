@@ -32,7 +32,7 @@ import org.jboss.seam.international.timezone.DefaultTimeZone;
 /**
  * Default TimeZone of the application. If configuration of the default TimeZone is found that will be used, otherwise the JVM
  * default TimeZone.
- * 
+ *
  * @author Ken Finnigan
  */
 

@@ -16,8 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@Requires({ "org.joda.time.DateTimeZone" })
-package org.jboss.seam.international.datetimezone;
+@Requires({"org.joda.time.DateTimeZone"}) package org.jboss.seam.international.datetimezone;
 
 import org.jboss.seam.solder.core.Requires;
 

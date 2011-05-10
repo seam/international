@@ -16,19 +16,14 @@
  */
 package org.jboss.seam.international.test.status;
 
-import static junit.framework.Assert.assertEquals;
 import javax.inject.Inject;
 
-import org.jboss.arquillian.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.status.MessagesImpl;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 //@RunWith(Arquillian.class)
 public class RegistrationStatusTest {

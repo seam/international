@@ -19,9 +19,8 @@ package org.jboss.seam.international.status;
 /**
  * A {@link MessageBuilder} is used to generate populated {@link Message} objects. These messages may then be added to the
  * outgoing message cache via {@link Messages}
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public interface MessageBuilder {
     /**

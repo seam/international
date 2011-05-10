@@ -23,13 +23,13 @@ import org.joda.time.DateTimeZone;
 
 /**
  * Delegating TimeZone.
- * 
+ *
  * @author Ken Finnigan
  */
 public abstract class ForwardingDateTimeZone extends DateTimeZone {
     /**
      * Abstract getter for the delegate
-     * 
+     *
      * @return The delegate
      */
     protected abstract DateTimeZone delegate();
@@ -105,7 +105,7 @@ public abstract class ForwardingDateTimeZone extends DateTimeZone {
 
     /**
      * Compares an object with the delegate
-     * 
+     *
      * @return True if equals, false otherwise
      */
     @Override
@@ -115,7 +115,7 @@ public abstract class ForwardingDateTimeZone extends DateTimeZone {
 
     /**
      * Gets the hash code of the delegate
-     * 
+     *
      * @return The hash code
      */
     @Override
@@ -125,7 +125,7 @@ public abstract class ForwardingDateTimeZone extends DateTimeZone {
 
     /**
      * Returns a string representation
-     * 
+     *
      * @return The string representation
      */
     @Override

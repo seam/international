@@ -18,9 +18,8 @@ package org.jboss.seam.international.status;
 
 /**
  * A basic implementation of {@link MutableMessage}.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
- * 
  */
 public class MessageImpl implements Message, MutableMessage {
     private static final long serialVersionUID = -1812292372048679525L;

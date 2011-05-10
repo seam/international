@@ -22,7 +22,6 @@ import org.jboss.seam.international.timezone.DefaultTimeZone;
 
 /**
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
- *
  */
 public class DefaultTimeZoneOverrideProducerBean {
 

@@ -46,7 +46,7 @@ import javax.enterprise.event.TransactionPhase;
 
 /**
  * A typed status message method. Indicates that this method will log the associated {@link Message} to the UI.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -55,7 +55,7 @@ public @interface Status {
 
     /**
      * The UI target for the message.
-     * 
+     *
      * @return Target
      */
     String target() default "";
@@ -64,7 +64,7 @@ public @interface Status {
 
     /**
      * The message level.
-     * 
+     *
      * @return the message level
      */
     Level level() default Level.INFO;

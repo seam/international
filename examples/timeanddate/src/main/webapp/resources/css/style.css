@@ -3,11 +3,12 @@
     background-color: #F7BE81;
     color: white;
     font-family: Helvetica, sans-serif;
-    font-size:medium;
-    font-weight:bold;
+    font-size: medium;
+    font-weight: bold;
     padding: 5px;
     margin: 0px 0px 10px 0px;
 }
+
 #menu {
     position: relative;
     background-color: #F6E3CE;
@@ -17,11 +18,11 @@
 }
 
 #menu a {
-     margin: 10px;
+    margin: 10px;
 }
 
 #menuworldsclock a {
-     margin: 10px;
+    margin: 10px;
 }
 
 #bottom {
@@ -31,38 +32,39 @@
     margin: 10px 0px 0px 0px;
 }
 
-
 .worldsclockdiv {
-	border:solid 1px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 30%;
+    border: solid 1px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
+
 .worldsclocktable {
-	font-family: Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     font-size: small;
     width: 100%;
 }
 
 .worldsclocktableheader {
-	font-family: Helvetica, sans-serif;
-	font-weight:bold;
-	background-color: #F6E3CE;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #F6E3CE;
 }
 
 .worldsclockcolumnheader {
-	font-family: Helvetica, sans-serif;
-	font-weight:bold;
-	background-color: #FAAC58;
-	text-align: "center";
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #FAAC58;
+    text-align: "center";
 }
-.first{
-	text-align: left;
 
+.first {
+    text-align: left;
 
 }
-.second{
-	text-align:right;
-	width:120px;
-	font-weight:lighter;
+
+.second {
+    text-align: right;
+    width: 120px;
+    font-weight: lighter;
 }

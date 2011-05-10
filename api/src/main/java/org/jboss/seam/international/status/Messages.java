@@ -28,12 +28,11 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
 
 /**
  * A convenient way to add messages to be displayed to the user as Feedback, Toast, Alerts, etc.
- * <p>
+ * <p/>
  * It is the responsibility of the view-layer technology to consume and perform operations required to display any messages
  * added in this way.
- * 
+ *
  * @author <a href="mailto:lincolnbaxter@gmail.com>Lincoln Baxter, III</a>
- * 
  */
 @RequestScoped
 public interface Messages extends Serializable {
@@ -57,7 +56,7 @@ public interface Messages extends Serializable {
     /**
      * Add a {@link Message} object to the pending message cache. Messages remain pending until cleared by and displayed in the
      * View Layer, or until cleared manually by calling {@link #clear()}, or until the user's Session expires.
-     * <p>
+     * <p/>
      * <b>Note:</b> Duplicate messages are ignored.
      */
     public void add(final Message message);
