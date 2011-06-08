@@ -37,7 +37,7 @@ public class DefaultTimeZoneTest {
     @Deployment
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultTimeZoneProducer.class)
-                .addClass(DefaultTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addClass(DefaultTimeZone.class).addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

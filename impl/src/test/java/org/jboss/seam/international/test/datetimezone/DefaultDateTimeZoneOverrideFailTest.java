@@ -44,7 +44,7 @@ public class DefaultDateTimeZoneOverrideFailTest {
                 .addClass(DefaultDateTimeZoneProducer.class)
                 .addClass(DefaultTimeZone.class)
                 .addClass(DefaultDateTimeZoneOverrideFailProducerBean.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

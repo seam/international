@@ -40,7 +40,7 @@ public class AvailableDateTimeZonesTest {
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addClasses(AvailableDateTimeZones.class, AvailableDateTimeZoneBean.class, ForwardingDateTimeZone.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

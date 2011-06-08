@@ -37,7 +37,7 @@ public class DefaultLocaleOverrideFailTest {
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultLocaleProducer.class)
                 .addClass(DefaultLocaleKeyFailBean.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

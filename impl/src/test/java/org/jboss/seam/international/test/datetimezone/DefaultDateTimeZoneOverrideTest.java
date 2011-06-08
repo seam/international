@@ -42,7 +42,7 @@ public class DefaultDateTimeZoneOverrideTest {
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(DefaultDateTimeZoneProducer.class,
                 DefaultDateTimeZoneOverrideProducerBean.class, DefaultTimeZone.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

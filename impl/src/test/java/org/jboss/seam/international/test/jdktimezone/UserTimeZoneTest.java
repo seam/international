@@ -43,7 +43,7 @@ public class UserTimeZoneTest {
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(UserTimeZoneProducer.class)
                 .addClass(DefaultTimeZoneProducer.class).addClass(DefaultTimeZone.class).addClass(Alter.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
         // .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml",
         // ArchivePaths.create("beans.xml"));
     }

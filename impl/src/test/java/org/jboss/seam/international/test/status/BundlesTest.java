@@ -16,9 +16,11 @@
  */
 package org.jboss.seam.international.test.status;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.ResourceBundle;
 
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.api.Deployment;
@@ -33,9 +35,6 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>
@@ -52,15 +51,14 @@ public class BundlesTest {
                 .addPackage(ApplicationBundles.class.getPackage())
                 .addClass(DefaultLocale.class)
                 .addClass(Bundles.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject
-    Instance<Bundles> bundlesInstance;
+    Bundles bundles;
 
     @Test
     public void testGetBundles() {
-        Bundles bundles = bundlesInstance.get();
         bundles.put("keyTest", ResourceBundle.getBundle(BUNDLE_PATH));
         assertEquals(1, bundles.size());
         ResourceBundle bdle = bundles.get("keyTest");

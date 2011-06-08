@@ -39,7 +39,7 @@ public class AvailableLocalesTest {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar");
         jar.addClass(AvailableLocales.class);
         jar.addClass(CustomLocaleConfiguration.class);
-        jar.addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        jar.addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
         return jar;
     }
 

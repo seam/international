@@ -36,7 +36,7 @@ public class DefaultDateTimeZoneTest {
     @Deployment
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultDateTimeZoneProducer.class)
-                .addClass(DefaultTimeZone.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addClass(DefaultTimeZone.class).addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
         // .addManifestResource("org/jboss/seam/international/test/datetimezone/user-timezone.xml",
         // ArchivePaths.create("beans.xml"));
     }
