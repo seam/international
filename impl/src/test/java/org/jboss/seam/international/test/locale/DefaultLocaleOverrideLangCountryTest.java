@@ -37,7 +37,7 @@ public class DefaultLocaleOverrideLangCountryTest {
     @Deployment
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultLocaleProducer.class)
-                .addClass(DefaultLocale.class).addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addClass(DefaultLocale.class).addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
         // .addManifestResource("org/jboss/seam/international/test/locale/override-lang-country.xml",
         // ArchivePaths.create("beans.xml"));
     }

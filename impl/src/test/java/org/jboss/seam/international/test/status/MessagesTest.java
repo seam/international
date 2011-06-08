@@ -57,7 +57,7 @@ public class MessagesTest {
                 .addClasses(MessagesImpl.class, MessageFactory.class, BundleTemplateMessageImpl.class,
                         TemplateMessageImpl.class, ApplicationBundles.class, DefaultLocaleProducer.class,
                         UserLocaleProducer.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

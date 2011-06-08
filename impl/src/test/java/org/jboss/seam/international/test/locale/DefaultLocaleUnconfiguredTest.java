@@ -36,7 +36,7 @@ public class DefaultLocaleUnconfiguredTest {
     @Deployment
     public static JavaArchive createTestArchive() {
         JavaArchive ja = ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultLocaleProducer.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
         return ja;
     }
 

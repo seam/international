@@ -39,7 +39,7 @@ public class AvailableTimeZonesTest {
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addClasses(AvailableTimeZones.class, AvailableTimeZoneBean.class, ForwardingTimeZone.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

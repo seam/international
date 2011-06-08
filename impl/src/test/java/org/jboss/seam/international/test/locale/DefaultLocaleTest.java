@@ -37,7 +37,7 @@ public class DefaultLocaleTest {
     public static JavaArchive createTestArchive() {
         JavaArchive ja = ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(DefaultLocaleProducer.class)
                 .addClass(DefaultLocaleKeyBean.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
         return ja;
     }
 

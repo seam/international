@@ -45,7 +45,7 @@ public class DefaultTimeZoneOverrideFailTest {
                 .addClass(DefaultTimeZoneProducer.class)
                 .addClass(DefaultTimeZone.class)
                 .addClass(DefaultTimeZoneOverrideFailProducerBean.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

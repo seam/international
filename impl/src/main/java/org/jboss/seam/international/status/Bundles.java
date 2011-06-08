@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -41,21 +40,21 @@ public class Bundles implements Map<String, ResourceBundle>, Serializable {
     private static final long serialVersionUID = -1608918108928277728L;
 
     @Inject
-    private Instance<ApplicationBundles> bundlesInstance;
+    private ApplicationBundles appBundle;
 
     @Inject
     @Client
-    private Instance<Locale> localeInstance;
+    private Locale clientLocale;
 
     public Bundles() {
     }
 
     private ApplicationBundles getAppBundle() {
-        return bundlesInstance.get();
+        return appBundle;
     }
 
     private Locale getClientLocale() {
-        return localeInstance.get();
+        return clientLocale;
     }
 
     public int size() {

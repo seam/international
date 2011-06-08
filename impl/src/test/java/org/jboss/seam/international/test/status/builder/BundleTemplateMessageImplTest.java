@@ -48,7 +48,7 @@ public class BundleTemplateMessageImplTest {
                 .create(JavaArchive.class, "test.jar")
                 .addClasses(MessageFactory.class, BundleTemplateMessageImpl.class, TemplateMessageImpl.class,
                         ApplicationBundles.class, DefaultLocaleProducer.class, UserLocaleProducer.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
     @Inject

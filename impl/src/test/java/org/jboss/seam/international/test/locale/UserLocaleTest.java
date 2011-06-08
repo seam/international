@@ -42,7 +42,7 @@ public class UserLocaleTest {
     public static JavaArchive createTestArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addClass(UserLocaleProducer.class)
                 .addClass(DefaultLocaleProducer.class).addClass(Alter.class)
-                .addManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+                .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
         // .addManifestResource("org/jboss/seam/international/test/locale/default-locale.xml",
         // ArchivePaths.create("beans.xml"));
     }
