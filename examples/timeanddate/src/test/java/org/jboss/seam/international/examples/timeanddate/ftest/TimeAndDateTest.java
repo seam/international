@@ -63,7 +63,7 @@ public class TimeAndDateTest extends AbstractTestCase {
     @Test
     public void testHomeLink() {
         waitHttp(selenium).click(HOME_LINK);
-        assertTrue(selenium.isTextPresent("this is an example application that shows some"),
+        assertTrue(selenium.isTextPresent("This example application demonstrates several features of the Seam International module."),
                 "The page should contain a description of the application");
     }
 
