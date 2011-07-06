@@ -92,7 +92,7 @@
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
             <include>org.jboss.seam.international:seam-international-api:*:sources</include>
-            <include>org.jboss.seam.international:seam-international-impl:*:sources</include>            
+            <include>org.jboss.seam.international:seam-international:*:sources</include>            
          </includes>
          <unpackOptions>
             <excludes>

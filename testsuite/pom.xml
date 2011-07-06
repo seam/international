@@ -9,48 +9,38 @@
       <relativePath>../pom.xml</relativePath>
    </parent>
 
-   <artifactId>seam-international</artifactId>
+   <artifactId>seam-international-testsuite</artifactId>
 
-   <packaging>jar</packaging>
-   <name>Seam International Implementation</name>
-   <!-- url required for JAR Manifest -->
-   <url>${project.parent.url}</url>
+   <packaging>pom</packaging>
+   <name>Seam International Test Suite: Aggregator</name>
+
+   <modules>
+      <module>api</module>
+      <module>internals</module>
+      <module>smoke</module>
+   </modules>
+
+   <properties>
+      <arquillian.version>1.0.0.CR1</arquillian.version>
+      <weld.version>1.1.1.Final</weld.version>
+      <jbossas.7.version>7.0.0.CR1</jbossas.7.version>
+      <jboss.javaee6.version>2.0.0.Beta1</jboss.javaee6.version>
+   </properties>
 
    <dependencies>
       <dependency>
-         <groupId>org.jboss.seam.international</groupId>
-         <artifactId>seam-international-api</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>javax.enterprise</groupId>
-         <artifactId>cdi-api</artifactId>
+         <groupId>org.jboss.spec</groupId>
+         <artifactId>jboss-javaee-6.0</artifactId>
+         <version>${jboss.javaee6.version}</version>
+         <type>pom</type>
          <scope>provided</scope>
       </dependency>
-
       <dependency>
-         <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder</artifactId>
+         <groupId>org.jboss.arquillian.junit</groupId>
+         <artifactId>arquillian-junit-container</artifactId>
+         <version>${arquillian.version}</version>
+         <scope>test</scope>
       </dependency>
-
-      <dependency>
-         <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder-tooling</artifactId>
-         <optional>true</optional>
-      </dependency>
-
-      <dependency>
-         <groupId>com.ocpsoft</groupId>
-         <artifactId>ocpsoft-pretty-time</artifactId>
-         <optional>true</optional>
-      </dependency>
-
-      <dependency>
-         <groupId>joda-time</groupId>
-         <artifactId>joda-time</artifactId>
-         <optional>true</optional>
-      </dependency>
-
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
@@ -59,6 +49,19 @@
    </dependencies>
 
    <profiles>
+      <profile>
+         <id>allTests</id>
+         <activation>
+          <property>
+            <name>allTests</name>
+          </property>
+         </activation>
+         <modules>
+             <module>stress</module>
+             <module>benchmark</module>
+             <module>clustering</module>
+         </modules>
+      </profile>
       <profile>
          <id>code-coverage</id>
          <build>
