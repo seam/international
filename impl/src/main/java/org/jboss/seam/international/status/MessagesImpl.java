@@ -18,7 +18,7 @@
 package org.jboss.seam.international.status;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
@@ -37,8 +37,8 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
 public class MessagesImpl implements Messages {
     private static final long serialVersionUID = -2908193057765795662L;
 
-    private final Set<Message> messages = Collections.synchronizedSet(new HashSet<Message>());
-    private final Set<MessageBuilder> builders = Collections.synchronizedSet(new HashSet<MessageBuilder>());
+    private final Set<Message> messages = Collections.synchronizedSet(new LinkedHashSet<Message>());
+    private final Set<MessageBuilder> builders = Collections.synchronizedSet(new LinkedHashSet<MessageBuilder>());
 
     @Inject
     private MessageFactory factory;
@@ -52,7 +52,7 @@ public class MessagesImpl implements Messages {
     }
 
     public Set<Message> getAll() {
-        Set<Message> result = new HashSet<Message>();
+        Set<Message> result = new LinkedHashSet<Message>();
 
         synchronized (builders) {
             for (MessageBuilder builder : builders) {
