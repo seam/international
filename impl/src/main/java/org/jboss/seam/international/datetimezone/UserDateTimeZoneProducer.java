@@ -40,8 +40,8 @@ public class UserDateTimeZoneProducer implements Serializable {
     private static final long serialVersionUID = -9008203923830420841L;
 
     @Produces
-    @Client
     @Named
+    @Client
     private DateTimeZone userDateTimeZone;
 
     @Inject
