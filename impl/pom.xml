@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
    <parent>
@@ -8,7 +9,7 @@
       <relativePath>../pom.xml</relativePath>
    </parent>
 
-   <artifactId>seam-international-impl</artifactId>
+   <artifactId>seam-international</artifactId>
 
    <packaging>jar</packaging>
    <name>Seam International Implementation</name>
@@ -17,8 +18,8 @@
 
    <dependencies>
       <dependency>
-         <artifactId>seam-international-api</artifactId>
          <groupId>org.jboss.seam.international</groupId>
+         <artifactId>seam-international-api</artifactId>
       </dependency>
 
       <dependency>
@@ -50,67 +51,12 @@
          <optional>true</optional>
       </dependency>
 
-      <!-- Test Dependencies -->
-      <dependency>
-         <groupId>org.jboss.seam.config</groupId>
-         <artifactId>seam-config-xml</artifactId>
-         <scope>test</scope>
-      </dependency>
-
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.arquillian</groupId>
-         <artifactId>arquillian-junit</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.arquillian.container</groupId>
-         <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.weld</groupId>
-         <artifactId>weld-core</artifactId>
          <scope>test</scope>
       </dependency>
-
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-simple</artifactId>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.spec.javax.ejb</groupId>
-         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>javax.validation</groupId>
-         <artifactId>validation-api</artifactId>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.spec.javax.el</groupId>
-         <artifactId>jboss-el-api_2.2_spec</artifactId>
-         <scope>test</scope>
-      </dependency>
-
    </dependencies>
-
-   <build>
-      <testResources>
-         <testResource>
-            <directory>src/test/resources</directory>
-         </testResource>
-      </testResources>
-   </build>
 
    <profiles>
       <profile>

@@ -27,12 +27,6 @@
 
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
-         <artifactId>seam-international-impl</artifactId>
-         <optional>true</optional>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.seam.international</groupId>
          <artifactId>seam-international</artifactId>
          <optional>true</optional>
       </dependency>
@@ -47,7 +41,7 @@
 
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
-         <artifactId>seam-international-impl</artifactId>
+         <artifactId>seam-international</artifactId>
          <version>${project.version}</version>
          <classifier>sources</classifier>
          <optional>true</optional>

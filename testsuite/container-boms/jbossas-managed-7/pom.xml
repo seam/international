@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>org.jboss.seam.international</groupId>
+      <artifactId>container-boms</artifactId>
+      <version>3.0.1-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
+
+   <artifactId>container-bom-jbossas-managed-7</artifactId>
+   <packaging>pom</packaging>
+   <name>Weld EE Embedded 1.1 Container</name>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.jboss.as</groupId>
+         <artifactId>jboss-as-arquillian-container-managed</artifactId>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.spec</groupId>
+         <artifactId>jboss-javaee-web-6.0</artifactId>
+         <type>pom</type>
+         <scope>compile</scope>
+      </dependency>
+   </dependencies>
+</project>
