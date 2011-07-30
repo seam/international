@@ -8,9 +8,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <groupId>org.jboss.seam.international</groupId>
   <artifactId>seam-international-example-timeanddate</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Seam International Time and Date Example</name>
   <url>http://seamframework.org/Seam3</url>
@@ -34,7 +32,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8</version>
       <scope>test</scope>
     </dependency>
 
@@ -46,6 +43,7 @@
       <dependency>
          <groupId>org.jboss.seam.international</groupId>
          <artifactId>seam-international</artifactId>
+         <scope>compile</scope>
       </dependency>
 
       <dependency>
@@ -134,6 +132,35 @@
          </configuration>
       </plugin>
     </plugins>
+    <pluginManagement>
+       <plugins>
+          <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+          <plugin>
+             <groupId>org.eclipse.m2e</groupId>
+             <artifactId>lifecycle-mapping</artifactId>
+             <version>1.0.0</version>
+             <configuration>
+                <lifecycleMappingMetadata>
+                   <pluginExecutions>
+                      <pluginExecution>
+                         <pluginExecutionFilter>
+                            <groupId>org.zeroturnaround</groupId>
+                            <artifactId>jrebel-maven-plugin</artifactId>
+                            <versionRange>[1.0.7,)</versionRange>
+                            <goals>
+                               <goal>generate</goal>
+                            </goals>
+                         </pluginExecutionFilter>
+                         <action>
+                            <ignore></ignore>
+                         </action>
+                      </pluginExecution>
+                   </pluginExecutions>
+                </lifecycleMappingMetadata>
+             </configuration>
+          </plugin>
+       </plugins>
+    </pluginManagement>
   </build>
    
   <profiles>
