@@ -5,7 +5,7 @@
    <title>Introduction</title>
    <para>
    The goal of Seam International is to provide a unified approach to configuring locale, timezone and language.
-   With features such as Status message propogation to UI, multiple property storage implementations and more. 
+   With features such as Status message propagation to UI, multiple property storage implementations and more. 
    </para>
 
 <!--
