@@ -11,7 +11,7 @@
 
    <artifactId>container-bom-jbossas-managed-7</artifactId>
    <packaging>pom</packaging>
-   <name>Weld EE Embedded 1.1 Container</name>
+   <name>JBoss AS7 Managed Container</name>
 
    <dependencies>
       <dependency>
