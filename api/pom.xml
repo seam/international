@@ -4,7 +4,7 @@
    <parent>
       <groupId>org.jboss.seam.international</groupId>
       <artifactId>seam-international-parent</artifactId>
-      <version>3.0.1-SNAPSHOT</version>
+      <version>3.1.0-SNAPSHOT</version>
       <relativePath>../pom.xml</relativePath>
    </parent>
 
@@ -23,7 +23,7 @@
       </dependency>
       <dependency>
          <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder</artifactId>
+         <artifactId>seam-solder-api</artifactId>
       </dependency>
       <dependency>
          <groupId>joda-time</groupId>
