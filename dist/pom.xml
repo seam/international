@@ -67,7 +67,7 @@
          <artifactId>seam-international-example-timeanddate</artifactId>
          <version>${project.version}</version>
          <type>zip</type>
-         <classifier>distsources</classifier>
+         <classifier>sources</classifier>
          <optional>true</optional>
       </dependency>      
 
