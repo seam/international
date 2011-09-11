@@ -20,6 +20,7 @@ package org.jboss.seam.international.status;
  * A stateful {@link Message} object.
  *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:ssachtleben@gmail.com">Sebastian Sachtleben</a>
  */
 public interface MutableMessage extends Message {
     /**
@@ -31,6 +32,11 @@ public interface MutableMessage extends Message {
      * Set the message text.
      */
     void setText(String summary);
+
+    /**
+     * Set the message detail.
+     */
+    void setDetail(String detail);
 
     /**
      * Set the targets for which a given view-layer or consumer should display this message, or to which this message should be

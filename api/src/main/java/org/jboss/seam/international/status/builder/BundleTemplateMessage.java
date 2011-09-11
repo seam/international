@@ -50,6 +50,7 @@ import org.jboss.seam.international.status.MessageBuilder;
  * <p/>
  *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:ssachtleben@gmail.com">Sebastian Sachtleben</a>
  */
 public interface BundleTemplateMessage extends MessageBuilder {
     /**
@@ -59,6 +60,14 @@ public interface BundleTemplateMessage extends MessageBuilder {
      * any given parameters, and can be used more than once per template.
      */
     public BundleTemplateMessage key(final BundleKey text);
+
+    /**
+     * Use the given {@link BundleKey} to perform a resource lookup, resolving the template to render detail text for this message.
+     * <p/>
+     * Any expressions of the form "{0}, {1} ... {N}" found in the template will be interpolated; numbers reference the index of
+     * any given parameters, and can be used more than once per template.
+     */
+    public BundleTemplateMessage detail(final BundleKey detail);
 
     /**
      * Set the default template text.
@@ -79,6 +88,15 @@ public interface BundleTemplateMessage extends MessageBuilder {
      * cannot be resolved.
      */
     public BundleTemplateMessage params(final Object... textParams);
+
+    /**
+     * Set the parameters for detail text of this builder's template.
+     * <p/>
+     * Parameters may be referenced by index in the template or {@link #textDefault(String)}, using expressions of the form "
+     * {0}, {1} ... {N}". The same parameters will be used when interpolating default text, in the case when a {@link BundleKey}
+     * cannot be resolved.
+     */
+    public BundleTemplateMessage detailParams(final Object... detailParams);
 
     /**
      * Set the targets for this message. If supported by the consuming view-layer, these targets may control where/how the
