@@ -20,11 +20,13 @@ package org.jboss.seam.international.status;
  * A basic implementation of {@link MutableMessage}.
  *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:ssachtleben@gmail.com">Sebastian Sachtleben</a>
  */
 public class MessageImpl implements Message, MutableMessage {
     private static final long serialVersionUID = -1812292372048679525L;
 
     private String summary;
+    private String detail;
     private String targets;
     private Level level;
 
@@ -34,6 +36,7 @@ public class MessageImpl implements Message, MutableMessage {
         int result = 1;
         result = prime * result + ((level == null) ? 0 : level.hashCode());
         result = prime * result + ((summary == null) ? 0 : summary.hashCode());
+        result = prime * result + ((detail == null) ? 0 : detail.hashCode());
         result = prime * result + ((targets == null) ? 0 : targets.hashCode());
         return result;
     }
@@ -64,6 +67,13 @@ public class MessageImpl implements Message, MutableMessage {
         } else if (!summary.equals(other.summary)) {
             return false;
         }
+        if (detail == null) {
+            if (other.detail != null) {
+                return false;
+            }
+        } else if (!detail.equals(other.detail)) {
+            return false;
+        }
         if (targets == null) {
             if (other.targets != null) {
                 return false;
@@ -81,6 +91,10 @@ public class MessageImpl implements Message, MutableMessage {
         return summary;
     }
 
+    public String getDetail() {
+        return detail;
+    }
+
     public String getTargets() {
         return targets;
     }
@@ -91,6 +105,10 @@ public class MessageImpl implements Message, MutableMessage {
 
     public void setText(final String summary) {
         this.summary = summary;
+    }
+
+    public void setDetail(final String detail) {
+        this.detail = detail;
     }
 
     public void setTargets(final String targets) {
