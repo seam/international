@@ -18,8 +18,11 @@ package org.jboss.seam.international.test.util;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
@@ -33,40 +36,64 @@ public class Libraries {
 
     private static Map<String, Collection<JavaArchive>> libs = new HashMap<String, Collection<JavaArchive>>();
 
-    public static Collection<JavaArchive> jodaLibrary(String version) {
-        String artifact = ArtifactNames.JODA_TIME + ":" + version;
+    public static Collection<JavaArchive> jodaLibrary() {
+        String artifact = ArtifactNames.JODA_TIME;
         return getLib(artifact, true);
     }
 
-    public static Collection<JavaArchive> jodaLibraryWithTransitives(String version) {
-        String artifact = ArtifactNames.JODA_TIME + ":" + version;
+    public static Collection<JavaArchive> jodaLibraryWithTransitives() {
+        String artifact = ArtifactNames.JODA_TIME;
         return getLib(artifact, false);
     }
 
-    public static Collection<JavaArchive> seamIntlLibrary(String version) {
-        String artifact = ArtifactNames.SEAM_INTERNATIONAL + ":" + version;
+    public static Collection<JavaArchive> seamIntlLibrary() {
+        // We need to construct seam-international manually, since MavenDependencyResolver can't read it from the Maven reactor
+        // so we would get some old version from the repository...
+        
+        Collection<JavaArchive> libs = new LinkedList<JavaArchive> ();
+        libs.add(ShrinkWrap.create(JavaArchive.class, "seam-international.jar")
+            .addPackages(false,
+                    org.jboss.seam.international.Alter.class.getPackage(),
+                    org.jboss.seam.international.datetimezone.ForwardingDateTimeZone.class.getPackage(),
+                    org.jboss.seam.international.jdktimezone.ForwardingTimeZone.class.getPackage(),
+                    org.jboss.seam.international.locale.DefaultLocale.class.getPackage(),
+                    org.jboss.seam.international.status.Status.class.getPackage(),
+                    org.jboss.seam.international.status.builder.BundleKey.class.getPackage(),
+                    org.jboss.seam.international.timezone.DefaultTimeZone.class.getPackage())
+            .addAsServiceProvider(javax.enterprise.inject.spi.Extension.class, org.jboss.seam.international.status.TypedStatusMessageBundleExtension.class)
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml"));
+
+        return libs;
+        /*String artifact = ArtifactNames.SEAM_INTERNATIONAL;
+        return getLib(artifact, true);*/
+    }
+
+    public static Collection<JavaArchive> seamIntlLibraryWithTransitives() {
+        Collection<JavaArchive> libs = new LinkedList<JavaArchive> ();
+        libs.addAll(seamIntlLibrary());
+        libs.addAll(solderLibraryWithTransitives());
+        libs.addAll(jodaLibraryWithTransitives());
+        
+        return libs;
+        
+        /*String artifact = ArtifactNames.SEAM_INTERNATIONAL;
+        return getLib(artifact, false);*/
+    }
+
+    public static Collection<JavaArchive> solderLibrary() {
+        String artifact = ArtifactNames.SEAM_SOLDER;
         return getLib(artifact, true);
     }
 
-    public static Collection<JavaArchive> seamIntlLibraryWithTransitives(String version) {
-        String artifact = ArtifactNames.SEAM_INTERNATIONAL + ":" + version;
-        return getLib(artifact, false);
-    }
-
-    public static Collection<JavaArchive> solderLibrary(String version) {
-        String artifact = ArtifactNames.SEAM_SOLDER + ":" + version;
-        return getLib(artifact, true);
-    }
-
-    public static Collection<JavaArchive> solderLibraryWithTransitives(String version) {
-        String artifact = ArtifactNames.SEAM_SOLDER + ":" + version;
+    public static Collection<JavaArchive> solderLibraryWithTransitives() {
+        String artifact = ArtifactNames.SEAM_SOLDER;
         return getLib(artifact, false);
     }
 
     private static Collection<JavaArchive> getLib(String artifact, boolean strictFilter) {
         if (!libs.containsKey(artifact)) {
-            MavenDependencyResolver res = DependencyResolvers.use(MavenDependencyResolver.class).loadDependenciesFromPom("pom.xml")
-                    .exclusion("*").artifact(artifact);
+            MavenDependencyResolver res = DependencyResolvers.use(MavenDependencyResolver.class).loadReposFromPom("pom.xml")
+                    .artifact(artifact);
             libs.put(artifact, strictFilter ? res.resolveAs(JavaArchive.class, new StrictFilter()) : res.resolveAs(JavaArchive.class));
         }
         return libs.get(artifact);
