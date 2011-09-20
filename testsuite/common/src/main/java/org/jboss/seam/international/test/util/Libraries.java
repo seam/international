@@ -92,7 +92,9 @@ public class Libraries {
 
     private static Collection<JavaArchive> getLib(String artifact, boolean strictFilter) {
         if (!libs.containsKey(artifact)) {
-            MavenDependencyResolver res = DependencyResolvers.use(MavenDependencyResolver.class).loadReposFromPom("pom.xml")
+            MavenDependencyResolver res = DependencyResolvers.use(MavenDependencyResolver.class)
+                    .configureFrom("../../settings.xml")
+                    .loadReposFromPom("pom.xml")
                     .artifact(artifact);
             libs.put(artifact, strictFilter ? res.resolveAs(JavaArchive.class, new StrictFilter()) : res.resolveAs(JavaArchive.class));
         }
