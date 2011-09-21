@@ -16,121 +16,146 @@
  */
 package org.jboss.seam.international.examples.timeanddate.ftest;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.jboss.arquillian.ajocado.locator.LocatorFactory.xp;
+import static org.jboss.arquillian.ajocado.Ajocado.waitForHttp;
+
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 
-import org.jboss.test.selenium.AbstractTestCase;
-import org.jboss.test.selenium.locator.XpathLocator;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.jboss.arquillian.ajocado.framework.AjaxSelenium;
+import org.jboss.arquillian.ajocado.locator.XPathLocator;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.importer.ZipImporter;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static org.jboss.test.selenium.guard.request.RequestTypeGuardFactory.*;
-import static org.jboss.test.selenium.locator.LocatorFactory.*;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+
 
 /**
  * A functional test for a TimeAndDate example
  *
  * @author <a href="http://community.jboss.org/people/mgencur">Martin Gencur</a>
  */
-public class TimeAndDateTest extends AbstractTestCase {
-    protected XpathLocator WORLDSCLOCK_LINK = xp("//a[contains(text(),'worldsclock')]");
-    protected XpathLocator HOME_LINK = xp("//a[contains(text(),'home')]");
-    protected XpathLocator AFRICA_LINK = xp("//a[contains(text(),'Africa')]");
-    protected XpathLocator AMERICA_LINK = xp("//a[contains(text(),'America')]");
-    protected XpathLocator ASIA_LINK = xp("//a[contains(text(),'Asia')]");
-    protected XpathLocator ATLANTIC_LINK = xp("//a[contains(text(),'Atlantic')]");
-    protected XpathLocator AUSTRALIA_LINK = xp("//a[contains(text(),'Australia')]");
-    protected XpathLocator EUROPE_LINK = xp("//a[contains(text(),'Europe')]");
-    protected XpathLocator PACIFIC_LINK = xp("//a[contains(text(),'Pacific')]");
-    protected XpathLocator DATETIME_INFO = xp("//table/tbody/tr[1]/td[2]");
-    protected XpathLocator TIMEZONE_INFO = xp("/html/body/div[3]/div/form/span");
+@RunWith(Arquillian.class)
+public class TimeAndDateTest{
+    protected XPathLocator WORLDSCLOCK_LINK = xp("//a[contains(text(),'worldsclock')]");
+    protected XPathLocator HOME_LINK = xp("//a[contains(text(),'home')]");
+    protected XPathLocator AFRICA_LINK = xp("//a[contains(text(),'Africa')]");
+    protected XPathLocator AMERICA_LINK = xp("//a[contains(text(),'America')]");
+    protected XPathLocator ASIA_LINK = xp("//a[contains(text(),'Asia')]");
+    protected XPathLocator ATLANTIC_LINK = xp("//a[contains(text(),'Atlantic')]");
+    protected XPathLocator AUSTRALIA_LINK = xp("//a[contains(text(),'Australia')]");
+    protected XPathLocator EUROPE_LINK = xp("//a[contains(text(),'Europe')]");
+    protected XPathLocator PACIFIC_LINK = xp("//a[contains(text(),'Pacific')]");
+    protected XPathLocator DATETIME_INFO = xp("//table/tbody/tr[1]/td[2]");
+    protected XPathLocator TIMEZONE_INFO = xp("/html/body/div[3]/div/form/span");
 
     private static final String FIRST_ENTRY_ERR = "First entry in the table not found";
     private static final String LAST_ENTRY_ERR = "Last entry in the table not found";
     private static final String STANDARD_DATE_TIME_FORMAT = "HH:mm:ss MM/dd/yyyy";
     private static final SimpleDateFormat formatter = new SimpleDateFormat(STANDARD_DATE_TIME_FORMAT);
+    public static final String ARCHIVE_NAME = "international-timeanddate.war";
+    public static final String BUILD_DIRECTORY = "target";
 
-    @BeforeMethod
+    @ArquillianResource
+    URL contextPath;
+    
+    @Drone
+    AjaxSelenium selenium;
+    
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() {
+        return ShrinkWrap.create(ZipImporter.class, ARCHIVE_NAME).importFrom(new File(BUILD_DIRECTORY + '/' + ARCHIVE_NAME))
+                .as(WebArchive.class);
+    }
+    
+    @Before
     public void openStartUrl() throws MalformedURLException {
         selenium.open(new URL(contextPath.toString()));
     }
 
     @Test
     public void testHomeLink() {
-        waitHttp(selenium).click(HOME_LINK);
-        assertTrue(selenium.isTextPresent("This example application demonstrates several features of the Seam International module."),
-                "The page should contain a description of the application");
+        waitForHttp(selenium).click(HOME_LINK);
+        assertTrue("The page should contain a description of the application", selenium.isTextPresent("This example application demonstrates several features of the Seam International module."));
     }
 
     @Test
     public void testAfricaTimes() throws ParseException {
-        waitHttp(selenium).click(WORLDSCLOCK_LINK);
-        waitHttp(selenium).click(AFRICA_LINK);
+        waitForHttp(selenium).click(WORLDSCLOCK_LINK);
+        waitForHttp(selenium).click(AFRICA_LINK);
         String tzInfo = selenium.getText(TIMEZONE_INFO);
-        assertTrue(tzInfo.contains("Default Time Zone"), "Text not found on the page");
+        assertTrue("Text not found on the page",tzInfo.contains("Default Time Zone"));
         int from = tzInfo.indexOf("-") + 2;
-        assertNotNull(formatter.parse(tzInfo, new ParsePosition(from)), "The date should be parseable");
-        assertTrue(selenium.isTextPresent("Africa/Abidjan"), FIRST_ENTRY_ERR);
-        assertTrue(selenium.isTextPresent("Africa/Windhoek"), LAST_ENTRY_ERR);
+        assertNotNull("The date should be parseable",formatter.parse(tzInfo, new ParsePosition(from)));
+        assertTrue(FIRST_ENTRY_ERR, selenium.isTextPresent("Africa/Abidjan"));
+        assertTrue(LAST_ENTRY_ERR, selenium.isTextPresent("Africa/Windhoek"));
         formatter.parse(selenium.getText(DATETIME_INFO));
     }
 
     @Test
     public void testAmericaTimes() throws ParseException {
-        waitHttp(selenium).click(WORLDSCLOCK_LINK);
-        waitHttp(selenium).click(AMERICA_LINK);
-        assertTrue(selenium.isTextPresent("America/Adak"), FIRST_ENTRY_ERR);
-        assertTrue(selenium.isTextPresent("America/Yellowknife"), LAST_ENTRY_ERR);
+        waitForHttp(selenium).click(WORLDSCLOCK_LINK);
+        waitForHttp(selenium).click(AMERICA_LINK);
+        assertTrue(FIRST_ENTRY_ERR, selenium.isTextPresent("America/Adak"));
+        assertTrue(LAST_ENTRY_ERR, selenium.isTextPresent("America/Yellowknife"));
         formatter.parse(selenium.getText(DATETIME_INFO));
     }
 
     @Test
     public void testAsiaTimes() throws ParseException {
-        waitHttp(selenium).click(WORLDSCLOCK_LINK);
-        waitHttp(selenium).click(ASIA_LINK);
-        assertTrue(selenium.isTextPresent("Asia/Aden"), FIRST_ENTRY_ERR);
-        assertTrue(selenium.isTextPresent("Asia/Yerevan"), LAST_ENTRY_ERR);
+        waitForHttp(selenium).click(WORLDSCLOCK_LINK);
+        waitForHttp(selenium).click(ASIA_LINK);
+        assertTrue(FIRST_ENTRY_ERR, selenium.isTextPresent("Asia/Aden"));
+        assertTrue(LAST_ENTRY_ERR, selenium.isTextPresent("Asia/Yerevan"));
         formatter.parse(selenium.getText(DATETIME_INFO));
     }
 
     @Test
     public void testAtlanticTimes() throws ParseException {
-        waitHttp(selenium).click(WORLDSCLOCK_LINK);
-        waitHttp(selenium).click(ATLANTIC_LINK);
-        assertTrue(selenium.isTextPresent("Atlantic/Azores"), FIRST_ENTRY_ERR);
-        assertTrue(selenium.isTextPresent("Atlantic/Stanley"), LAST_ENTRY_ERR);
+        waitForHttp(selenium).click(WORLDSCLOCK_LINK);
+        waitForHttp(selenium).click(ATLANTIC_LINK);
+        assertTrue(FIRST_ENTRY_ERR, selenium.isTextPresent("Atlantic/Azores"));
+        assertTrue(LAST_ENTRY_ERR, selenium.isTextPresent("Atlantic/Stanley"));
         formatter.parse(selenium.getText(DATETIME_INFO));
     }
 
     @Test
     public void testAustraliaTimes() throws ParseException {
-        waitHttp(selenium).click(WORLDSCLOCK_LINK);
-        waitHttp(selenium).click(AUSTRALIA_LINK);
-        assertTrue(selenium.isTextPresent("Australia/ACT"), FIRST_ENTRY_ERR);
-        assertTrue(selenium.isTextPresent("Australia/Yancowinna"), LAST_ENTRY_ERR);
+        waitForHttp(selenium).click(WORLDSCLOCK_LINK);
+        waitForHttp(selenium).click(AUSTRALIA_LINK);
+        assertTrue(FIRST_ENTRY_ERR, selenium.isTextPresent("Australia/ACT"));
+        assertTrue(LAST_ENTRY_ERR, selenium.isTextPresent("Australia/Yancowinna"));
         formatter.parse(selenium.getText(DATETIME_INFO));
     }
 
     @Test
     public void testEuropeTimes() throws ParseException {
-        waitHttp(selenium).click(WORLDSCLOCK_LINK);
-        waitHttp(selenium).click(EUROPE_LINK);
-        assertTrue(selenium.isTextPresent("Europe/Amsterdam"), FIRST_ENTRY_ERR);
-        assertTrue(selenium.isTextPresent("Europe/Zurich"), LAST_ENTRY_ERR);
+        waitForHttp(selenium).click(WORLDSCLOCK_LINK);
+        waitForHttp(selenium).click(EUROPE_LINK);
+        assertTrue(FIRST_ENTRY_ERR, selenium.isTextPresent("Europe/Amsterdam"));
+        assertTrue(LAST_ENTRY_ERR, selenium.isTextPresent("Europe/Zurich"));
         formatter.parse(selenium.getText(DATETIME_INFO));
     }
 
     @Test
     public void testPacificTimes() throws ParseException {
-        waitHttp(selenium).click(WORLDSCLOCK_LINK);
-        waitHttp(selenium).click(PACIFIC_LINK);
-        assertTrue(selenium.isTextPresent("Pacific/Apia"), FIRST_ENTRY_ERR);
-        assertTrue(selenium.isTextPresent("Pacific/Yap"), LAST_ENTRY_ERR);
+        waitForHttp(selenium).click(WORLDSCLOCK_LINK);
+        waitForHttp(selenium).click(PACIFIC_LINK);
+        assertTrue(FIRST_ENTRY_ERR, selenium.isTextPresent("Pacific/Apia"));
+        assertTrue(LAST_ENTRY_ERR, selenium.isTextPresent("Pacific/Yap"));
         formatter.parse(selenium.getText(DATETIME_INFO));
     }
 }
