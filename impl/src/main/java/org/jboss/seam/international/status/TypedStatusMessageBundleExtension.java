@@ -46,10 +46,10 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.ProcessInjectionTarget;
 
-import org.jboss.seam.logging.Logger;
-import org.jboss.seam.solder.literal.MessageBundleLiteral;
-import org.jboss.seam.solder.messages.MessageBundle;
-import org.jboss.seam.solder.reflection.annotated.AnnotatedTypeBuilder;
+import org.jboss.solder.logging.Logger;
+import org.jboss.solder.literal.MessageBundleLiteral;
+import org.jboss.solder.messages.MessageBundle;
+import org.jboss.solder.reflection.annotated.AnnotatedTypeBuilder;
 
 /**
  * @author <a href="http://community.jboss.org/people/kenfinni">Ken Finnigan</a>

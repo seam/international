@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jboss.seam.international.Alter;
-import org.jboss.seam.solder.core.Client;
+import org.jboss.solder.core.Client;
 import org.joda.time.DateTimeZone;
 
 /**

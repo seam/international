@@ -18,5 +18,5 @@
  */
 @Requires({"org.joda.time.DateTimeZone"}) package org.jboss.seam.international.datetimezone;
 
-import org.jboss.seam.solder.core.Requires;
+import org.jboss.solder.core.Requires;
 

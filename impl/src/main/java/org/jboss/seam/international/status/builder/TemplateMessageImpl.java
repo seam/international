@@ -26,12 +26,15 @@ import org.jboss.seam.international.status.MutableMessage;
 
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:ssachtleben@gmail.com">Sebastian Sachtleben</a>
  */
 public class TemplateMessageImpl implements MessageBuilder, TemplateMessage {
     private final Interpolator interpolator = new Interpolator();
 
     private String summary;
+    private String detail;
     private Object[] summaryParams;
+    private Object[] detailParams;
 
     private String targets;
     private Level level;
@@ -41,6 +44,9 @@ public class TemplateMessageImpl implements MessageBuilder, TemplateMessage {
 
         message.setLevel(level);
         message.setText(interpolator.populate(summary, summaryParams));
+        if (detail != null && !detail.equals("")) {
+            message.setDetail(interpolator.populate(detail, detailParams));
+        }
         message.setTargets(targets);
 
         return message;
@@ -51,8 +57,18 @@ public class TemplateMessageImpl implements MessageBuilder, TemplateMessage {
         return this;
     }
 
+    public TemplateMessageImpl detail(final String detail) {
+        this.detail = detail;
+        return this;
+    }
+
     public TemplateMessageImpl textParams(final Object... summaryParams) {
         this.summaryParams = summaryParams;
+        return this;
+    }
+
+    public TemplateMessageImpl detailParams(final Object... detailParams) {
+        this.detailParams = detailParams;
         return this;
     }
 
@@ -72,7 +88,9 @@ public class TemplateMessageImpl implements MessageBuilder, TemplateMessage {
         int result = 1;
         result = prime * result + ((level == null) ? 0 : level.hashCode());
         result = prime * result + ((summary == null) ? 0 : summary.hashCode());
+        result = prime * result + ((detail == null) ? 0 : detail.hashCode());
         result = prime * result + Arrays.hashCode(summaryParams);
+        result = prime * result + Arrays.hashCode(detailParams);
         result = prime * result + ((targets == null) ? 0 : targets.hashCode());
         return result;
     }
@@ -103,7 +121,17 @@ public class TemplateMessageImpl implements MessageBuilder, TemplateMessage {
         } else if (!summary.equals(other.summary)) {
             return false;
         }
+        if (detail == null) {
+            if (other.detail != null) {
+                return false;
+            }
+        } else if (!detail.equals(other.detail)) {
+            return false;
+        }
         if (!Arrays.equals(summaryParams, other.summaryParams)) {
+            return false;
+        }
+        if (!Arrays.equals(detailParams, other.detailParams)) {
             return false;
         }
         if (targets == null) {

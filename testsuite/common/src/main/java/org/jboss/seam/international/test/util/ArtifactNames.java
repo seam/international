@@ -21,7 +21,7 @@ package org.jboss.seam.international.test.util;
  *
  */
 public class ArtifactNames {
-    public static final String SEAM_SOLDER = "org.jboss.seam.solder:seam-solder";
+    public static final String SEAM_SOLDER = "org.jboss.solder:solder-impl";
     public static final String SEAM_INTERNATIONAL = "org.jboss.seam.international:seam-international";
     public static final String JODA_TIME = "joda-time:joda-time";
 

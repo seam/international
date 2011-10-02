@@ -28,14 +28,14 @@
       </dependency>
 
       <dependency>
-         <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder</artifactId>
+         <groupId>org.jboss.solder</groupId>
+         <artifactId>solder-impl</artifactId>
          <scope>compile</scope>
       </dependency>
 
       <dependency>
-         <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder-tooling</artifactId>
+         <groupId>org.jboss.solder</groupId>
+         <artifactId>solder-tooling</artifactId>
          <optional>true</optional>
       </dependency>
 
@@ -57,27 +57,5 @@
          <scope>test</scope>
       </dependency>
    </dependencies>
-
-   <profiles>
-      <profile>
-         <id>code-coverage</id>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.codehaus.mojo</groupId>
-                  <artifactId>emma-maven-plugin</artifactId>
-               </plugin>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-surefire-plugin</artifactId>
-               </plugin>
-               <plugin>
-                  <groupId>org.sonatype.maven.plugin</groupId>
-                  <artifactId>emma4it-maven-plugin</artifactId>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
-   </profiles>
 
 </project>

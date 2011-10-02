@@ -20,14 +20,15 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import org.jboss.seam.logging.Logger;
+import org.jboss.solder.logging.Logger;
 import org.jboss.seam.international.status.ApplicationBundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
-import org.jboss.seam.solder.core.Client;
+import org.jboss.solder.core.Client;
 
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:ssachtleben@gmail.com">Sebastian Sachtleben</a>
  */
 public class BundleTemplateMessageImpl implements BundleTemplateMessage {
     @Inject
@@ -35,6 +36,7 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
 
     private String textDefault;
     private BundleKey textKey;
+    private BundleKey detailKey;
 
     @Inject
     ApplicationBundles bundles;
@@ -47,8 +49,12 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
 
     public Message build() {
         String text;
+        String detail = null;
         try {
             text = bundles.get(clientLocale, textKey.getBundle()).getString(textKey.getKey());
+            if (detailKey != null) {
+                detail = bundles.get(clientLocale, detailKey.getBundle()).getString(detailKey.getKey());
+            }
         } catch (Exception e) {
             log.warn("Could not load bundle: " + textKey);
             text = textDefault;
@@ -59,6 +65,9 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
         }
 
         template.text(text);
+        if (detail != null) {
+            template.detail(detail);
+        }
         return template.build();
     }
 
@@ -71,6 +80,11 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
         return this;
     }
 
+    public BundleTemplateMessageImpl detail(final BundleKey detailKey) {
+        this.detailKey = detailKey;
+        return this;
+    }
+
     public BundleTemplateMessage defaults(final String text) {
         this.textDefault = text;
         return this;
@@ -78,6 +92,11 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
 
     public BundleTemplateMessageImpl params(final Object... textParams) {
         this.template.textParams(textParams);
+        return this;
+    }
+
+    public BundleTemplateMessageImpl detailParams(final Object... detailParams) {
+        this.template.detailParams(detailParams);
         return this;
     }
 
@@ -98,6 +117,7 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
         result = prime * result + ((template == null) ? 0 : template.hashCode());
         result = prime * result + ((textDefault == null) ? 0 : textDefault.hashCode());
         result = prime * result + ((textKey == null) ? 0 : textKey.hashCode());
+        result = prime * result + ((detailKey == null) ? 0 : detailKey.hashCode());
         return result;
     }
 
@@ -132,6 +152,13 @@ public class BundleTemplateMessageImpl implements BundleTemplateMessage {
                 return false;
             }
         } else if (!textKey.equals(other.textKey)) {
+            return false;
+        }
+        if (detailKey == null) {
+            if (other.detailKey != null) {
+                return false;
+            }
+        } else if (!detailKey.equals(other.detailKey)) {
             return false;
         }
         return true;
