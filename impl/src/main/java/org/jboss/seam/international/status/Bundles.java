@@ -27,7 +27,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.seam.solder.core.Client;
+import org.jboss.solder.core.Client;
 
 /**
  * Access to map of {@link ResourceBundle} objects for user locale.

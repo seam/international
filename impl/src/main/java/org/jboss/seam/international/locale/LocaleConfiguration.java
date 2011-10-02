@@ -19,7 +19,7 @@ package org.jboss.seam.international.locale;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.jboss.seam.solder.core.Veto;
+import org.jboss.solder.core.Veto;
 
 /**
  * The locale configuration provides a list of locales defined in the seam-beans.xml.

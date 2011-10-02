@@ -24,7 +24,7 @@ import org.jboss.seam.logging.Logger;
 import org.jboss.seam.international.status.ApplicationBundles;
 import org.jboss.seam.international.status.Level;
 import org.jboss.seam.international.status.Message;
-import org.jboss.seam.solder.core.Client;
+import org.jboss.solder.core.Client;
 
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
