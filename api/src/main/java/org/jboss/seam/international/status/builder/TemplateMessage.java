@@ -34,6 +34,7 @@ import org.jboss.seam.international.status.MessageBuilder;
  * <p/>
  *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:ssachtleben@gmail.com">Sebastian Sachtleben</a>
  */
 public interface TemplateMessage extends MessageBuilder {
     /**
@@ -45,11 +46,26 @@ public interface TemplateMessage extends MessageBuilder {
     public TemplateMessage text(final String summary);
 
     /**
+     * Set the detail text for this message.
+     * <p/>
+     * Any expressions of the form "{0}, {1} ... {N}" found in the template will be interpolated; numbers reference the index of
+     * any given parameters, and can be used more than once per template.
+     */
+    public TemplateMessage detail(final String detail);
+
+    /**
      * Set the parameters for this builder's template.
      * <p/>
      * Parameters may be referenced by index in the template, using expressions of the form "{0}, {1} ... {N}"
      */
     public TemplateMessage textParams(final Object... summaryParams);
+
+    /**
+     * Set the parameters for detail text of this builder's template.
+     * <p/>
+     * Parameters may be referenced by index in the template, using expressions of the form "{0}, {1} ... {N}"
+     */
+    public TemplateMessage detailParams(final Object... detailParams);
 
     /**
      * Set the targets for this message. If supported by the consuming view-layer, these targets may control where/how the

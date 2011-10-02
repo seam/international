@@ -22,6 +22,7 @@ import java.io.Serializable;
  * An object representing a message that needs to be displayed to the User.
  *
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
+ * @author <a href="mailto:ssachtleben@gmail.com">Sebastian Sachtleben</a>
  */
 public interface Message extends Serializable {
     /**
@@ -33,6 +34,11 @@ public interface Message extends Serializable {
      * Get the message text.
      */
     String getText();
+
+    /**
+     * Get message detail.
+     */
+    String getDetail();
 
     /**
      * Get the targets for which a given view-layer or consumer should display this message, or to which this message should be

@@ -16,9 +16,9 @@
  */
 package org.jboss.seam.international.test.util;
 
-import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 /**
@@ -29,15 +29,18 @@ public class Deployments {
 
     public static WebArchive createWebArchive() {
         return ShrinkWrap
-                .create(WebArchive.class, "test.war");
+                .create(WebArchive.class, "test.war")
+                // Temporary workaround for SOLDER-119
+                .addAsWebInfResource(new StringAsset("<jboss-deployment-structure>\n" +
+                        "  <deployment>\n" +
+                        "    <dependencies>\n" +
+                        "      <module name=\"org.jboss.logmanager\" />\n" +
+                        "    </dependencies>\n" +
+                        "  </deployment>\n" +
+                        "</jboss-deployment-structure>"), "jboss-deployment-structure.xml");
     }
 
     public static WebArchive addEmptyBeansXML(WebArchive arc) {
         return arc.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
-
-    public static WebArchive removeSeamInternational(WebArchive arc) {
-        arc.delete(ArchivePaths.create("WEB-INF/lib/seam-international-3.0.1-SNAPSHOT.jar"));
-        return arc;
     }
 }
