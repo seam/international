@@ -17,9 +17,9 @@
 package org.jboss.seam.international.test.status;
 
 import org.jboss.seam.international.status.Status;
-import org.jboss.seam.solder.messages.Locale;
-import org.jboss.seam.solder.messages.Message;
-import org.jboss.seam.solder.messages.MessageBundle;
+import org.jboss.solder.messages.Locale;
+import org.jboss.solder.messages.Message;
+import org.jboss.solder.messages.MessageBundle;
 
 @MessageBundle
 public interface RegistrationStatusMessages {

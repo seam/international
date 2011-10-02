@@ -28,14 +28,14 @@
       </dependency>
 
       <dependency>
-         <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder</artifactId>
+         <groupId>org.jboss.solder</groupId>
+         <artifactId>solder-impl</artifactId>
          <scope>compile</scope>
       </dependency>
 
       <dependency>
-         <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder-tooling</artifactId>
+         <groupId>org.jboss.solder</groupId>
+         <artifactId>solder-tooling</artifactId>
          <optional>true</optional>
       </dependency>
 

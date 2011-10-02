@@ -29,7 +29,7 @@ import org.jboss.seam.international.datetimezone.UserDateTimeZoneProducer;
 import org.jboss.seam.international.test.util.Deployments;
 import org.jboss.seam.international.test.util.Libraries;
 import org.jboss.seam.international.timezone.DefaultTimeZone;
-import org.jboss.seam.solder.core.Client;
+import org.jboss.solder.core.Client;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;

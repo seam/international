@@ -27,7 +27,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.international.Alter;
 import org.jboss.seam.international.test.util.Deployments;
 import org.jboss.seam.international.test.util.Libraries;
-import org.jboss.seam.solder.core.Client;
+import org.jboss.solder.core.Client;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;

@@ -78,8 +78,8 @@
 
         <!-- Declared here for the MavenDependencyResolver  -->
         <dependency>
-            <groupId>org.jboss.seam.solder</groupId>
-            <artifactId>seam-solder</artifactId>
+            <groupId>org.jboss.solder</groupId>
+            <artifactId>solder-impl</artifactId>
         </dependency>
 
         <dependency>

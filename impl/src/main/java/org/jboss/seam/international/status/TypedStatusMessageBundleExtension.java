@@ -46,7 +46,7 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.ProcessInjectionTarget;
 
-import org.jboss.seam.logging.Logger;
+import org.jboss.solder.logging.Logger;
 import org.jboss.solder.literal.MessageBundleLiteral;
 import org.jboss.solder.messages.MessageBundle;
 import org.jboss.solder.reflection.annotated.AnnotatedTypeBuilder;
