@@ -4,16 +4,11 @@
 
     mvn clean verify 
 
-##Running the testsuite on all containers
-    
-    mvn clean verify -DallTests
+##Running the testsuite on JBoss AS 7
 
-##Running the testsuite on JBoss AS 7 only
+    mvn clean verify -Darquillian=jbossas-managed-7
 
-    mvn clean verify -Djbossas-managed-7
+##Running the testsuite with a specific version of JBoss AS 7
 
-##Contents
-
-common/ directory contains the source of tests common to all the containers. Sources of container-specific tests are located in the respective container modules.
-
+    mvn clean verify -Darquillian=jbossas-managed-7 -Djbossas7.version=7.0.1.Final
 
