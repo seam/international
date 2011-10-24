@@ -3,3 +3,5 @@ target
 .project
 .settings
 *.sw?
+docs/src/main/docbook/en-US/version_info.xml
+
