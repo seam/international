@@ -79,7 +79,7 @@ public class TimeAndDateTest{
     private static final String EN_INFO = "This example application demonstrates several features of the Seam International module.";
     private static final String PT_BR_INFO = "Essa é uma aplicação exemplo que mostra algumas funções do seam-international";
     
-    private static final String LOCALE_CHANGE_PT_BR = "Você mudou sua Locale para português (Brasil).";
+    private static final String LOCALE_CHANGE_PT_BR = "Você mudou a sua localidade para português (Brasil).";
     private static final String LOCALE_CHANGE_EN = "You have changed your Locale to English.";
     
     public static final String ARCHIVE_NAME = "international-timeanddate.war";
