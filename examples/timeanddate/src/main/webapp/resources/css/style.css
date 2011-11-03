@@ -21,6 +21,10 @@
     margin: 10px;
 }
 
+#locale {
+	float: right;
+}
+
 #menuworldsclock a {
     margin: 10px;
 }

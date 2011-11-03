@@ -42,6 +42,12 @@
       </dependency>
 
       <dependency>
+         <groupId>org.jboss.seam.faces</groupId>
+         <artifactId>seam-faces</artifactId>
+         <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
          <groupId>javax.enterprise</groupId>
          <artifactId>cdi-api</artifactId>
          <scope>provided</scope>
