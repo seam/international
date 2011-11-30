@@ -6,7 +6,7 @@
         <groupId>org.jboss.seam.international</groupId>
         <artifactId>seam-international-parent</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>3.1.0.CR1</version>
+        <version>3.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>seam-international-testsuite</artifactId>
