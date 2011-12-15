@@ -26,6 +26,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
+import org.jboss.solder.core.Requires;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -45,6 +46,7 @@ import org.joda.time.DateTimeZone;
  * @author Peter Hilton, Lunatech Research
  * @author Dan Allen
  */
+@Requires({"org.joda.time.DateTimeZone"})
 @ApplicationScoped
 public class AvailableDateTimeZones {
     private static final String TIMEZONE_ID_PREFIXES = "^(Africa|America|Asia|Atlantic|Australia|Europe|Indian|Pacific)/.*";
