@@ -25,8 +25,9 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.solder.logging.Logger;
 import org.jboss.seam.international.timezone.DefaultTimeZone;
+import org.jboss.solder.core.Requires;
+import org.jboss.solder.logging.Logger;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -36,6 +37,7 @@ import org.joda.time.DateTimeZone;
  * @author Ken Finnigan
  */
 
+@Requires({"org.joda.time.DateTimeZone"})
 @ApplicationScoped
 public class DefaultDateTimeZoneProducer implements Serializable {
     private static final long serialVersionUID = 6181892144731122500L;

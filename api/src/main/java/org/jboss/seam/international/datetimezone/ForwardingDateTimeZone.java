@@ -19,6 +19,7 @@ package org.jboss.seam.international.datetimezone;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.jboss.solder.core.Requires;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -26,6 +27,7 @@ import org.joda.time.DateTimeZone;
  *
  * @author Ken Finnigan
  */
+@Requires({"org.joda.time.DateTimeZone"})
 public abstract class ForwardingDateTimeZone extends DateTimeZone {
     /**
      * Abstract getter for the delegate

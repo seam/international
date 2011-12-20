@@ -26,6 +26,7 @@ import javax.inject.Named;
 
 import org.jboss.seam.international.Alter;
 import org.jboss.solder.core.Client;
+import org.jboss.solder.core.Requires;
 import org.joda.time.DateTimeZone;
 
 /**
@@ -35,6 +36,7 @@ import org.joda.time.DateTimeZone;
  * @author Ken Finnigan
  */
 
+@Requires({"org.joda.time.DateTimeZone"})
 @SessionScoped
 public class UserDateTimeZoneProducer implements Serializable {
     private static final long serialVersionUID = -9008203923830420841L;
